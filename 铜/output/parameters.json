@@ -1,0 +1,17 @@
+{
+ "blend": "sign(0.5*baseline_macro4 + 0.5*optimized_macro4)",
+ "baseline": {
+  "dxy": "z250 -1",
+  "vix": "z60 -1",
+  "ism": "z250 +1",
+  "cftc": "z250 +1"
+ },
+ "optimized": {
+  "dxy": "chg_rank520/120 db0.5 -1",
+  "vix": "chg_z60/20 -1",
+  "ism": "level_rank250 +1",
+  "cftc": "z60 +1"
+ },
+ "cost": "0.03% round-trip",
+ "leverage": 1.0
+}
