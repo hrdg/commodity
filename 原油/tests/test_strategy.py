@@ -17,8 +17,8 @@ class TestPremiumStrategy(unittest.TestCase):
 
     def test_performance_matches_frozen_result(self):
         st = self.report["strategy"]
-        self.assertGreater(st["cagr"], 0.25)
-        self.assertGreater(st["sharpe"], 1.10)
+        self.assertGreater(st["cagr"], 0.28)
+        self.assertGreater(st["sharpe"], 1.20)
         self.assertGreater(st["mdd"], -0.25)
         self.assertLess(self.report["buy_hold"]["cagr"], 0.12)
 
@@ -33,7 +33,7 @@ class TestPremiumStrategy(unittest.TestCase):
         mid = d[(d.premium > 0.05) & (d.premium <= 0.10)]
         low = d[d.premium <= 0.05]
         self.assertTrue((high.premium_weight == 0).all())
-        self.assertTrue((mid.premium_weight == 0.5).all())
+        self.assertTrue(mid.premium_weight.isin([0, 1]).all())
         self.assertTrue((low.premium_weight == 1).all())
 
 

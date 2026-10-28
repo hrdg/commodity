@@ -79,9 +79,20 @@ def run(cfg: dict) -> tuple[pd.DataFrame, dict]:
 
     pw = cfg["premium"]
     prem = px / nav.reindex(px.index).ffill().shift(pw["nav_lag"]) - 1
-    weight = pd.Series(1.0, index=px.index)
-    weight[prem > pw["low"]] = pw["mid_weight"]
-    weight[prem > pw["high"]] = pw["high_weight"]
+    if pw.get("mode") == "hysteresis":
+        state, arr = 1.0, []
+        for p in prem:
+            if pd.notna(p):
+                if p > pw["block"]:
+                    state = pw["high_weight"]
+                elif p < pw["reenter"]:
+                    state = 1.0
+            arr.append(state)
+        weight = pd.Series(arr, index=px.index)
+    else:
+        weight = pd.Series(1.0, index=px.index)
+        weight[prem > pw["low"]] = pw["mid_weight"]
+        weight[prem > pw["high"]] = pw["high_weight"]
 
     raw_pos = (base * weight).fillna(0.0)
     pos = raw_pos.shift(1).fillna(0.0)

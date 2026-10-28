@@ -12,8 +12,11 @@
     "lag": 6
   },
   "premium": {
+    "mode": "hysteresis",
     "low": 0.05,
     "high": 0.10,
+    "reenter": 0.05,
+    "block": 0.10,
     "mid_weight": 0.5,
     "high_weight": 0.0,
     "nav_lag": 1
