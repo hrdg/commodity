@@ -6,9 +6,12 @@
 | M0 复权诊断 | `M0_roll_adjusted.csv` | 2010-01..2024-12 | 12 处换月缺口置 0 后重建；仅诊断，未替换策略基线 |
 | 豆粕基差 | `m_basis_2016_2024.csv`、`m_basis_2025_2026.csv` | 2016..2026 | 100ppi `dom_basis_rate` |
 | 豆粕仓单 | `m_warehouse_receipt_latest.csv` | 2005..2026 | 99期货/大商所，1 张=10 吨 |
+| 豆粕仓单（日度） | `warehouse_receipts_2016_2024.csv` | 2016..2024 | 99qh + 聚宽面板；与 latest 拼接后供 G6-diff5 使用 |
 | 港口大豆库存 | `soy_port_inventory_weekly.csv` | 2015..2026 | Mysteel 周度 |
 | 原料大豆库存 | `factor_soy_inventory_combined.csv` | 2018..2026 | 研报图2数字化 + Mysteel 2022+ |
 | 豆粕库存 | `soy_crush_weekly.csv` | 2022..2026 | Mysteel 全国 |
+| 华东豆粕库存 | `meal_inventory_east_china_candidates.csv` | 2020-12..2026-10 | Mysteel 周度，按 `published_at` 可得；G6-diff5 的 `ec_z` |
+| 豆粕 ETF | `159985_soybean_meal_etf.csv` | 2019-12-05..2026-10-21 | 159985 前复权 OHLC；G6-diff5 的价格 |
 | 豆菜价差 | 由 M0/RM0 计算 | 2012..2026 | 主连收盘 |
 | 月度生猪代理 | `hog_sow_monthly.csv` | 2009-01..2026-06 | **能繁母猪存栏**，非总生猪存栏；单因子弱，未入模 |
 
