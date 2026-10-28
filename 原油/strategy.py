@@ -121,8 +121,9 @@ def run(cfg: dict) -> tuple[pd.DataFrame, dict]:
 def main() -> None:
     p = argparse.ArgumentParser()
     p.add_argument("--output", default="output")
+    p.add_argument("--config", default="config.json")
     args = p.parse_args()
-    cfg = json.loads((ROOT / "config.json").read_text())
+    cfg = json.loads((ROOT / args.config).read_text())
     out, report = run(cfg)
     outdir = ROOT / args.output
     outdir.mkdir(parents=True, exist_ok=True)

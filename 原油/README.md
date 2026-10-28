@@ -43,12 +43,27 @@
 
 防偷看检验（静态分层）：NAV 滞后 2 天为 24.3%/1.105/−23.8%；滞后 3 天为 23.1%/1.095/−22.7%；用滚动 β 估算当日 NAV 为 37.7%/1.552/−21.6%。滞回版本在 8/3–12/7 阈值邻域内年化 29.3–32.1%、夏普 1.25–1.29，分段均为正。
 
+### OOS 候选：9/3 滞回
+
+只用 2017–2021 选阈值（选中 9/3），2022–2026 不再调参：
+
+| 区间 | 年化 | 夏普 | 卡玛 | 最大回撤 |
+|---|---:|---:|---:|---:|
+| 训练 2017–2021 | 24.19% | 1.241 | 1.235 | −19.6% |
+| **OOS 2022–2026** | **42.43%** | **1.537** | **1.908** | **−22.2%** |
+| OOS 买入持有 | 21.08% | 0.696 | 0.459 | −45.9% |
+
+该版本是独立 OOS 候选，不替换正式 10/5。收益集中在 2022 和 2026；2024–2025 基本走平。详见 `OOS_9_3.md`。
+
 ## 运行
 
 ```sh
 cd 原油
 python strategy.py --output output
 python -m unittest discover -s tests -v
+# OOS 候选
+python strategy.py --config config_oos_9_3.json --output output_oos_9_3
+python oos_report.py --config config_oos_9_3.json --output output_oos_9_3
 ```
 
 依赖：`pandas`、`numpy`、`matplotlib`。
@@ -81,11 +96,13 @@ python -m unittest discover -s tests -v
 
 - `strategy.py`：策略与回测。
 - `config.json`：冻结参数。
+- `config_oos_9_3.json`：OOS 候选 9/3 参数。
 - `data/`：复算数据。
 - `output/`：绩效与持仓。
 - `tests/`：冒烟测试。
 - `ENHANCEMENTS.md`：溢价滞回、载体选择、DXY、159981 切换等增强验证。
 - `OOS_160723.md`：固定 160723 的 2022–2026 时序留出与逐年阈值选择。
+- `OOS_9_3.md` / `oos_report.py`：9/3 训练期选择与 OOS 报告。
 - `fetch_enhance.py` / `enhancement_hypotheses.py`：额外载体与增强假设的复算脚本。
 - `fetch_sgzt.py`：申购状态历史抓取（研究用，未进入正式策略）。
 - `fetch_brent.py`：Brent 现货抓取（Brent−WTI 切换研究，未进入正式策略）。
