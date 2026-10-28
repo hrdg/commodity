@@ -107,6 +107,34 @@ python final_b2_etf.py
 
 输出：`output/final_b2_etf_metrics.json`、`output/final_b2_etf_positions.csv`、`output/final_b2_signal.csv`、`output/final_b2_etf_nav.png`。
 
+## 逐年 walk-forward（期货 + ETF）
+
+`wf_final.py` 每年 1 月只用此前 3 年，从 8 套固定模板中选一套，下一整年不再改；成本 3bp。
+
+期货 M0 2019–2026：**16.55%/1.495/1.707**，最大回撤 −9.69%，八年全为正：2019 +18.3%、2020 +8.3%、2021 +14.4%、2022 +33.1%、2023 +23.5%、2024 +25.7%、2025 +6.8%、2026 +2.0%。
+
+逐年选择：2019 PV_VOL；2020–2023 final_b2+10%多头；2024 PV50+G50；2025–2026 final_b2+10%多头。
+
+ETF 只做多（159985，2019-12–2026-10）：
+
+| 版本 | 年化 | 夏普 | 卡玛 | 最大回撤 | 平均仓位 | 2025 | 2026 |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| WF 满仓/现金 | **16.2%** | **1.109** | 1.367 | −11.8% | 51.8% | −0.9% | +12.1% |
+| WF 分数仓位 | 9.5% | 1.209 | **1.634** | **−5.8%** | 21.0% | +1.6% | +0.4% |
+| 买入持有 159985 | 12.4% | 0.724 | 0.469 | −26.5% | 100% | +6.7% | +13.1% |
+
+![walk-forward ETF 净值与回撤](output/wf_final_etf_nav.png)
+
+这不是干净的未看 OOS：8 套候选模板是看过 2016–2026 后设计的，walk-forward 只验证“每年怎么选模板”的规则；2025–2026 也已反复查看。真正的未看确认仍要从 2027 开始。
+
+运行：
+
+```sh
+python wf_final.py
+```
+
+输出：`output/wf_final_metrics.json`、`output/wf_final_futures_positions.csv`、`output/wf_final_etf_positions.csv`、`output/wf_final_etf_nav.png`。
+
 ## 运行
 
 ```sh

@@ -78,7 +78,7 @@ def state(long_entry, short_entry, idx):
     return pd.Series(out, index=idx)
 
 
-def main():
+def build_final():
     M = load_main("M0"); RM = load_main("RM0"); A0 = load_main("A0"); Y0 = load_main("Y0")
     cal = M.index
     ret = M.close.pct_change()
@@ -146,6 +146,11 @@ def main():
     basis_ls = np.sign(decision(raw["basis_z"], cal).fillna(0.0))
 
     final = (0.8 * (0.25 * vt15 + 0.25 * pv_vol + 0.5 * g6) + 0.1 * k2 + 0.1 * basis_ls).clip(-1, 1)
+    return cal, final, {"pv_vt": vt15, "pv_vol": pv_vol, "g6": g6, "k2": k2, "basis": basis_ls}
+
+
+def main():
+    cal, final, _ = build_final()
     pd.DataFrame({"date": cal, "final": final.values}).to_csv(
         ROOT / "output" / "final_b2_signal.csv", index=False)
 
