@@ -14,6 +14,7 @@
 | `159981.csv` | date, close | 2020-01-17–2026-10-28 | Sina ETF 日线 |
 | `dxy.csv` | date, value | 2006-01-02–2026-10-23 | FRED `DTWEXBGS` |
 | `sgzt_160723.csv` | date, SGZT, SHZT | 2017-04-20–2026-10-27 | Eastmoney 历史净值接口 |
+| `brent.csv` | date, value | 1987-05-20–2026-10-20 | FRED `DCOILBRENTEU` |
 
 ## 口径
 
