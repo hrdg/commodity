@@ -15,6 +15,7 @@
 | `dxy.csv` | date, value | 2006-01-02–2026-10-23 | FRED `DTWEXBGS` |
 | `sgzt_160723.csv` | date, SGZT, SHZT | 2017-04-20–2026-10-27 | Eastmoney 历史净值接口 |
 | `brent.csv` | date, value | 1987-05-20–2026-10-20 | FRED `DCOILBRENTEU` |
+| `dfii10.csv` | date, dfii10 | 2003-01-02–2026-10-26 | FRED `DFII10`（TIPS 风险 overlay 研究） |
 
 ## 口径
 
