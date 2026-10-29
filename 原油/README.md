@@ -4,6 +4,8 @@
 
 当前状态：历史研究候选，样本内结果；溢价数据依赖基金 NAV 披露，未做 2027 前瞻验证，不可直接实盘。
 
+审计状态（2026-10-29）：旧结果可复算，但 EIA 数据发布时点、USO 跨市场日历和同收盘成交口径未通过审计，不能认证为无未来数据或干净 OOS。详见 `audit_20261029/REPORT.md`。
+
 ## 策略公式
 
 ```
@@ -121,3 +123,4 @@ python oos_report.py --config config_oos_9_3.json --output output_oos_9_3
 - `fetch_enhance.py` / `enhancement_hypotheses.py`：额外载体与增强假设的复算脚本。
 - `fetch_sgzt.py`：申购状态历史抓取（研究用，未进入正式策略）。
 - `fetch_brent.py`：Brent 现货抓取（Brent−WTI 切换研究，未进入正式策略）。
+- `audit_20261029/REPORT.md`：独立代码审计、执行敏感性诊断与待修复项。

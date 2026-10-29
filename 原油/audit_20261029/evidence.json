@@ -1,0 +1,572 @@
+{
+  "commit": "165a0d876477fc9cdc205836dd95a88bc59467b0",
+  "environment": {
+    "python": "3.12.14",
+    "pandas": "3.0.6",
+    "numpy": "2.5.4"
+  },
+  "hashes": {
+    "audit_lag3.py": "078bc9c595a469f36e2187fa3b58695f6965b3cd5a8db16a1a8791410cc1b86c",
+    "config.json": "d8fd3412035b424a5686209e4803781ffb95d5885bc8fdc378566c7347d91c97",
+    "config_oos_9_3.json": "d4e2c614aa8bc4bf3e2de90d2666853f4fde0c2e78012d7910e22c7335a52e63",
+    "config_proxy_10_5.json": "60adab5e3416a7935e1852687159ec885e579d4fdede05c373e2be439ad665a2",
+    "config_proxy_9_3.json": "631f9802d4e0c596b53b5a8cfdc9f00eb7d0afdd66525b3e7601086c241f3e77",
+    "current_signal.py": "e5473d35fb1bb6083be5cfb2a117af13f61938c50c7785d584ff62b4d537bcc4",
+    "data/159981.csv": "c3763155e6502cfff2c6909f167df4c5c8dd966c70446846a6291654c18f5e4f",
+    "data/160216.csv": "c7ce962303dd7cff57d8d61ceb047e4047fc9131ef1940f826e810326f9e998c",
+    "data/160723.csv": "4e5e936c71901bce98ea6977c9c996cbe4006bc7ff09a39d9c3fba79964482c2",
+    "data/161129.csv": "2427f6abad94f595816098030a8a883084c86c631e0ae039a801b1e8c5772eae",
+    "data/501018.csv": "186b7addce495962a4b376b98de4908d0e750cee7da9df6b9d1381f1e8d505dc",
+    "data/brent.csv": "ac979fb35ef9bbc3bf4db182c970ceca884345e20ddda8a55fe6c372e0dace68",
+    "data/cushing.csv": "e2ca0517123cfd25ed434cabdfc87ddb3626ad113ecd8ac042b311982e6ce94a",
+    "data/dfii10.csv": "aeb49f6c9ecef51e50c7c7483cb0792ffffb545ae010a2f7e1c7c5284b45975f",
+    "data/dxy.csv": "a0f5d1229d7e3498e0ae3068db71a4ab0e59b0f88f48b89d597a82cf14f205de",
+    "data/gasoline.csv": "efb3ba622d2cfa6c9a591be1008e57b5027ae30e1a896a6376c0ff0fc0b2c65d",
+    "data/heating_oil.csv": "a2ab162d8f7161947458e4359d018c521c2c4a83745b75e6e0946de878700991",
+    "data/nav_160216.csv": "b6f382ab20b2fe378753a6e4fb62cf103af6087caeae0b888429fdce5f309cb7",
+    "data/nav_160723.csv": "7e510d9d90bc207e127638c2934bdf80f97330e7ef8516c6b1dd65df4e29f613",
+    "data/nav_161129.csv": "20ee41ccb33986e4ac6a96de1ff3db62c8880e2c5481f3bb4153772dc967f667",
+    "data/nav_501018.csv": "4fd4a893f6e60f442edfbc39cb0e954c661f7834414951b364b581d9766bae4f",
+    "data/sgzt_160723.csv": "ef8f66181d84bf17a94166fbc33b2726200f9ccdd71549629661b8271a094bb2",
+    "data/usdcny.csv": "cd4cac63af179ce9cf3d3329c6aae2237a35fe588df12e9a4ea1854e68a41d5d",
+    "data/uso.csv": "7dc8b055a697314c36515eb3b556eec3b121c03ec0a78f7a1ef3b1f15372f84f",
+    "data/wti.csv": "cdcdfedda957076d4dac4cb8b1fdc096abe16d55196be6f887b5a0a2e0d24c19",
+    "enhancement_hypotheses.py": "56d5ea979b1040e8cc624cbdd6e0e51636c283670f792dde36b113ec50b26e57",
+    "fetch_brent.py": "63d20dce0628f7ace7a6aa4a5ee17b48a823da8cfa714e47b48cb6f834a2b0a6",
+    "fetch_enhance.py": "4ad505a63708f2de303077d47c6751a29617e85eced6605d315d3e24b1ab6a3e",
+    "fetch_sgzt.py": "fb28a3653731fea315045786acde3c8380b86481358caa7b2f02fa28adeaad53",
+    "nav_proxy.py": "0cd7d7f1e0e8adedecc194bba6a0948799209c19ff463f26dd2b9a456b8e82fd",
+    "oos_report.py": "a7bac0bdc86e3515011c4f1ff12ad194a135ebb8c051865e0a1c5f57ab921e04",
+    "plot_oos_9_3.py": "11492007661c8ae1b635a45de3f24bae2019437bd875b7ee4e08ee99dbac13fe",
+    "strategy.py": "3d66d14b9a83d0fb366118520621b00f424bf019beb7dcc4dee417a99fbbaf31"
+  },
+  "configs": {
+    "config.json": {
+      "same_saved_index": true,
+      "max_saved_abs_errors": {
+        "pnl": 9.974659986866641e-17,
+        "premium": 9.974659986866641e-17,
+        "held_position": 0.0
+      },
+      "metric_max_abs_error": 0.0,
+      "original_full": {
+        "start": "2017-05-08",
+        "end": "2026-10-27",
+        "n": 2284,
+        "cagr": 0.2373805650011125,
+        "vol": 0.22472746523418596,
+        "sharpe": 1.1024160119454178,
+        "mdd": -0.22239946675255284,
+        "calmar": 1.0673612147875695,
+        "final": 7.516697183012347,
+        "exposure": 0.669877408056042,
+        "round_trips_per_year": 5.015719861231569
+      },
+      "original_train": {
+        "cagr": 0.23866581339335147,
+        "sharpe": 1.2431939834439398,
+        "calmar": 1.2188961755106917,
+        "mdd": -0.19580487508983735,
+        "final": 2.704779244410533
+      },
+      "original_oos": {
+        "cagr": 0.2367393042045871,
+        "sharpe": 1.010208977111939,
+        "calmar": 1.0644778409832656,
+        "mdd": -0.22239946675255295,
+        "final": 2.7790427623791185
+      },
+      "next_close_diagnostic_full": {
+        "cagr": 0.2507546772626237,
+        "sharpe": 1.1282472336857983,
+        "calmar": 0.8319124905528995,
+        "mdd": -0.3014195364418305,
+        "final": 8.322275200235794
+      },
+      "next_close_diagnostic_oos": {
+        "cagr": 0.23745303930192962,
+        "sharpe": 0.9895498071495406,
+        "calmar": 0.7877825110641242,
+        "mdd": -0.3014195364418306,
+        "final": 2.786766244831772
+      },
+      "next_open_diagnostic_full": {
+        "cagr": 0.27909538237958587,
+        "sharpe": 1.2382865802263416,
+        "calmar": 1.1022224952725235,
+        "mdd": -0.25321147370575103,
+        "final": 10.289514986025
+      },
+      "next_open_diagnostic_oos": {
+        "cagr": 0.27699075424460795,
+        "sharpe": 1.1330979709739561,
+        "calmar": 1.093910754480624,
+        "mdd": -0.25321147370575026,
+        "final": 3.2419474685518748
+      },
+      "prefix_max_abs_error": {
+        "2021-12-31": 0.0,
+        "2024-12-31": 0.0
+      },
+      "latest_from_snapshot": {
+        "date": "2026-10-28 00:00:00",
+        "premium": "-0.005429132493935507",
+        "target_position": "1.0"
+      }
+    },
+    "config_oos_9_3.json": {
+      "same_saved_index": true,
+      "max_saved_abs_errors": {
+        "pnl": 9.974659986866641e-17,
+        "premium": 9.974659986866641e-17,
+        "held_position": 0.0
+      },
+      "metric_max_abs_error": 0.0,
+      "original_full": {
+        "start": "2017-05-08",
+        "end": "2026-10-27",
+        "n": 2284,
+        "cagr": 0.22409609951500986,
+        "vol": 0.22052376374221802,
+        "sharpe": 1.0681550658395058,
+        "mdd": -0.23813720582562925,
+        "calmar": 0.9410377464456323,
+        "final": 6.78629529847003,
+        "exposure": 0.6611208406304728,
+        "round_trips_per_year": 4.910125758889852
+      },
+      "original_train": {
+        "cagr": 0.24251728812386464,
+        "sharpe": 1.260576168260489,
+        "calmar": 1.238566138930888,
+        "mdd": -0.19580487508983735,
+        "final": 2.7440994380794588
+      },
+      "original_oos": {
+        "cagr": 0.20710858958184897,
+        "sharpe": 0.9294154713537452,
+        "calmar": 0.8697027785464948,
+        "mdd": -0.23813720582563003,
+        "final": 2.4730500667350483
+      },
+      "oos_max_abs_error": 0.0,
+      "next_close_diagnostic_full": {
+        "cagr": 0.25831517706443563,
+        "sharpe": 1.1791518481650085,
+        "calmar": 0.9151323196557339,
+        "mdd": -0.28227084927085944,
+        "final": 8.811066675409279
+      },
+      "next_close_diagnostic_oos": {
+        "cagr": 0.24796423315540772,
+        "sharpe": 1.0549416588186493,
+        "calmar": 0.8784620650553546,
+        "mdd": -0.2822708492708592,
+        "final": 2.902492700234663
+      },
+      "next_open_diagnostic_full": {
+        "cagr": 0.28490450543764,
+        "sharpe": 1.275271328628145,
+        "calmar": 1.2457362286122835,
+        "mdd": -0.22870371664073375,
+        "final": 10.740674587620084
+      },
+      "next_open_diagnostic_oos": {
+        "cagr": 0.283203719445996,
+        "sharpe": 1.1756262031773073,
+        "calmar": 1.2382995939277834,
+        "mdd": -0.2287037166407342,
+        "final": 3.3185289933432323
+      },
+      "prefix_max_abs_error": {
+        "2021-12-31": 0.0,
+        "2024-12-31": 0.0
+      },
+      "latest_from_snapshot": {
+        "date": "2026-10-28 00:00:00",
+        "premium": "-0.005429132493935507",
+        "target_position": "1.0"
+      }
+    },
+    "config_proxy_10_5.json": {
+      "same_saved_index": true,
+      "max_saved_abs_errors": {
+        "pnl": 9.974659986866641e-17,
+        "premium": 9.93129189996722e-17,
+        "held_position": 0.0
+      },
+      "metric_max_abs_error": 0.0,
+      "original_full": {
+        "start": "2017-05-08",
+        "end": "2026-10-27",
+        "n": 2284,
+        "cagr": 0.3065375539539219,
+        "vol": 0.24201819985089293,
+        "sharpe": 1.274540006137754,
+        "mdd": -0.2223304072086938,
+        "calmar": 1.3787477736510678,
+        "final": 12.580578020014386,
+        "exposure": 0.6729422066549913,
+        "round_trips_per_year": 5.332502168256721
+      },
+      "original_train": {
+        "cagr": 0.21241928996423898,
+        "sharpe": 1.1145480716973857,
+        "calmar": 1.0410042684225402,
+        "mdd": -0.20405227568002504,
+        "final": 2.4484498888274553
+      },
+      "original_oos": {
+        "cagr": 0.40528694277747745,
+        "sharpe": 1.4139769191201947,
+        "calmar": 1.8229037937984325,
+        "mdd": -0.22233040720869335,
+        "final": 5.138180723003946
+      },
+      "oos_max_abs_error": 0.0,
+      "next_close_diagnostic_full": {
+        "cagr": 0.32294074061906963,
+        "sharpe": 1.3149841400625832,
+        "calmar": 1.3107627751694206,
+        "mdd": -0.24637619158610025,
+        "final": 14.158425345332011
+      },
+      "next_close_diagnostic_oos": {
+        "cagr": 0.3889380242130538,
+        "sharpe": 1.3523341430695075,
+        "calmar": 1.5786347767987763,
+        "mdd": -0.2463761915860989,
+        "final": 4.856934121472691
+      },
+      "next_open_diagnostic_full": {
+        "cagr": 0.32983788652592794,
+        "sharpe": 1.3482503017946135,
+        "calmar": 1.5407100175411823,
+        "mdd": -0.2140817433330614,
+        "final": 14.87310580538576
+      },
+      "next_open_diagnostic_oos": {
+        "cagr": 0.3899771958457485,
+        "sharpe": 1.377775989863435,
+        "calmar": 1.8216275230860555,
+        "mdd": -0.21408174333306096,
+        "final": 4.874439326969521
+      },
+      "prefix_max_abs_error": {
+        "2021-12-31": 0.0,
+        "2024-12-31": 0.0
+      },
+      "calendar_diagnostic": {
+        "definition": "USO level ratio on actual NAV valuation date to latest US date < CN date; same original execution; NOT a PIT-certified replacement",
+        "differing_target_days": 14,
+        "full": {
+          "cagr": 0.32486183504157196,
+          "sharpe": 1.3151305328777962,
+          "calmar": 1.386011907837218,
+          "mdd": -0.2343860346398451,
+          "final": 14.354335052077353
+        },
+        "oos": {
+          "cagr": 0.41524130642270607,
+          "sharpe": 1.4226096322540367,
+          "calmar": 1.771612831202857,
+          "mdd": -0.23438603463984464,
+          "final": 5.315640418272026
+        },
+        "example": [
+          {
+            "date": "2024-07-03",
+            "old_u": "-0.005273485405935863",
+            "old_proxy": "1.6100727352682498",
+            "aligned_proxy": "1.6100727352682498",
+            "base_nav_date": "2024-06-28"
+          },
+          {
+            "date": "2024-07-04",
+            "old_u": "0.001972629762051481",
+            "old_proxy": "1.5932069536423838",
+            "aligned_proxy": "1.5932069536423838",
+            "base_nav_date": "2024-07-01"
+          },
+          {
+            "date": "2024-07-05",
+            "old_u": "0.001972629762051481",
+            "old_proxy": "1.6155549734549386",
+            "aligned_proxy": "1.6123743558130934",
+            "base_nav_date": "2024-07-02"
+          },
+          {
+            "date": "2024-07-08",
+            "old_u": "0.0004921865386982027",
+            "old_proxy": "1.6103610405621993",
+            "aligned_proxy": "1.607190648455765",
+            "base_nav_date": "2024-07-03"
+          },
+          {
+            "date": "2024-07-09",
+            "old_u": "-0.010945763128766495",
+            "old_proxy": "1.5961296911529468",
+            "aligned_proxy": "1.596129691152947",
+            "base_nav_date": "2024-07-04"
+          }
+        ]
+      },
+      "latest_from_snapshot": {
+        "date": "2026-10-28 00:00:00",
+        "premium": "0.028860136491964283",
+        "target_position": "1.0"
+      }
+    },
+    "config_proxy_9_3.json": {
+      "same_saved_index": true,
+      "max_saved_abs_errors": {
+        "pnl": 9.974659986866641e-17,
+        "premium": 9.93129189996722e-17,
+        "held_position": 0.0
+      },
+      "metric_max_abs_error": 0.0,
+      "original_full": {
+        "start": "2017-05-08",
+        "end": "2026-10-27",
+        "n": 2284,
+        "cagr": 0.31940404022173574,
+        "vol": 0.23820024464845105,
+        "sharpe": 1.3341205178526603,
+        "mdd": -0.22233040720869357,
+        "calmar": 1.436618788368982,
+        "final": 13.804003069818702,
+        "exposure": 0.6654991243432574,
+        "round_trips_per_year": 4.910125758889852
+      },
+      "original_train": {
+        "cagr": 0.21555387795695924,
+        "sharpe": 1.1326928860928205,
+        "calmar": 1.1701531348109517,
+        "mdd": -0.18420997350212953,
+        "final": 2.478017393459428
+      },
+      "original_oos": {
+        "cagr": 0.42909102437149715,
+        "sharpe": 1.503180873426992,
+        "calmar": 1.929970037650875,
+        "mdd": -0.2223304072086938,
+        "final": 5.570583606980924
+      },
+      "oos_max_abs_error": 0.0,
+      "next_close_diagnostic_full": {
+        "cagr": 0.33597845169864393,
+        "sharpe": 1.3707572491067255,
+        "calmar": 1.2287207392862718,
+        "mdd": -0.2734376013656318,
+        "final": 15.536358643378792
+      },
+      "next_close_diagnostic_oos": {
+        "cagr": 0.41003235270381233,
+        "sharpe": 1.4272198477740445,
+        "calmar": 1.4995463339935091,
+        "mdd": -0.2734376013656322,
+        "final": 5.222183478260896
+      },
+      "next_open_diagnostic_full": {
+        "cagr": 0.33798346511071453,
+        "sharpe": 1.3923141943955475,
+        "calmar": 1.3993681842842027,
+        "mdd": -0.24152576063003606,
+        "final": 15.758581800320778
+      },
+      "next_open_diagnostic_oos": {
+        "cagr": 0.4124875605633713,
+        "sharpe": 1.4658447432771589,
+        "calmar": 1.7078408509608634,
+        "mdd": -0.2415257606300365,
+        "final": 5.266070241079051
+      },
+      "prefix_max_abs_error": {
+        "2021-12-31": 0.0,
+        "2024-12-31": 0.0
+      },
+      "calendar_diagnostic": {
+        "definition": "USO level ratio on actual NAV valuation date to latest US date < CN date; same original execution; NOT a PIT-certified replacement",
+        "differing_target_days": 17,
+        "full": {
+          "cagr": 0.33396992485492394,
+          "sharpe": 1.3602304842201962,
+          "calmar": 1.502133374592519,
+          "mdd": -0.22233040720869368,
+          "final": 15.31656045506262
+        },
+        "oos": {
+          "cagr": 0.4408961128042763,
+          "sharpe": 1.5151918711678607,
+          "calmar": 1.98306708623271,
+          "mdd": -0.2223304072086938,
+          "final": 5.795450523303379
+        },
+        "example": [
+          {
+            "date": "2024-07-03",
+            "old_u": "-0.005273485405935863",
+            "old_proxy": "1.6100727352682498",
+            "aligned_proxy": "1.6100727352682498",
+            "base_nav_date": "2024-06-28"
+          },
+          {
+            "date": "2024-07-04",
+            "old_u": "0.001972629762051481",
+            "old_proxy": "1.5932069536423838",
+            "aligned_proxy": "1.5932069536423838",
+            "base_nav_date": "2024-07-01"
+          },
+          {
+            "date": "2024-07-05",
+            "old_u": "0.001972629762051481",
+            "old_proxy": "1.6155549734549386",
+            "aligned_proxy": "1.6123743558130934",
+            "base_nav_date": "2024-07-02"
+          },
+          {
+            "date": "2024-07-08",
+            "old_u": "0.0004921865386982027",
+            "old_proxy": "1.6103610405621993",
+            "aligned_proxy": "1.607190648455765",
+            "base_nav_date": "2024-07-03"
+          },
+          {
+            "date": "2024-07-09",
+            "old_u": "-0.010945763128766495",
+            "old_proxy": "1.5961296911529468",
+            "aligned_proxy": "1.596129691152947",
+            "base_nav_date": "2024-07-04"
+          }
+        ]
+      },
+      "latest_from_snapshot": {
+        "date": "2026-10-28 00:00:00",
+        "premium": "0.028860136491964283",
+        "target_position": "1.0"
+      }
+    }
+  },
+  "warning": "Reproduction and diagnostic sensitivities do not certify publication timestamps or OOS independence.",
+  "cushing_calendar": {
+    "dropped_weekly_observations": 44,
+    "different_signal_days": 10
+  },
+  "metric_initial_loss_example": {
+    "pnl": [
+      -0.1,
+      0,
+      0
+    ],
+    "reported_mdd": 0.0,
+    "correct_mdd_with_initial_capital": -0.1
+  },
+  "enhancement_accounting": {
+    "different_pnl_days": 152,
+    "max_daily_abs_error": 0.00030000000000000165,
+    "cause": "enhancement fees use target.diff on decision day; strategy fees use held.diff on next return day"
+  },
+  "buy_hold_initial_fee": {
+    "first_pnl_is_nan": true,
+    "gross_final": 2.605236656596176,
+    "reported_net_final": 2.605236656596176
+  },
+  "data_quality": {
+    "159981.csv": {
+      "rows": 1640,
+      "duplicate_dates": 0,
+      "last_date": "2026-10-28"
+    },
+    "160216.csv": {
+      "rows": 2810,
+      "duplicate_dates": 0,
+      "last_date": "2026-10-28"
+    },
+    "160723.csv": {
+      "rows": 2286,
+      "duplicate_dates": 0,
+      "last_date": "2026-10-28"
+    },
+    "161129.csv": {
+      "rows": 2342,
+      "duplicate_dates": 0,
+      "last_date": "2026-10-28"
+    },
+    "501018.csv": {
+      "rows": 2506,
+      "duplicate_dates": 0,
+      "last_date": "2026-10-28"
+    },
+    "brent.csv": {
+      "rows": 9112,
+      "duplicate_dates": 0,
+      "last_date": "2026-10-20"
+    },
+    "cushing.csv": {
+      "rows": 1092,
+      "duplicate_dates": 0,
+      "last_date": "2026-10-16"
+    },
+    "dfii10.csv": {
+      "rows": 5958,
+      "duplicate_dates": 0,
+      "last_date": "2026-10-26"
+    },
+    "dxy.csv": {
+      "rows": 5217,
+      "duplicate_dates": 0,
+      "last_date": "2026-10-23"
+    },
+    "gasoline.csv": {
+      "rows": 9222,
+      "duplicate_dates": 0,
+      "last_date": "2026-10-20"
+    },
+    "heating_oil.csv": {
+      "rows": 8810,
+      "duplicate_dates": 0,
+      "last_date": "2026-10-20"
+    },
+    "nav_160216.csv": {
+      "rows": 2846,
+      "duplicate_dates": 0,
+      "last_date": "2026-10-27"
+    },
+    "nav_160723.csv": {
+      "rows": 2316,
+      "duplicate_dates": 0,
+      "last_date": "2026-10-27"
+    },
+    "nav_161129.csv": {
+      "rows": 2340,
+      "duplicate_dates": 0,
+      "last_date": "2026-10-27"
+    },
+    "nav_501018.csv": {
+      "rows": 2518,
+      "duplicate_dates": 0,
+      "last_date": "2026-10-27"
+    },
+    "sgzt_160723.csv": {
+      "rows": 2316,
+      "duplicate_dates": 0,
+      "last_date": "2026-10-27"
+    },
+    "usdcny.csv": {
+      "rows": 11435,
+      "duplicate_dates": 0,
+      "last_date": "2026-10-23"
+    },
+    "uso.csv": {
+      "rows": 5169,
+      "duplicate_dates": 0,
+      "last_date": "2026-10-27"
+    },
+    "wti.csv": {
+      "rows": 9527,
+      "duplicate_dates": 0,
+      "last_date": "2026-10-20"
+    }
+  },
+  "manifest_mismatches": []
+}
