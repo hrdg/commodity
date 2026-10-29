@@ -19,7 +19,7 @@
     "block": 0.09,
     "mid_weight": 0.5,
     "high_weight": 0.0,
-    "nav_lag": 1
+    "nav_lag": 3
   },
   "execution": {
     "crack_lag": 1,
