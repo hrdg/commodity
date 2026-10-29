@@ -16,6 +16,8 @@
 | `sgzt_160723.csv` | date, SGZT, SHZT | 2017-04-20–2026-10-27 | Eastmoney 历史净值接口 |
 | `brent.csv` | date, value | 1987-05-20–2026-10-20 | FRED `DCOILBRENTEU` |
 | `dfii10.csv` | date, dfii10 | 2003-01-02–2026-10-26 | FRED `DFII10`（TIPS 风险 overlay 研究） |
+| `uso.csv` | date, close | 2006-04-10–2026-10-27 | Sina/AKShare USO 前复权 |
+| `usdcny.csv` | date, usdcny | 1981-01-02–2026-10-23 | FRED `DEXCHUS` |
 
 ## 口径
 

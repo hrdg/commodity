@@ -104,6 +104,7 @@ python oos_report.py --config config_oos_9_3.json --output output_oos_9_3
 - `OOS_160723.md`：固定 160723 的 2022–2026 时序留出与逐年阈值选择。
 - `OOS_9_3.md` / `oos_report.py`：9/3 训练期选择与 OOS 报告。
 - `AUDIT_LAG3.md` / `audit_lag3.py`：NAV lag3 全量增强审计与保留/撤回表。
+- `NAV_PROXY.md` / `nav_proxy.py`：NAV lag3 + USO 收益的 PIT-safe 代理研究。
 - `fetch_enhance.py` / `enhancement_hypotheses.py`：额外载体与增强假设的复算脚本。
 - `fetch_sgzt.py`：申购状态历史抓取（研究用，未进入正式策略）。
 - `fetch_brent.py`：Brent 现货抓取（Brent−WTI 切换研究，未进入正式策略）。
