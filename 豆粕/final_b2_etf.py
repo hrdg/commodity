@@ -154,7 +154,7 @@ def main():
     pd.DataFrame({"date": cal, "final": final.values}).to_csv(
         ROOT / "output" / "final_b2_signal.csv", index=False)
 
-    etf = load_etf(); w = etf.loc["2019-12-05":"2026-10-21"]
+    etf = load_etf(); w = etf.loc["2019-12-05":etf.index.max()]
     r = (w.open.shift(-1) / w.open - 1).iloc[:-1]
 
     def run(sig_map):

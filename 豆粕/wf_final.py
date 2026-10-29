@@ -82,7 +82,7 @@ def main():
            "fixed": {k: perf(pnl_of(p, "2019-01-01", "2026-10-20")) for k, p in templates.items()}}
 
     # ETF long-only mapping.
-    etf = load_etf(); w = etf.loc["2019-12-05":"2026-10-21"]
+    etf = load_etf(); w = etf.loc["2019-12-05":etf.index.max()]
     er = (w.open.shift(-1) / w.open - 1).iloc[:-1]
     def etf_run(sig):
         p = sig.reindex(er.index).ffill().fillna(0.0).shift(1).fillna(0.0)
