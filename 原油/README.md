@@ -31,6 +31,17 @@
 | 静态溢价分层（NAV lag3） | 23.1% | 1.094 | 1.016 | −22.7% | — |
 | **溢价滞回 10/5（NAV lag3，正式）** | **23.74%** | **1.103** | **1.068** | **−22.2%** | 67.0% |
 
+### USO 代理配置
+
+用 NAV lag3 + 已知 USO 收益重建更早 NAV：
+
+| 版本 | 全期 | OOS 2022–2026 |
+|---|---:|---:|
+| 代理 10/5 | 30.65%/1.274/1.379 | 40.53%/1.414/1.823 |
+| 代理 9/3 | 31.94%/1.334/1.437 | 42.91%/1.503/1.930 |
+
+当前 10-28 代理溢价 2.89%，两套配置都满仓；9/3 离 3% 很近。代理是估算，不是实际 NAV，详见 `NAV_PROXY.md`。
+
 溢价条件收益（下一 20 日，160723）：
 
 | 溢价区间 | 平均收益 | 命中率 |
@@ -97,6 +108,7 @@ python oos_report.py --config config_oos_9_3.json --output output_oos_9_3
 - `strategy.py`：策略与回测。
 - `config.json`：冻结参数。
 - `config_oos_9_3.json`：OOS 候选 9/3 参数。
+- `config_proxy_10_5.json` / `config_proxy_9_3.json`：USO 代理独立配置。
 - `data/`：复算数据。
 - `output/`：绩效与持仓。
 - `tests/`：冒烟测试。
@@ -105,6 +117,7 @@ python oos_report.py --config config_oos_9_3.json --output output_oos_9_3
 - `OOS_9_3.md` / `oos_report.py`：9/3 训练期选择与 OOS 报告。
 - `AUDIT_LAG3.md` / `audit_lag3.py`：NAV lag3 全量增强审计与保留/撤回表。
 - `NAV_PROXY.md` / `nav_proxy.py`：NAV lag3 + USO 收益的 PIT-safe 代理研究。
+- `current_signal.py`：按配置输出最新目标仓位。
 - `fetch_enhance.py` / `enhancement_hypotheses.py`：额外载体与增强假设的复算脚本。
 - `fetch_sgzt.py`：申购状态历史抓取（研究用，未进入正式策略）。
 - `fetch_brent.py`：Brent 现货抓取（Brent−WTI 切换研究，未进入正式策略）。

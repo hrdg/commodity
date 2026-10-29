@@ -1,0 +1,63 @@
+{
+  "instrument": "160723 嘉实原油 LOF",
+  "strategy": {
+    "start": "2017-05-08",
+    "end": "2026-10-27",
+    "n": 2284,
+    "cagr": 0.3065375539539219,
+    "vol": 0.24201819985089293,
+    "sharpe": 1.274540006137754,
+    "mdd": -0.2223304072086938,
+    "calmar": 1.3787477736510678,
+    "final": 12.580578020014386,
+    "exposure": 0.6729422066549913,
+    "round_trips_per_year": 5.332502168256721
+  },
+  "buy_hold": {
+    "start": "2017-05-08",
+    "end": "2026-10-27",
+    "n": 2284,
+    "cagr": 0.10639705144876488,
+    "vol": 0.3548078593172161,
+    "sharpe": 0.47473359438271334,
+    "mdd": -0.7506799637352681,
+    "calmar": 0.141734236410613,
+    "final": 2.605236656596176,
+    "exposure": 1.0,
+    "round_trips_per_year": 0.0
+  },
+  "config": {
+    "instrument": "160723",
+    "start": "2017-05-05",
+    "end": "2026-10-27",
+    "crack": {
+      "window": 252,
+      "min_periods": 126
+    },
+    "cushing": {
+      "weeks": 52,
+      "diff_weeks": 4,
+      "lag": 6
+    },
+    "premium": {
+      "mode": "hysteresis",
+      "nav_source": "proxy_uso",
+      "nav_lag": 3,
+      "low": 0.05,
+      "high": 0.1,
+      "reenter": 0.05,
+      "block": 0.1,
+      "mid_weight": 0.5,
+      "high_weight": 0.0
+    },
+    "execution": {
+      "crack_lag": 1,
+      "fee": 0.0003
+    }
+  },
+  "data": {
+    "start": "2017-05-05",
+    "end": "2026-10-27"
+  },
+  "note": "Long-only, 3bp per position change; premium uses lagged NAV."
+}

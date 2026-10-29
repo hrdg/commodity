@@ -78,7 +78,13 @@ def run(cfg: dict) -> tuple[pd.DataFrame, dict]:
     base = pd.concat([f, c], axis=1).max(axis=1).fillna(0.0)
 
     pw = cfg["premium"]
-    prem = px / nav.reindex(px.index).ffill().shift(pw["nav_lag"]) - 1
+    if pw.get("nav_source") == "proxy_uso":
+        uso = pd.read_csv(DATA / "uso.csv", parse_dates=["date"]).set_index("date")["close"].sort_index()
+        u = uso.pct_change().reindex(px.index).ffill().shift(1)
+        nav_base = nav.reindex(px.index).ffill().shift(pw["nav_lag"])
+        prem = px / (nav_base * (1 + u.shift(1)) * (1 + u)) - 1
+    else:
+        prem = px / nav.reindex(px.index).ffill().shift(pw["nav_lag"]) - 1
     if pw.get("mode") == "hysteresis":
         state, arr = 1.0, []
         for p in prem:

@@ -1,0 +1,19 @@
+{
+  "instrument": "160723",
+  "start": "2017-05-05",
+  "end": "2026-10-27",
+  "crack": {"window": 252, "min_periods": 126},
+  "cushing": {"weeks": 52, "diff_weeks": 4, "lag": 6},
+  "premium": {
+    "mode": "hysteresis",
+    "nav_source": "proxy_uso",
+    "nav_lag": 3,
+    "low": 0.05,
+    "high": 0.10,
+    "reenter": 0.05,
+    "block": 0.10,
+    "mid_weight": 0.5,
+    "high_weight": 0.0
+  },
+  "execution": {"crack_lag": 1, "fee": 0.0003}
+}
