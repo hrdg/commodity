@@ -73,6 +73,7 @@
 ```sh
 cd 原油
 python strategy.py --output output
+python fetch_eia.py
 python -m unittest discover -s tests -v
 # OOS 候选
 python strategy.py --config config_oos_9_3.json --output output_oos_9_3
@@ -121,6 +122,7 @@ python oos_report.py --config config_oos_9_3.json --output output_oos_9_3
 - `NAV_PROXY.md` / `nav_proxy.py`：NAV lag3 + USO 收益的 PIT-safe 代理研究。
 - `current_signal.py`：按配置输出最新目标仓位。
 - `fetch_enhance.py` / `enhancement_hypotheses.py`：额外载体与增强假设的复算脚本。
+- `fetch_eia.py`：刷新 WTI、汽油、取暖油和库欣的 EIA 历史序列，并更新数据哈希。
 - `fetch_sgzt.py`：申购状态历史抓取（研究用，未进入正式策略）。
 - `fetch_brent.py`：Brent 现货抓取（Brent−WTI 切换研究，未进入正式策略）。
 - `audit_20261029/REPORT.md`：独立代码审计、执行敏感性诊断与待修复项。

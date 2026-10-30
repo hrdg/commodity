@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 import json
+from datetime import date
 from pathlib import Path
 
 import strategy
@@ -13,7 +14,7 @@ ROOT = Path(__file__).resolve().parent
 def main() -> None:
     p = argparse.ArgumentParser()
     p.add_argument("--config", required=True)
-    p.add_argument("--asof", default="2026-10-29")
+    p.add_argument("--asof", default=date.today().isoformat())
     p.add_argument("--output", default=None)
     args = p.parse_args()
     cfg = json.loads((ROOT / args.config).read_text())

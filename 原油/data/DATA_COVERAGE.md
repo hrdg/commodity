@@ -2,12 +2,12 @@
 
 | 文件 | 字段 | 覆盖 | 来源 |
 |---|---|---|---|
-| `wti.csv` | date, value | 1986-01-02–2026-10-20 | EIA `RWTCd` |
-| `gasoline.csv` | date, value | 1986-06-02–2026-10-20 | EIA `EER_EPMRU_PF4_RGC_DPGd` |
-| `heating_oil.csv` | date, value | 1986-06-02–2026-10-20 | EIA `EER_EPD2F_PF4_Y35NY_DPGd` |
-| `cushing.csv` | date, value | 2004-04-16–2026-10-16 | EIA `W_EPC0_SAX_YCUOK_MBBLw` |
-| `160723.csv` | date, open/high/low/close/volume/amount | 2017-05-05–2026-10-27 | Sina/AKShare LOF 日线 |
-| `nav_160723.csv` | date, nav | 2017-04-20–2026-10-27 | Sina `CaihuiFundInfoService.getNav` |
+| `wti.csv` | date, value | 1986-01-02–2026-10-27 | EIA `RWTCd` |
+| `gasoline.csv` | date, value | 1986-06-02–2026-10-27 | EIA `EER_EPMRU_PF4_RGC_DPGd` |
+| `heating_oil.csv` | date, value | 1986-06-02–2026-10-27 | EIA `EER_EPD2F_PF4_Y35NY_DPGd` |
+| `cushing.csv` | date, value | 2004-04-16–2026-10-23 | EIA `W_EPC0_SAX_YCUOK_MBBLw` |
+| `160723.csv` | date, open/high/low/close/volume/amount | 2017-05-05–2026-10-29 | Sina/AKShare LOF 日线 |
+| `nav_160723.csv` | date, nav | 2017-04-20–2026-10-28 | Sina `CaihuiFundInfoService.getNav` |
 | `501018.csv` / `nav_501018.csv` | price / nav | 2016-06-29–2026-10-28 | Sina LOF 日线 / NAV |
 | `161129.csv` / `nav_161129.csv` | price / nav | 2017-02-15–2026-10-28 | Sina LOF 日线 / NAV |
 | `160216.csv` / `nav_160216.csv` | price / nav | 2015-04-07–2026-10-28 | Sina LOF 日线 / NAV |
@@ -16,19 +16,19 @@
 | `sgzt_160723.csv` | date, SGZT, SHZT | 2017-04-20–2026-10-27 | Eastmoney 历史净值接口 |
 | `brent.csv` | date, value | 1987-05-20–2026-10-20 | FRED `DCOILBRENTEU` |
 | `dfii10.csv` | date, dfii10 | 2003-01-02–2026-10-26 | FRED `DFII10`（TIPS 风险 overlay 研究） |
-| `uso.csv` | date, close | 2006-04-10–2026-10-27 | Sina/AKShare USO 前复权 |
+| `uso.csv` | date, close | 2006-04-10–2026-10-29 | Sina/AKShare USO 前复权 |
 | `usdcny.csv` | date, usdcny | 1981-01-02–2026-10-23 | FRED `DEXCHUS` |
 
 ## 口径
 
 - 裂解价差：`(2×汽油×42 + 取暖油×42 − 3×WTI)/3`，美元/桶。
 - 库欣：周度库存，52 周滚动均值减 4 周前；上升=1。
-- 溢价：`收盘价 / 滞后1日NAV − 1`；未使用 IOPV 或申购状态。
+- 溢价：`收盘价 / 滞后3日NAV − 1`；未使用 IOPV 或申购状态。
 - 交易：收盘决策、下一交易日持有；3bp 单边。
 
 ## 限制
 
-1. NAV 为基金披露值，QDII 净值有 T+1/T+2 延迟；策略用滞后 1 天，并做过滞后 2/3 天敏感性。
+1. NAV 为基金披露值，QDII 净值有 T+1/T+2 延迟；策略用滞后 3 天。NAV 文件没有逐日公告时间，仍需按实际 PIT 证据复核。
 2. EIA 库存是当前修订序列，不是 as-released vintage；可能有修订偏差。
 3. 未纳入申购状态、场内流动性、IOPV、汇率对冲和分红。
 4. 160723 是 LOF，不是 ETF；收盘价可能含溢价/折价变动。
