@@ -4,6 +4,7 @@
 |---|---|---|---|
 | M0 主连 | `M0_main_sina.csv`、`M0_main_2025_2026.csv` | 2010-01..2026-10 | Sina 不复权主连，已清洁 2014-10-08 异常合约并截断 ±6% |
 | M0 复权诊断 | `M0_roll_adjusted.csv` | 2010-01..2024-12 | 12 处换月缺口置 0 后重建；仅诊断，未替换策略基线 |
+| M0 复权全量 | `M0_roll_adjusted_full.csv` | 2010-01..2026-10 | 含展期连续序列；供 WF 月/3y + VT20 代理与波动计算 |
 | 豆粕基差 | `m_basis_2016_2024.csv`、`m_basis_2025_2026.csv` | 2016..2026 | 100ppi `dom_basis_rate` |
 | 豆粕仓单 | `m_warehouse_receipt_latest.csv` | 2005..2026 | 99期货/大商所，1 张=10 吨 |
 | 豆粕仓单（日度） | `warehouse_receipts_2016_2024.csv` | 2016..2024 | 99qh + 聚宽面板；与 latest 拼接后供 G6-diff5 使用 |

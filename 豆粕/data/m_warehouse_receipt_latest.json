@@ -2,12 +2,17 @@
 	"code":0,
 	"message":"成功",
 	"data":{
-		"endRow":4440,
+		"endRow":4441,
 		"hasNextPage":false,
 		"hasPreviousPage":false,
 		"isFirstPage":true,
 		"isLastPage":true,
 		"list":[
+			[
+				"2026-10-29",
+				"3161",
+				52939
+			],
 			[
 				"2026-10-28",
 				"3208",
@@ -22218,9 +22223,9 @@
 		"pageSize":5000,
 		"pages":1,
 		"prePage":0,
-		"size":4440,
+		"size":4441,
 		"startRow":1,
-		"total":4440
+		"total":4441
 	},
 	"rollback":false
 }
