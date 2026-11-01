@@ -34,6 +34,47 @@ def load_nav() -> pd.Series:
     return d.set_index("date")["nav"].sort_index()
 
 
+def _asof_level(series: pd.Series, targets: pd.Index) -> np.ndarray:
+    """Return the latest level on or before each target date."""
+    idx = pd.DatetimeIndex(targets)
+    out = np.full(len(idx), np.nan)
+    valid = idx.notna()
+    if valid.any():
+        out[valid] = series.reindex(idx[valid], method="ffill").to_numpy()
+    return out
+
+
+def proxy_uso_inputs(px: pd.Series, nav: pd.Series, uso: pd.Series,
+                     nav_lag: int = 3) -> pd.DataFrame:
+    """PIT-safe NAV nowcast inputs using USO levels, including holidays."""
+    nav_asof = nav.reindex(px.index, method="ffill")
+    base_nav = nav_asof.shift(nav_lag)
+    source_dates = (pd.Series(nav.index, index=nav.index)
+                    .reindex(px.index, method="ffill").shift(nav_lag))
+    # A China close on date t can only know US sessions strictly before t.
+    us_end_targets = px.index - pd.Timedelta(days=1)
+    end_level = _asof_level(uso, us_end_targets)
+    start_level = _asof_level(uso, pd.Index(source_dates))
+    proxy = base_nav.to_numpy() * end_level / start_level
+    us_end_dates = pd.Series(uso.index, index=uso.index).reindex(
+        pd.DatetimeIndex(us_end_targets), method="ffill")
+    us_end_dates.index = px.index
+    return pd.DataFrame({
+        "nav_base": base_nav.to_numpy(),
+        "nav_date": pd.DatetimeIndex(source_dates).to_numpy(),
+        "us_end_date": pd.DatetimeIndex(us_end_dates).to_numpy(),
+        "us_start_level": start_level,
+        "us_end_level": end_level,
+        "nav_proxy": proxy,
+    }, index=px.index)
+
+
+def proxy_uso_nav(px: pd.Series, nav: pd.Series, uso: pd.Series,
+                  nav_lag: int = 3) -> pd.Series:
+    """Return only the proxy NAV from :func:`proxy_uso_inputs`."""
+    return proxy_uso_inputs(px, nav, uso, nav_lag)["nav_proxy"].rename("nav_proxy")
+
+
 def metrics(pnl: pd.Series, pos: pd.Series) -> dict:
     pnl = pnl.dropna()
     nav = (1 + pnl).cumprod()
@@ -80,9 +121,8 @@ def run(cfg: dict) -> tuple[pd.DataFrame, dict]:
     pw = cfg["premium"]
     if pw.get("nav_source") == "proxy_uso":
         uso = pd.read_csv(DATA / "uso.csv", parse_dates=["date"]).set_index("date")["close"].sort_index()
-        u = uso.pct_change().reindex(px.index).ffill().shift(1)
-        nav_base = nav.reindex(px.index).ffill().shift(pw["nav_lag"])
-        prem = px / (nav_base * (1 + u.shift(1)) * (1 + u)) - 1
+        nav_proxy = proxy_uso_nav(px, nav, uso, pw["nav_lag"])
+        prem = px / nav_proxy - 1
     else:
         prem = px / nav.reindex(px.index).ffill().shift(pw["nav_lag"]) - 1
     if pw.get("mode") == "hysteresis":

@@ -1,7 +1,7 @@
 {
   "instrument": "160723",
   "start": "2017-05-05",
-  "end": "2026-10-27",
+  "end": "2026-10-30",
   "crack": {"window": 252, "min_periods": 126},
   "cushing": {"weeks": 52, "diff_weeks": 4, "lag": 6},
   "premium": {

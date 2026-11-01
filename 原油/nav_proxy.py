@@ -34,14 +34,11 @@ def main() -> None:
     px = series("160723", "close").loc["2017-05-05":]
     nav = series("nav_160723", "nav")
     uso = series("uso", "close")
-    u = uso.pct_change().reindex(px.index).ffill().shift(1)  # known at China close t
-    nav_base = nav.reindex(px.index).ffill().shift(3)        # disclosed by t-1 at latest
-    nav_proxy = nav_base * (1 + u.shift(1)) * (1 + u)
+    nav_proxy = strategy.proxy_uso_nav(px, nav, uso, 3)
     prem = px / nav_proxy - 1
 
     wti = series("wti", "value")
-    w = wti.pct_change().reindex(px.index).ffill().shift(1)
-    w_proxy = nav_base * (1 + w.shift(1)) * (1 + w)
+    w_proxy = strategy.proxy_uso_nav(px, nav, wti, 3)
     w_prem = px / w_proxy - 1
 
     # Base signal from the frozen strategy inputs.
@@ -65,7 +62,7 @@ def main() -> None:
                                 "wti_mae": float(w_err.abs().mean()), "wti_corr": float(w_proxy.pct_change().corr(nav.reindex(px.index).pct_change()))},
         "last": {"date": str(px.index[-1].date()), "price": float(px.iloc[-1]),
                  "nav_proxy": float(nav_proxy.iloc[-1]), "premium_proxy": float(prem.iloc[-1])},
-        "note": "USO return is shifted one session; NAV base is lag3; no future US close used.",
+        "note": "USO level ratio uses the last completed US session strictly before each China decision date; NAV base is lag3.",
     }
     (ROOT / "output" / "nav_proxy.json").write_text(
         json.dumps(res, ensure_ascii=False, indent=2, default=float) + "\n")
