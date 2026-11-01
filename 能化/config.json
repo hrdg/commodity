@@ -1,0 +1,10 @@
+{
+  "instrument": "159981",
+  "signal": "mom20",
+  "train_start": "2020-11-19",
+  "train_end": "2021-12-31",
+  "oos_start": "2022-01-03",
+  "oos_end": "2026-10-30",
+  "execution": "close_signal_next_open",
+  "fee": 0.0003
+}
