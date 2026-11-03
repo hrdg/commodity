@@ -49,7 +49,7 @@ def main() -> None:
         pos = base * hyst(p, b, r)
         pnl = pos.shift(1).fillna(0) * px.pct_change() - FEE * pos.diff().abs().fillna(pos.abs())
         f = strategy.metrics(pnl, pos)
-        o = strategy.metrics(pnl.loc["2022-01-01":"2026-10-27"], pos.loc["2022-01-01":"2026-10-27"])
+        o = strategy.metrics(pnl.loc["2022-01-01":], pos.loc["2022-01-01":])
         return {"full": {k: f[k] for k in ("cagr", "sharpe", "calmar", "mdd")},
                 "oos": {k: o[k] for k in ("cagr", "sharpe", "calmar", "mdd")}}
 

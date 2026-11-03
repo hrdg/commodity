@@ -22,7 +22,7 @@ def main() -> None:
     out = out.set_index("date")
 
     train = ("2017-05-05", "2021-12-31")
-    oos = ("2022-01-01", "2026-10-30")
+    oos = ("2022-01-01", str(out.index[-1].date()))
 
     def m(a: str, b: str) -> dict:
         return strategy.metrics(out.pnl.loc[a:b], out.held_position.loc[a:b])

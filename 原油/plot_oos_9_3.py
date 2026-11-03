@@ -16,7 +16,7 @@ ROOT = Path(__file__).resolve().parent
 
 def main() -> None:
     cfg = json.loads((ROOT / "config_oos_9_3.json").read_text())
-    cfg["end"] = "2026-10-29"
+    cfg["end"] = str(strategy.load_price().index[-1].date())
     out, _ = strategy.run(cfg)
     out = out.set_index("date")
     nav = (1 + out.pnl).cumprod()
@@ -27,8 +27,8 @@ def main() -> None:
 
     full = m(out.pnl, out.held_position)
     oos = m(out.pnl.loc["2022-01-01":], out.held_position.loc["2022-01-01":])
-    bh_oos = m(out.ret.loc["2022-01-01":"2026-10-29"],
-               pd.Series(1.0, index=out.ret.loc["2022-01-01":"2026-10-29"].index))
+    bh_oos = m(out.ret.loc["2022-01-01":],
+               pd.Series(1.0, index=out.ret.loc["2022-01-01":].index))
 
     fig, ax = plt.subplots(2, 1, figsize=(11, 8), sharex=True,
                            gridspec_kw={"height_ratios": [3, 1.2]})
