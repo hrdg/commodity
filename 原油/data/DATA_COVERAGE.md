@@ -6,8 +6,8 @@
 | `gasoline.csv` | date, value | 1986-06-02–2026-10-27 | EIA `EER_EPMRU_PF4_RGC_DPGd` |
 | `heating_oil.csv` | date, value | 1986-06-02–2026-10-27 | EIA `EER_EPD2F_PF4_Y35NY_DPGd` |
 | `cushing.csv` | date, value | 2004-04-16–2026-10-23 | EIA `W_EPC0_SAX_YCUOK_MBBLw` |
-| `160723.csv` | date, open/high/low/close/volume/amount | 2017-05-05–2026-11-02 | Sina/AKShare LOF 日线 |
-| `nav_160723.csv` | date, nav | 2017-04-20–2026-10-30 | Sina `CaihuiFundInfoService.getNav` |
+| `160723.csv` | date, open/high/low/close/volume/amount | 2017-05-05–2026-11-04 | Sina/AKShare LOF 日线 |
+| `nav_160723.csv` | date, nav | 2017-04-20–2026-11-03 | Sina `CaihuiFundInfoService.getNav` |
 | `501018.csv` / `nav_501018.csv` | price / nav | 2016-06-29–2026-10-28 | Sina LOF 日线 / NAV |
 | `161129.csv` / `nav_161129.csv` | price / nav | 2017-02-15–2026-10-28 | Sina LOF 日线 / NAV |
 | `160216.csv` / `nav_160216.csv` | price / nav | 2015-04-07–2026-10-28 | Sina LOF 日线 / NAV |
@@ -16,7 +16,7 @@
 | `sgzt_160723.csv` | date, SGZT, SHZT | 2017-04-20–2026-10-27 | Eastmoney 历史净值接口 |
 | `brent.csv` | date, value | 1987-05-20–2026-10-20 | FRED `DCOILBRENTEU` |
 | `dfii10.csv` | date, dfii10 | 2003-01-02–2026-10-26 | FRED `DFII10`（TIPS 风险 overlay 研究） |
-| `uso.csv` | date, close | 2006-04-10–2026-11-02 | Sina/AKShare USO 前复权 |
+| `uso.csv` | date, close | 2006-04-10–2026-11-03 | Sina/AKShare USO 前复权 |
 | `usdcny.csv` | date, usdcny | 1981-01-02–2026-10-23 | FRED `DEXCHUS` |
 
 ## 口径

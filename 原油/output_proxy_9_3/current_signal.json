@@ -1,12 +1,12 @@
 {
   "config": "config_proxy_9_3.json",
-  "asof": "2026-11-03",
-  "date": "2026-11-02",
-  "close": 2.539,
+  "asof": "2026-11-04",
+  "date": "2026-11-04",
+  "close": 2.439,
   "crack_signal": 1.0,
   "cushing_signal": 1.0,
   "base_position": 1.0,
-  "premium": -0.03382098966895786,
+  "premium": -0.0044822555303342115,
   "premium_weight": 1.0,
   "target_position": 1.0,
   "held_position": 1.0
