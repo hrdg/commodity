@@ -1,0 +1,125 @@
+{
+  "schema_version": "1.0",
+  "strategy_id": "C5-SIX-COMMODITY-PROXY2015-v1",
+  "parent_strategy_id": "C5-SIX-COMMODITIES-v1",
+  "status": "frozen_exploratory",
+  "research_mode": "research_only",
+  "frozen_at": "2026-11-09T00:00:00+08:00",
+  "purpose": "Extend the six-commodity C5 monthly rotation study from 2015 with explicit pre-listing proxies, without overwriting the 2022 actual-ETF run.",
+  "sample": {
+    "start": "2015-01-05",
+    "end": "2026-11-06",
+    "calendar": "518880 ETF China sessions",
+    "warmup": "at least 25 sessions before 2015-01-05"
+  },
+  "selection": {
+    "pool": ["160723.XSHE", "159985.XSHE", "159980.XSHE", "159981.XSHE", "518880.XSHG", "161226.XSHE"],
+    "score": "exp(250 * OLS(log(close), time, 25).slope) - 1, multiplied by OLS R-squared",
+    "frequency": "monthly",
+    "decision": "previous close; first common session of each month executes at open",
+    "holdings": 1,
+    "take_profit": "10-day return > 10%; asset locked 40 sessions",
+    "rank2_buffer": "hold if prior holding remains in top2, z(R2) leader gap <=0.25, and EFF25/B252 vetoes do not reject candidate",
+    "m7": "not available; not fabricated"
+  },
+  "proxy_mapping": {
+    "160723.XSHE": {
+      "proxy": "USO adjusted close",
+      "actual_start": "2017-05-05",
+      "return_rule": "USO close-to-close return mapped to the next known China-session return; no intraday China price claim"
+    },
+    "159985.XSHE": {
+      "proxy": "M0 roll-adjusted OHLC",
+      "actual_start": "2019-12-05",
+      "return_rule": "proxy open/close return chain"
+    },
+    "159980.XSHE": {
+      "proxy": ["CU0", "AL0", "ZN0"],
+      "actual_start": "2019-12-24",
+      "return_rule": "equal-weight constituent overnight and intraday returns; sector path rebuilt from returns"
+    },
+    "159981.XSHE": {
+      "proxy": ["TA0", "MA0", "FG0"],
+      "actual_start": "2020-01-17",
+      "return_rule": "equal-weight available constituent overnight and intraday returns; MA joins after first observation"
+    },
+    "518880.XSHG": {
+      "proxy": "actual ETF",
+      "actual_start": "2013-12-02",
+      "return_rule": "actual qfq ETF OHLC"
+    },
+    "161226.XSHE": {
+      "proxy": "AG0",
+      "actual_start": "2015-08-17",
+      "return_rule": "proxy open/close return chain"
+    }
+  },
+  "splicing": {
+    "level": "scale actual ETF open on first actual session to previous proxy close",
+    "continuity": "remove unobservable cross-carrier overnight gap",
+    "switch_cost": "10bp when the same strategy node is held across the proxy-to-ETF switch; normal turnover remains charged by the C5 ledger"
+  },
+  "overlays": {
+    "TIP": {
+      "S": "TIP price / trailing 12-month month-end mean - 1",
+      "U13612": "mean(r1,r3,r6,r12)",
+      "U136": "mean(r1,r3,r6)",
+      "W": "(12*r1+4*r3+2*r6+r12)/19",
+      "rule": "use previous completed month; <=0 moves risk sleeve to 511260"
+    },
+    "DD8r7c50": "after TIP, drawdown <=-8% halves risk; recovery at -7%"
+  },
+  "execution": {
+    "decision": "close",
+    "trade": "next common open",
+    "cost_bps_one_way": [5, 20.5],
+    "long_only": true,
+    "leverage": false
+  },
+  "arms": {
+    "primary": "RANK2_TIPS_DD",
+    "baseline": "RANK2_TIPU13612_DD",
+    "controls": [
+      "RANK1_TIPU13612_DD",
+      "RANK2_TIPU136_DD",
+      "RANK2_TIPW_DD",
+      "RANK2_TIPS_NODD",
+      "RANK2_NODD",
+      "C5_R2_NODD"
+    ]
+  },
+  "metrics": {
+    "primary": ["cagr", "sharpe", "mdd", "calmar", "exposure"],
+    "bootstrap": "21-day circular block, 10,000 draws, BH across registered comparisons",
+    "segments": ["2015-2019", "2020-2021", "2022-08-05:2026-11-05", "full"],
+    "reconciliation": "proxy splice vs actual ETF overlap after 2022-08-05"
+  },
+  "data_contract": {
+    "data_id": "C5_SIX_COMMODITY_PROXY2015_V20261109",
+    "certificate_path": "research/runs/c5_six_commodity_proxy2015_20261109/data_certificate.json",
+    "certified_for": ["exploratory proxy extension", "pre-listing sensitivity analysis"],
+    "not_certified_for": ["production trading", "true ETF history before listing", "contract-level futures replication", "independent OOS", "future profitability"]
+  },
+  "code": {
+    "run_path": "research/runs/c5_six_commodity_proxy2015_20261109/run.py",
+    "run_sha256": "b85e2d43919a0e0773c3f3da4a9c1d6e36ab7691ad0e0621c7407e2a458d0b43",
+    "validator_path": "research/runs/c5_six_commodity_proxy2015_20261109/validate.py",
+    "validator_sha256": "544245303f709adc702d88914658bf153571fb3b3227b125cca4a7afa1cef6c0",
+    "event_audit_path": "research/runs/c5_six_commodity_proxy2015_20261109/event_audit.py",
+    "event_audit_sha256": "ed9577bd8c4fcf007e7da682364dd62276c3ef65eb2c8304e6d015bcdf36e871"
+  },
+  "result_summary": {
+    "status": "SUPERSEDED_BY_DD_TIMING_AUDIT",
+    "primary_5bp": {"cagr": 0.3781040038648318, "sharpe": 1.6268872150232545, "mdd": -0.1849322465687392},
+    "baseline_5bp": {"cagr": 0.3481124539359193, "sharpe": 1.5356471575523265, "mdd": -0.1849322465687403},
+    "primary_20_5bp": {"cagr": 0.3396896296731166, "sharpe": 1.5162700156385904, "mdd": -0.2011930966242511},
+    "tip_s_vs_u13612": "TIP S point estimate exceeds U13612, but the paired Sharpe difference is not statistically confirmed",
+    "next_session_dd_primary_5bp": {"cagr": 0.23735995829117007, "sharpe": 1.0865106177909476, "mdd": -0.24017241291683344},
+    "audit": "EVENT_AUDIT_2025Q4_2026Q1.md"
+  },
+  "decision": {
+    "production_change": false,
+    "post_result_status": "BLOCKED_DD_SAME_DAY_LOOKAHEAD",
+    "reason": "The DD overlay scores same-day returns before cutting same-day exposure. Event audit finds this materially inflates results; the strategy requires a next-session execution rebuild before further interpretation."
+  }
+}

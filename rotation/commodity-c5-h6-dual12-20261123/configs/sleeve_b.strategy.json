@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0",
+  "strategy_id": "aw7_commodity_sleeveb_fusion_20261123-v1",
+  "mode": "extension",
+  "status": "frozen",
+  "parent_version": "aw7_commodity_h6_dual_fusion_20261123-v1",
+  "requirements": [
+    {"key":"universe.definition","value":"six ETF H6 and DUAL12 arms; B3 is 47-product futures proxy","status":"confirmed","basis":"source","evidence_ids":["FUSION-F1","DUAL-F1"],"decision_id":"D001","critical":true,"notes":""},
+    {"key":"universe.history","value":"2021-02-01 through 2026-09-30","status":"confirmed","basis":"source","evidence_ids":["FUSION-F1"],"decision_id":"D001","critical":true,"notes":""},
+    {"key":"data.fields","value":"daily H6/DUAL12 returns and monthly BM5+dual12 returns","status":"confirmed","basis":"source","evidence_ids":["FUSION-F1","DUAL-F1"],"decision_id":"D002","critical":true,"notes":""},
+    {"key":"data.availability","value":"realized monthly returns only","status":"confirmed","basis":"derived","evidence_ids":["FUSION-F1"],"decision_id":"D002","critical":true,"notes":"Derived by compounding daily series into realized calendar months."},
+    {"key":"data.revisions","value":"inherited research-only current-revision parents","status":"confirmed","basis":"source","evidence_ids":["FUSION-F1"],"decision_id":"D003","critical":true,"notes":""},
+    {"key":"data.adjustment","value":"parent series unchanged","status":"confirmed","basis":"derived","evidence_ids":["FUSION-F1"],"decision_id":"D002","critical":true,"notes":"No resplicing or adjustment changes."},
+    {"key":"factor.formula","value":"H6, DUAL12_C5, DUAL12_H6 and fixed 50/50 blends","status":"confirmed","basis":"source","evidence_ids":["FUSION-F1","DUAL-F1"],"decision_id":"D004","critical":true,"notes":""},
+    {"key":"factor.preprocessing","value":"convert daily returns to month-end compounded returns; common months","status":"confirmed","basis":"derived","evidence_ids":["FUSION-F1"],"decision_id":"D004","critical":true,"notes":"Derived monthly return is product of daily returns within each month."},
+    {"key":"signal.clock","value":"month-end","status":"confirmed","basis":"source","evidence_ids":["FUSION-F1"],"decision_id":"D002","critical":true,"notes":""},
+    {"key":"portfolio.selection","value":"H6 plus one of DUAL12_C5, DUAL12_H6, or BM5+dual12","status":"confirmed","basis":"derived","evidence_ids":["FUSION-F1","DUAL-F1"],"decision_id":"D004","critical":true,"notes":"Derived by changing only Sleeve B in the prior F2 blend."},
+    {"key":"portfolio.weights","value":"fixed 50/50 monthly blended sleeves","status":"confirmed","basis":"derived","evidence_ids":["FUSION-F1"],"decision_id":"D004","critical":true,"notes":"Fixed neutral blend; no weight search."},
+    {"key":"execution.rebalance","value":"monthly","status":"confirmed","basis":"source","evidence_ids":["FUSION-F1"],"decision_id":"D002","critical":true,"notes":""},
+    {"key":"execution.fill","value":"realized monthly returns; B3 lag1","status":"confirmed","basis":"derived","evidence_ids":["FUSION-F1","DUAL-F1"],"decision_id":"D002","critical":true,"notes":"B1/B2 same-carrier ETF; B3 cross-carrier proxy."},
+    {"key":"execution.constraints","value":"common months only; missing sleeve excluded","status":"confirmed","basis":"derived","evidence_ids":["FUSION-F1"],"decision_id":"D003","critical":true,"notes":"Derived fail-closed common-calendar rule."},
+    {"key":"costs.model","value":"5bp and 20.5bp cross-sleeve rebalance cost","status":"confirmed","basis":"source","evidence_ids":["FUSION-F1"],"decision_id":"D005","critical":true,"notes":""},
+    {"key":"backtest.period","value":"2021-02 through 2026-09","status":"confirmed","basis":"source","evidence_ids":["FUSION-F1"],"decision_id":"D001","critical":true,"notes":""},
+    {"key":"backtest.benchmark","value":"H6 and corresponding single sleeve; prior B3 blend","status":"confirmed","basis":"derived","evidence_ids":["FUSION-F1"],"decision_id":"D004","critical":true,"notes":"Derived matched blend comparison."},
+    {"key":"missing_data.policy","value":"common-month intersection; no interpolation","status":"confirmed","basis":"derived","evidence_ids":["FUSION-F1"],"decision_id":"D003","critical":true,"notes":"Derived by monthly alignment."},
+    {"key":"validation.acceptance","value":"monthly Sharpe +0.05 vs H6, MDD, correlation<.95; no weight search","status":"confirmed","basis":"derived","evidence_ids":["FUSION-F1","DUAL-F1"],"decision_id":"D005","critical":true,"notes":"Frozen in PRE_REPRO.md."}
+  ],
+  "decisions": [
+    {"id":"D001","key":"study_scope","value":"Sleeve B alternatives","status":"research_only","approval_ref":"PRE_REPRO.md"},
+    {"id":"D002","key":"execution","value":"same-carrier ETF monthly blend; B3 cross-carrier reference","status":"frozen","approval_ref":"PRE_REPRO.md"},
+    {"id":"D003","key":"data_policy","value":"inherit current-revision parents","status":"frozen","approval_ref":"PRE_REPRO.md"},
+    {"id":"D004","key":"candidate_budget","value":"fixed 50/50 for three B choices","status":"frozen","approval_ref":"PRE_REPRO.md"},
+    {"id":"D005","key":"promotion","value":"no production without OOS","status":"frozen","approval_ref":"PRE_REPRO.md"}
+  ],
+  "blockers": []
+}

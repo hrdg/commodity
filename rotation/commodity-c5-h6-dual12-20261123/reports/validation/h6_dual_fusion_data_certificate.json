@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "data_id": "AW7_H6_DUAL_FUSION_INPUT_20261123",
+  "product": "Derived fusion inputs from R2 H6 ETF returns and R3 dual-filter futures returns",
+  "vendor": "Local derived research panels",
+  "version": "2026-11-23",
+  "intended_use": ["research-only fusion comparison"],
+  "coverage": {
+    "start": "2021-02-01",
+    "end": "2026-09-30",
+    "frequency": "monthly for fusion; daily underlying H6",
+    "universe": "six ETF nodes and 47 contract products",
+    "fields": ["date", "H6 net return", "BM5 dual12 lag1 net return"]
+  },
+  "snapshot": {
+    "h6_returns": "/Users/hsh/Documents/Quant/科技轮动/research/runs/aw7_commodity_switch_confirm_20261123/artifacts/daily_returns.csv",
+    "dual_returns": "/Users/hsh/Documents/Quant/科技轮动/research/runs/aw7_commodity_dual_filter_20261123/artifacts/returns.csv"
+  },
+  "classification": {"kind": "derived_research_panel", "price_volume": true, "metadata_only": false},
+  "parents": [
+    {"path": "/Users/hsh/Documents/Quant/科技轮动/research/runs/aw7_commodity_switch_confirm_20261123/data_certificate.json", "purpose": "H6 six-ETF inputs"},
+    {"path": "/Users/hsh/Documents/Quant/科技轮动/research/runs/aw7_commodity_dual_filter_20261123/data_certificate.json", "purpose": "BM5 dual12 futures proxy"}
+  ],
+  "transform": {
+    "code_path": "reproduction/run.py",
+    "version": "h6-dual-fusion-v1",
+    "parameters": {"relative_cutoff": 0.5, "h6_gap": 0.25, "blend_weight": 0.5}
+  },
+  "dimensions": {
+    "source_inventory": {"status": "PASS", "criterion": "Both parent files and reports are identified.", "evidence": [{"path": "evidence.json"}, {"path": "data_requirement.json"}], "reason": null},
+    "schema_keys_units": {"status": "PASS", "criterion": "Monthly dates and return units are checked/tested.", "evidence": [{"path": "reproduction/test_run.py"}, {"path": "logs/unit_tests.log"}], "reason": null},
+    "date_axis_calendar": {"status": "PASS", "criterion": "F2 uses the 68 common realized months.", "evidence": [{"path": "artifacts/returns_f2_monthly.csv"}], "reason": null},
+    "coverage_universe": {"status": "PARTIAL", "criterion": "Six nodes and 47 products have insufficient vintage and ETF proxy coverage.", "evidence": [{"path": "artifacts/metrics_f1.csv"}, {"path": "artifacts/metrics_f2.csv"}], "reason": "Parent source limitations remain."},
+    "asof_available_at": {"status": "PASS", "criterion": "F1 uses next-open returns; F2 aligns realized common months.", "evidence": [{"path": "reproduction/run.py"}, {"path": "artifacts/returns_f2_monthly.csv"}], "reason": null},
+    "revision_vintage": {"status": "BLOCKED", "criterion": "Parent historical snapshots require release vintage.", "evidence": [{"path": "evidence.json"}], "reason": "No certified vintage."},
+    "historical_membership": {"status": "PASS", "criterion": "Uses frozen R2 and R3 parent members.", "evidence": [{"path": "strategy.json"}], "reason": null},
+    "mapping_taxonomy": {"status": "PARTIAL", "criterion": "F2 combines different execution carriers.", "evidence": [{"path": "REPORT.md"}], "reason": "The blend is research-only and not a single vendor or platform crosswalk."},
+    "derived_lineage": {"status": "PASS", "criterion": "F1 and F2 transformations are deterministic and recorded.", "evidence": [{"path": "reproduction/run.py"}, {"path": "artifacts/result.json"}], "reason": null},
+    "reconciliation": {"status": "PARTIAL", "criterion": "H6 baseline reconciles to R2; F2 cannot reconcile to a single live carrier.", "evidence": [{"path": "artifacts/metrics_f1.csv"}, {"path": "artifacts/metrics_f2.csv"}], "reason": "Cross-carrier blend has no unified external source."},
+    "reproducibility": {"status": "PASS", "criterion": "Tests and deterministic execution pass.", "evidence": [{"path": "logs/unit_tests.log"}, {"path": "logs/run.log"}], "reason": null}
+  },
+  "pit": {"event_time_field": "month-end", "available_at_field": "close for signal; next-open for ETF F1", "decision_cutoff": "month-end", "revision_policy": "inherited current-revision snapshots", "certified": false, "tests": ["ETF dual eligibility", "H6 fixture", "monthly blend"]},
+  "universe": {"historical_members": "frozen R2/R3 members", "survivorship_test": "inherited expiry/listed availability"},
+  "mapping": {"etf_mapping": "R2/R3 inherited", "cross_carrier_blend": "research-only"},
+  "lineage": {"parent_source_ids": ["AW7_COMMODITY_SWITCH_CONFIRM_20261123", "AW7_COMMODITY_DUAL_FILTER_20261123"], "derived_artifact": "artifacts/result.json"},
+  "validation": {"commands": ["pytest reproduction/test_run.py", "python reproduction/run.py"], "artifacts": ["artifacts/result.json", "artifacts/metrics_f1.csv", "artifacts/metrics_f2.csv"], "checks": ["F1 baseline", "F2 common-month blend"]},
+  "decision": {"status": "PARTIAL", "scope": "research-only fusion", "certified_for": ["historical mechanism and portfolio proxy"], "not_certified_for": ["production PIT", "single executable carrier", "independent OOS"], "blockers": ["no vintage", "cross-carrier execution", "monthly H6 risk compression"], "reviewed_at": "2026-11-23T22:30:00+08:00", "reviewer": "Codex AW7 fusion study"},
+  "revalidation": {"triggers": ["new parent data", "changed transfer horizon", "new joint account/execution model"], "next_review": "before any shadow or production use"}
+}

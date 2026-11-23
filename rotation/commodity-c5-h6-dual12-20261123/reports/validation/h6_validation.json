@@ -1,0 +1,258 @@
+{
+  "schema_version": "1.0",
+  "strategy_sha256": "1abe88a7860c27cd338c74eba5b1279122eae28c109df940c916007b2d5622b9",
+  "code_revision": "c89b5ffc8173100e4b7ba3a5c68492ab44d6806a38c1cd9d1c179515292fe82f",
+  "data_snapshot": {
+    "manifest": "R1/data_certificate.json",
+    "manifest_path": "/Users/hsh/Documents/Quant/科技轮动/research/runs/aw7_commodity_basis_momentum_20261123/data_certificate.json",
+    "manifest_sha256": "1c866e3d41331b748b7f70f44eb51e575f2e82895d59ca3b7438d8a250cd9cc7",
+    "monthly_signal_sha256": "302fb28b7cff1663321a5a37491639617fba3e5f5a768d97ac9fa62dcccc4a4e",
+    "r1_daily_returns_sha256": "cfa57cb629aab3320b0ab24544e4ae71224ad2a22116fdfada6bfd2a75399a1a",
+    "decision": "PARTIAL"
+  },
+  "environment": {
+    "python": "3.12",
+    "pandas": "3.0.6",
+    "numpy": "2.5.3"
+  },
+  "checks": [
+    {
+      "id": "source_fidelity",
+      "status": "PASS",
+      "criterion": "The extension reuses the hash-linked R1 monthly BM5 panel and current parent ledger.",
+      "evidence": [
+        {
+          "path": "evidence.json"
+        },
+        {
+          "path": "PRE_REPRO.md"
+        }
+      ],
+      "reason": null
+    },
+    {
+      "id": "formula_fixture",
+      "status": "PASS",
+      "criterion": "H5/H6 branch fixtures, floating-zero protection and exact parent C5 replay pass.",
+      "evidence": [
+        {
+          "path": "logs/unit_tests.log"
+        },
+        {
+          "path": "reproduction/test_run.py"
+        }
+      ],
+      "reason": null
+    },
+    {
+      "id": "point_in_time",
+      "status": "PASS",
+      "criterion": "Month-end close decisions use next-open fills; risk state uses prior-close NAV.",
+      "evidence": [
+        {
+          "path": "reproduction/run.py"
+        },
+        {
+          "path": "ALGORITHM.md"
+        },
+        {
+          "path": "logs/run.log"
+        }
+      ],
+      "reason": null
+    },
+    {
+      "id": "source_lineage",
+      "status": "PASS",
+      "criterion": "R1 current-revision panel is hash-linked and usage is restricted to proxy research.",
+      "evidence": [
+        {
+          "path": "evidence.json"
+        },
+        {
+          "path": "PRE_REPRO.md"
+        }
+      ],
+      "reason": "R1 data certificate remains PARTIAL; vendor release vintage is unavailable."
+    },
+    {
+      "id": "historical_universe",
+      "status": "PASS",
+      "criterion": "Six nodes and BM5 dates are selected only from the frozen R1 panel.",
+      "evidence": [
+        {
+          "path": "artifacts/result.json"
+        },
+        {
+          "path": "artifacts/metrics_common_window.csv"
+        }
+      ],
+      "reason": null
+    },
+    {
+      "id": "execution",
+      "status": "PASS",
+      "criterion": "B0 and both candidates use the same open execution, turnover and splice fees.",
+      "evidence": [
+        {
+          "path": "reproduction/run.py"
+        },
+        {
+          "path": "artifacts/daily_returns.csv"
+        }
+      ],
+      "reason": null
+    },
+    {
+      "id": "accounting",
+      "status": "PASS",
+      "criterion": "Metrics are finite and total-metric count is twelve.",
+      "evidence": [
+        {
+          "path": "artifacts/metrics_common_window.csv"
+        }
+      ],
+      "reason": null
+    },
+    {
+      "id": "smoke_backtest",
+      "status": "PASS",
+      "criterion": "Both candidates and both costs ran in the frozen common window.",
+      "evidence": [
+        {
+          "path": "artifacts/metrics_common_window.csv"
+        },
+        {
+          "path": "logs/run.log"
+        }
+      ],
+      "reason": null
+    },
+    {
+      "id": "reproducibility",
+      "status": "PASS",
+      "criterion": "The B0 replay matches R1 daily returns within 1e-12.",
+      "evidence": [
+        {
+          "path": "artifacts/result.json"
+        },
+        {
+          "path": "logs/unit_tests.log"
+        }
+      ],
+      "reason": null
+    },
+    {
+      "id": "metrics_comparison",
+      "status": "PASS",
+      "criterion": "H5/H6 returns, costs, bootstrap, placebo, leave-one-out and label permutation are recorded.",
+      "evidence": [
+        {
+          "path": "artifacts/bootstrap.csv"
+        },
+        {
+          "path": "artifacts/h5_placebo.csv"
+        },
+        {
+          "path": "artifacts/h6_leave_one_out.csv"
+        },
+        {
+          "path": "artifacts/h6_bm_permutation.csv"
+        }
+      ],
+      "reason": null
+    },
+    {
+      "id": "reproduction_communication",
+      "status": "PASS",
+      "criterion": "Pre-reproduction, algorithm, index, report, audit, per-source page and archive manifest exist.",
+      "evidence": [
+        {
+          "path": "PRE_REPRO.md"
+        },
+        {
+          "path": "ALGORITHM.md"
+        },
+        {
+          "path": "REPRO_INDEX.md"
+        },
+        {
+          "path": "REPORT.md"
+        },
+        {
+          "path": "AUDIT.md"
+        },
+        {
+          "path": "papers/R1_AW7_basis_momentum.md"
+        },
+        {
+          "path": "archive_manifest.json"
+        },
+        {
+          "path": "iterations.jsonl"
+        },
+        {
+          "path": "sample_access.jsonl"
+        }
+      ],
+      "reason": null
+    }
+  ],
+  "command_evidence": [
+    {
+      "command": "/Users/hsh/Documents/Quant/科技轮动/.venv/bin/python3 -m pytest -q reproduction/test_run.py",
+      "cwd": "/Users/hsh/Documents/Quant/科技轮动/research/runs/aw7_commodity_switch_confirm_20261123",
+      "executed_at": "2026-11-23T21:19:02+08:00",
+      "exit_code": 0,
+      "log_path": "logs/unit_tests.log"
+    },
+    {
+      "command": "/Users/hsh/Documents/Quant/科技轮动/.venv/bin/python3 reproduction/run.py",
+      "cwd": "/Users/hsh/Documents/Quant/科技轮动/research/runs/aw7_commodity_switch_confirm_20261123",
+      "executed_at": "2026-11-23T21:19:32+08:00",
+      "exit_code": 0,
+      "log_path": "logs/run.log"
+    }
+  ],
+  "metric_comparison": {
+    "baseline_5bp": {
+      "cagr": 0.5138024338513081,
+      "sharpe": 1.6350021605825136,
+      "mdd": -0.23103238772494616
+    },
+    "h5_5bp": {
+      "cagr": 0.12486812057984,
+      "sharpe": 0.6392217536430108,
+      "mdd": -0.45952784984559625
+    },
+    "h6_5bp": {
+      "cagr": 0.6122678905104011,
+      "sharpe": 1.8454118463053975,
+      "mdd": -0.23103238772494628
+    },
+    "h6_20_5bp": {
+      "cagr": 0.5428531294908434,
+      "sharpe": 1.7028062792934764,
+      "mdd": -0.23228790762225038
+    },
+    "h6_bootstrap": [
+      {
+        "candidate": "H6_NEAR_TIE_TIPDD_5bp",
+        "control": "B0_C5_TIPDD_5bp",
+        "cost_bps": 5.0,
+        "sharpe_difference": 0.2104096857228838,
+        "ci95": "[0.053010645602232315, 0.45384101009026984]",
+        "p_two_sided": 0.0012,
+        "bh_q": 0.0024
+      }
+    ],
+    "h6_label_permutation_percentile": 0.92
+  },
+  "conclusions": {
+    "code_correctness": "PASS",
+    "methodological_validity": "PASS",
+    "report_reproduction": "PASS",
+    "live_profitability": "NOT_ASSESSED"
+  },
+  "scope_note": "Implementation and execution reproduce the frozen parent. H6 has a positive viewed-history economic result but only four events and a 92nd-percentile BM5 label permutation; it remains a prospective shadow candidate, not production."
+}

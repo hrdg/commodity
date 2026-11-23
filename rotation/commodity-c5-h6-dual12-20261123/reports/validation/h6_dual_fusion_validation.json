@@ -1,0 +1,606 @@
+{
+  "schema_version": "1.0",
+  "strategy_sha256": "3d84849f3c5abb1200057a702983633e8a1044e8664c16d56136aba939102160",
+  "code_revision": "401c10432a0bd5a0eacf9be35c303877e3122f552f0b9117f4658f07e8285453",
+  "data_snapshot": {
+    "manifest": "data_certificate.json",
+    "manifest_sha256": "3b2895fd2824cb29b47d918e72043ec1e23e6bba3f1892e6878df54d008c1bc7",
+    "decision": "PARTIAL",
+    "H6_daily_sha256": "204dc3b12c65f6b077ad8be98a405117fddb275ce85cbd87e0f36558e181a3c8",
+    "dual_returns_sha256": "f9fa14b6ac8491cdd7fea2f22906b4881a677bc32de2f1f9d7761ae0762c6467"
+  },
+  "environment": {
+    "python": "3.12",
+    "pandas": "3.0.6",
+    "numpy": "2.5.3"
+  },
+  "checks": [
+    {
+      "id": "source_fidelity",
+      "status": "PASS",
+      "criterion": "Both parent research packages and their hashes are recorded.",
+      "evidence": [
+        {
+          "path": "evidence.json"
+        },
+        {
+          "path": "PRE_REPRO.md"
+        },
+        {
+          "path": "data_certificate.json"
+        }
+      ],
+      "reason": null
+    },
+    {
+      "id": "formula_fixture",
+      "status": "PASS",
+      "criterion": "Dual eligibility, H6 fixture and monthly blend tests pass.",
+      "evidence": [
+        {
+          "path": "logs/unit_tests.log"
+        },
+        {
+          "path": "reproduction/test_run.py"
+        }
+      ],
+      "reason": null
+    },
+    {
+      "id": "point_in_time",
+      "status": "PASS",
+      "criterion": "F1 preserves the next-open H6 contract; F2 uses realized common calendar months.",
+      "evidence": [
+        {
+          "path": "reproduction/run.py"
+        },
+        {
+          "path": "artifacts/returns_f2_monthly.csv"
+        }
+      ],
+      "reason": null
+    },
+    {
+      "id": "source_lineage",
+      "status": "PASS",
+      "criterion": "Both parent datasets and cross-carrier alignment are recorded.",
+      "evidence": [
+        {
+          "path": "data_certificate.json"
+        },
+        {
+          "path": "evidence.json"
+        },
+        {
+          "path": "reproduction/run.py"
+        }
+      ],
+      "reason": "Parent data remain PARTIAL due unavailable release vintage."
+    },
+    {
+      "id": "historical_universe",
+      "status": "PASS",
+      "criterion": "F1 uses frozen six ETF nodes; F2 uses each parent's frozen universe.",
+      "evidence": [
+        {
+          "path": "strategy.json"
+        },
+        {
+          "path": "artifacts/eligibility.csv"
+        }
+      ],
+      "reason": null
+    },
+    {
+      "id": "execution",
+      "status": "PASS",
+      "criterion": "F1 is next-open ETF; F2 is explicitly a monthly blended-return proxy.",
+      "evidence": [
+        {
+          "path": "REPORT.md"
+        },
+        {
+          "path": "ALGORITHM.md"
+        }
+      ],
+      "reason": null
+    },
+    {
+      "id": "accounting",
+      "status": "PASS",
+      "criterion": "All 18 planned arm/cost metrics are finite; F2 rebalance cost is included.",
+      "evidence": [
+        {
+          "path": "artifacts/metrics_f1.csv"
+        },
+        {
+          "path": "artifacts/metrics_f2.csv"
+        }
+      ],
+      "reason": null
+    },
+    {
+      "id": "smoke_backtest",
+      "status": "PASS",
+      "criterion": "Six F1 arms and three F2 arms ran at two cost levels.",
+      "evidence": [
+        {
+          "path": "artifacts/metrics_f1.csv"
+        },
+        {
+          "path": "artifacts/metrics_f2.csv"
+        },
+        {
+          "path": "logs/run.log"
+        }
+      ],
+      "reason": null
+    },
+    {
+      "id": "reproducibility",
+      "status": "PASS",
+      "criterion": "The deterministic unit suite passes and parent H6 reproduces in the fixed window.",
+      "evidence": [
+        {
+          "path": "logs/unit_tests.log"
+        },
+        {
+          "path": "artifacts/metrics_f1.csv"
+        }
+      ],
+      "reason": null
+    },
+    {
+      "id": "metrics_comparison",
+      "status": "PASS",
+      "criterion": "F1/F2 metrics, bootstrap, eligibility and NAV are recorded.",
+      "evidence": [
+        {
+          "path": "artifacts/metrics_f1.csv"
+        },
+        {
+          "path": "artifacts/metrics_f2.csv"
+        },
+        {
+          "path": "artifacts/bootstrap_f1.csv"
+        },
+        {
+          "path": "artifacts/bootstrap_f2.csv"
+        },
+        {
+          "path": "artifacts/eligibility.csv"
+        },
+        {
+          "path": "artifacts/nav_fusion.png"
+        }
+      ],
+      "reason": null
+    },
+    {
+      "id": "reproduction_communication",
+      "status": "PASS",
+      "criterion": "Pre-repro, report, audit, algorithm, index and archive are present.",
+      "evidence": [
+        {
+          "path": "PRE_REPRO.md"
+        },
+        {
+          "path": "REPORT.md"
+        },
+        {
+          "path": "AUDIT.md"
+        },
+        {
+          "path": "ALGORITHM.md"
+        },
+        {
+          "path": "REPRO_INDEX.md"
+        },
+        {
+          "path": "archive_manifest.json"
+        },
+        {
+          "path": "iterations.jsonl"
+        },
+        {
+          "path": "sample_access.jsonl"
+        }
+      ],
+      "reason": null
+    }
+  ],
+  "command_evidence": [
+    {
+      "command": "/Users/hsh/Documents/Quant/科技轮动/.venv/bin/python3 -m pytest -q reproduction/test_run.py",
+      "cwd": "/Users/hsh/Documents/Quant/科技轮动/research/runs/aw7_commodity_h6_dual_fusion_20261123",
+      "executed_at": "2026-11-23T22:18:18+08:00",
+      "exit_code": 0,
+      "log_path": "logs/unit_tests.log"
+    },
+    {
+      "command": "/Users/hsh/Documents/Quant/科技轮动/.venv/bin/python3 reproduction/run.py",
+      "cwd": "/Users/hsh/Documents/Quant/科技轮动/research/runs/aw7_commodity_h6_dual_fusion_20261123",
+      "executed_at": "2026-11-23T22:18:20+08:00",
+      "exit_code": 0,
+      "log_path": "logs/run.log"
+    }
+  ],
+  "metric_comparison": {
+    "F1_metrics": [
+      {
+        "arm": "B0_C5",
+        "cost_bps": 5.0,
+        "average_exposure": 0.5481400437636762,
+        "zero_risk_months": 20,
+        "start": "2021-02-01",
+        "end": "2026-09-30",
+        "days": 1371,
+        "cagr": 0.5138024338513081,
+        "vol": 0.2770100900777919,
+        "sharpe": 1.6350021605825136,
+        "mdd": -0.23103238772494616,
+        "calmar": 2.223941149164816
+      },
+      {
+        "arm": "H6",
+        "cost_bps": 5.0,
+        "average_exposure": 0.5711159737417943,
+        "zero_risk_months": 20,
+        "start": "2021-02-01",
+        "end": "2026-09-30",
+        "days": 1371,
+        "cagr": 0.6122678905104011,
+        "vol": 0.28009267173162267,
+        "sharpe": 1.8454118463053975,
+        "mdd": -0.23103238772494628,
+        "calmar": 2.6501387815778092
+      },
+      {
+        "arm": "ABS12_C5",
+        "cost_bps": 5.0,
+        "average_exposure": 0.6086797957695113,
+        "zero_risk_months": 20,
+        "start": "2021-02-01",
+        "end": "2026-09-30",
+        "days": 1371,
+        "cagr": 0.41709960540086377,
+        "vol": 0.25558173589157884,
+        "sharpe": 1.4912256446435777,
+        "mdd": -0.23103238772494605,
+        "calmar": 1.805372872211487
+      },
+      {
+        "arm": "ABS12_H6",
+        "cost_bps": 5.0,
+        "average_exposure": 0.6170678336980306,
+        "zero_risk_months": 20,
+        "start": "2021-02-01",
+        "end": "2026-09-30",
+        "days": 1371,
+        "cagr": 0.45032147755740337,
+        "vol": 0.257132913178564,
+        "sharpe": 1.573985662077707,
+        "mdd": -0.23103238772494616,
+        "calmar": 1.9491703392406183
+      },
+      {
+        "arm": "DUAL12_C5",
+        "cost_bps": 5.0,
+        "average_exposure": 0.6086797957695113,
+        "zero_risk_months": 20,
+        "start": "2021-02-01",
+        "end": "2026-09-30",
+        "days": 1371,
+        "cagr": 0.4090016979819888,
+        "vol": 0.2550971385545855,
+        "sharpe": 1.471072913301152,
+        "mdd": -0.23103238772494616,
+        "calmar": 1.770321910315547
+      },
+      {
+        "arm": "DUAL12_H6",
+        "cost_bps": 5.0,
+        "average_exposure": 0.6170678336980306,
+        "zero_risk_months": 20,
+        "start": "2021-02-01",
+        "end": "2026-09-30",
+        "days": 1371,
+        "cagr": 0.43549306626920536,
+        "vol": 0.25672922248542596,
+        "sharpe": 1.5359627524490742,
+        "mdd": -0.23103238772494616,
+        "calmar": 1.8849870814981937
+      },
+      {
+        "arm": "B0_C5",
+        "cost_bps": 20.5,
+        "average_exposure": 0.5317286652078774,
+        "zero_risk_months": 20,
+        "start": "2021-02-01",
+        "end": "2026-09-30",
+        "days": 1371,
+        "cagr": 0.4472445558712972,
+        "vol": 0.27355678572050585,
+        "sharpe": 1.4876639536923062,
+        "mdd": -0.23228790762225038,
+        "calmar": 1.9253888867887696
+      },
+      {
+        "arm": "H6",
+        "cost_bps": 20.5,
+        "average_exposure": 0.5579868708971554,
+        "zero_risk_months": 20,
+        "start": "2021-02-01",
+        "end": "2026-09-30",
+        "days": 1371,
+        "cagr": 0.5428531294908434,
+        "vol": 0.2772055438484137,
+        "sharpe": 1.7028062792934764,
+        "mdd": -0.23228790762225038,
+        "calmar": 2.33698402576185
+      },
+      {
+        "arm": "ABS12_C5",
+        "cost_bps": 20.5,
+        "average_exposure": 0.5951859956236324,
+        "zero_risk_months": 20,
+        "start": "2021-02-01",
+        "end": "2026-09-30",
+        "days": 1371,
+        "cagr": 0.3648374458875967,
+        "vol": 0.2532511502074562,
+        "sharpe": 1.3541417563715863,
+        "mdd": -0.23228790762225038,
+        "calmar": 1.5706260804626133
+      },
+      {
+        "arm": "ABS12_H6",
+        "cost_bps": 20.5,
+        "average_exposure": 0.6053975200583516,
+        "zero_risk_months": 20,
+        "start": "2021-02-01",
+        "end": "2026-09-30",
+        "days": 1371,
+        "cagr": 0.3956675092655313,
+        "vol": 0.2546923622794565,
+        "sharpe": 1.4356977929906034,
+        "mdd": -0.23228790762225038,
+        "calmar": 1.7033495773226859
+      },
+      {
+        "arm": "DUAL12_C5",
+        "cost_bps": 20.5,
+        "average_exposure": 0.5995623632385121,
+        "zero_risk_months": 20,
+        "start": "2021-02-01",
+        "end": "2026-09-30",
+        "days": 1371,
+        "cagr": 0.36327922967270143,
+        "vol": 0.252858418263646,
+        "sharpe": 1.351325637713776,
+        "mdd": -0.23228790762225038,
+        "calmar": 1.5639179559164607
+      },
+      {
+        "arm": "DUAL12_H6",
+        "cost_bps": 20.5,
+        "average_exposure": 0.6097738876732313,
+        "zero_risk_months": 20,
+        "start": "2021-02-01",
+        "end": "2026-09-30",
+        "days": 1371,
+        "cagr": 0.387741899768715,
+        "vol": 0.2544018799773826,
+        "sharpe": 1.4146276006364387,
+        "mdd": -0.23374809707627375,
+        "calmar": 1.6588023800775238
+      }
+    ],
+    "F1_bootstrap": [
+      {
+        "candidate": "DUAL12_H6_5bp",
+        "control": "H6_5bp",
+        "cost_bps": 5.0,
+        "sharpe_difference": -0.3094490938563232,
+        "ci95": [
+          -0.8351851494953613,
+          0.11067470395123162
+        ],
+        "p_two_sided": 0.1554
+      },
+      {
+        "candidate": "DUAL12_H6_5bp",
+        "control": "DUAL12_C5_5bp",
+        "cost_bps": 5.0,
+        "sharpe_difference": 0.06488983914792207,
+        "ci95": [
+          -0.07550995856452698,
+          0.2767471258684808
+        ],
+        "p_two_sided": 0.4318
+      },
+      {
+        "candidate": "DUAL12_C5_5bp",
+        "control": "B0_C5_5bp",
+        "cost_bps": 5.0,
+        "sharpe_difference": -0.16392924728136143,
+        "ci95": [
+          -0.6689057177180292,
+          0.27301553599429706
+        ],
+        "p_two_sided": 0.47
+      },
+      {
+        "candidate": "DUAL12_H6_20.5bp",
+        "control": "H6_20.5bp",
+        "cost_bps": 20.5,
+        "sharpe_difference": -0.28817867865703767,
+        "ci95": [
+          -0.8074503757330582,
+          0.12757396935364934
+        ],
+        "p_two_sided": 0.1792
+      },
+      {
+        "candidate": "DUAL12_H6_20.5bp",
+        "control": "DUAL12_C5_20.5bp",
+        "cost_bps": 20.5,
+        "sharpe_difference": 0.06330196292266294,
+        "ci95": [
+          -0.06646244084402539,
+          0.24922573803926276
+        ],
+        "p_two_sided": 0.36
+      },
+      {
+        "candidate": "DUAL12_C5_20.5bp",
+        "control": "B0_C5_20.5bp",
+        "cost_bps": 20.5,
+        "sharpe_difference": -0.1363383159785303,
+        "ci95": [
+          -0.63491605527994,
+          0.3026104425817399
+        ],
+        "p_two_sided": 0.5442
+      }
+    ],
+    "F2_metrics": [
+      {
+        "arm": "H6",
+        "cost_bps": 5.0,
+        "correlation_H6_BM5DUAL": -0.1604530896771464,
+        "start": "2021-02-28 00:00:00",
+        "end": "2026-09-30 00:00:00",
+        "months": 68,
+        "cagr": 0.5818203131371389,
+        "vol": 0.4780307999308663,
+        "sharpe": 1.1532647061273191,
+        "mdd": -0.10836933094574663,
+        "calmar": 5.368865047514392
+      },
+      {
+        "arm": "BM5_DUAL12",
+        "cost_bps": 5.0,
+        "correlation_H6_BM5DUAL": -0.1604530896771464,
+        "start": "2021-02-28 00:00:00",
+        "end": "2026-09-30 00:00:00",
+        "months": 68,
+        "cagr": 0.10313840367314708,
+        "vol": 0.1832999455329,
+        "sharpe": 0.6278851599499822,
+        "mdd": -0.2057047672825424,
+        "calmar": 0.5013904394908021
+      },
+      {
+        "arm": "FUSION50",
+        "cost_bps": 5.0,
+        "correlation_H6_BM5DUAL": -0.1604530896771464,
+        "start": "2021-02-28 00:00:00",
+        "end": "2026-09-30 00:00:00",
+        "months": 68,
+        "cagr": 0.35563232777137244,
+        "vol": 0.24179598866686988,
+        "sharpe": 1.3769997803892098,
+        "mdd": -0.08678885379414203,
+        "calmar": 4.0976728257629835
+      },
+      {
+        "arm": "H6",
+        "cost_bps": 20.5,
+        "correlation_H6_BM5DUAL": -0.1662192752750924,
+        "start": "2021-02-28 00:00:00",
+        "end": "2026-09-30 00:00:00",
+        "months": 68,
+        "cagr": 0.5163778358272935,
+        "vol": 0.46311635007665913,
+        "sharpe": 1.0852525555315338,
+        "mdd": -0.10974255013792289,
+        "calmar": 4.705356629477965
+      },
+      {
+        "arm": "BM5_DUAL12",
+        "cost_bps": 20.5,
+        "correlation_H6_BM5DUAL": -0.1662192752750924,
+        "start": "2021-02-28 00:00:00",
+        "end": "2026-09-30 00:00:00",
+        "months": 68,
+        "cagr": 0.08654253689320068,
+        "vol": 0.18288367396921754,
+        "sharpe": 0.5455153610467506,
+        "mdd": -0.21993351884871348,
+        "calmar": 0.39349407651105256
+      },
+      {
+        "arm": "FUSION50",
+        "cost_bps": 20.5,
+        "correlation_H6_BM5DUAL": -0.1662192752750924,
+        "start": "2021-02-28 00:00:00",
+        "end": "2026-09-30 00:00:00",
+        "months": 68,
+        "cagr": 0.31484490451424474,
+        "vol": 0.23412761303531465,
+        "sharpe": 1.2822412527899283,
+        "mdd": -0.09105820246139262,
+        "calmar": 3.4576226633480327
+      }
+    ],
+    "F2_bootstrap": [
+      {
+        "candidate": "FUSION50_5bp",
+        "control": "H6_5bp",
+        "cost_bps": 5.0,
+        "sharpe_difference": 0.2237350742618906,
+        "ci95": [
+          -0.15840829798287567,
+          0.7214408145529002
+        ],
+        "p_two_sided": 0.2008,
+        "bh_q": 0.2008
+      },
+      {
+        "candidate": "FUSION50_5bp",
+        "control": "BM5_DUAL12_5bp",
+        "cost_bps": 5.0,
+        "sharpe_difference": 0.7491146204392276,
+        "ci95": [
+          0.15618600896026952,
+          1.4988970252028324
+        ],
+        "p_two_sided": 0.015,
+        "bh_q": 0.03
+      },
+      {
+        "candidate": "FUSION50_20.5bp",
+        "control": "H6_20.5bp",
+        "cost_bps": 20.5,
+        "sharpe_difference": 0.19698869725839452,
+        "ci95": [
+          -0.2127526928110708,
+          0.6898354890455898
+        ],
+        "p_two_sided": 0.27,
+        "bh_q": 0.27
+      },
+      {
+        "candidate": "FUSION50_20.5bp",
+        "control": "BM5_DUAL12_20.5bp",
+        "cost_bps": 20.5,
+        "sharpe_difference": 0.7367258917431777,
+        "ci95": [
+          0.13242954519388364,
+          1.490075954251091
+        ],
+        "p_two_sided": 0.0174,
+        "bh_q": 0.0348
+      }
+    ],
+    "interpretation": "Serial filter damages H6 despite a local +0.065 H6 effect; the 50/50 capital blend improves historical monthly Sharpe but is not a single executable carrier and is not statistically confirmed against H6."
+  },
+  "conclusions": {
+    "code_correctness": "PASS",
+    "methodological_validity": "PASS",
+    "report_reproduction": "PASS",
+    "live_profitability": "NOT_ASSESSED"
+  },
+  "scope_note": "F1 rejected; F2 50/50 is shadow-only. No production change or independent OOS claim."
+}

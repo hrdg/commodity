@@ -1,0 +1,207 @@
+{
+  "schema_version": "1.0",
+  "strategy_id": "aw7_commodity_h6_dual_fusion_20261123-v1",
+  "mode": "extension",
+  "status": "frozen",
+  "parent_version": "aw7_commodity_switch_confirm_20261123-v1 + aw7_commodity_dual_filter_20261123-v1",
+  "requirements": [
+    {
+      "key": "universe.definition",
+      "value": "F1 six AW7 commodity ETF nodes; F2 H6 ETF sleeve plus R3 47-product futures proxy",
+      "status": "confirmed",
+      "basis": "source",
+      "evidence_ids": ["H6-F1", "DUAL-F1"],
+      "decision_id": "D001",
+      "critical": true,
+      "notes": ""
+    },
+    {
+      "key": "universe.history",
+      "value": "common 2021-02-01 through 2026-09-30",
+      "status": "confirmed",
+      "basis": "source",
+      "evidence_ids": ["H6-F1", "DUAL-F1"],
+      "decision_id": "D001",
+      "critical": true,
+      "notes": ""
+    },
+    {
+      "key": "data.fields",
+      "value": "ETF close/open, C5, node BM5, 12m ETF returns, R3 BM5+dual12 monthly net returns",
+      "status": "confirmed",
+      "basis": "source",
+      "evidence_ids": ["H6-F1", "DUAL-F1"],
+      "decision_id": "D002",
+      "critical": true,
+      "notes": ""
+    },
+    {
+      "key": "data.availability",
+      "value": "month-end decision; next-open ETF fill; R3 monthly net uses its frozen lag1 label",
+      "status": "confirmed",
+      "basis": "derived",
+      "evidence_ids": ["H6-F1", "DUAL-F2"],
+      "decision_id": "D002",
+      "critical": true,
+      "notes": "F2 is a monthly return blend, not a single executable carrier."
+    },
+    {
+      "key": "data.revisions",
+      "value": "inherits current-revision R2/R3 research panels",
+      "status": "confirmed",
+      "basis": "source",
+      "evidence_ids": ["H6-F1", "DUAL-F2"],
+      "decision_id": "D003",
+      "critical": true,
+      "notes": ""
+    },
+    {
+      "key": "data.adjustment",
+      "value": "no resplicing; each parent series uses its frozen adjustment",
+      "status": "confirmed",
+      "basis": "derived",
+      "evidence_ids": ["H6-F1", "DUAL-F1"],
+      "decision_id": "D002",
+      "critical": true,
+      "notes": "The two sleeves retain different execution and accounting proxies."
+    },
+    {
+      "key": "factor.formula",
+      "value": "ETF MOM12 absolute/relative filter; C5 top-two H6 rule; fixed 0.5/0.5 F2 blend",
+      "status": "confirmed",
+      "basis": "source",
+      "evidence_ids": ["H6-F1", "DUAL-F1"],
+      "decision_id": "D004",
+      "critical": true,
+      "notes": "Derived by applying the frozen dual eligibility before the existing C5 and H6 ranking."
+    },
+    {
+      "key": "factor.preprocessing",
+      "value": "12 monthly closes; contemporaneous cross-sectional ETF rank; no interpolation",
+      "status": "confirmed",
+      "basis": "derived",
+      "evidence_ids": ["DUAL-F1"],
+      "decision_id": "D004",
+      "critical": true,
+      "notes": "Relative cutoff fixed at 0.5."
+    },
+    {
+      "key": "signal.clock",
+      "value": "month-end",
+      "status": "confirmed",
+      "basis": "source",
+      "evidence_ids": ["H6-F1", "DUAL-F1"],
+      "decision_id": "D002",
+      "critical": true,
+      "notes": ""
+    },
+    {
+      "key": "portfolio.selection",
+      "value": "C5/H6 restricted to dual-eligible ETF nodes; F2 fixed 50/50",
+      "status": "confirmed",
+      "basis": "derived",
+      "evidence_ids": ["H6-F1", "DUAL-F1"],
+      "decision_id": "D004",
+      "critical": true,
+      "notes": "Derived by applying the frozen dual eligibility before the existing C5/H6 ranking."
+    },
+    {
+      "key": "portfolio.weights",
+      "value": "single ETF for F1 before risk; F2 50% each sleeve",
+      "status": "confirmed",
+      "basis": "derived",
+      "evidence_ids": ["H6-F1"],
+      "decision_id": "D004",
+      "critical": true,
+      "notes": "F1 keeps one selected ETF before risk; F2 uses a fixed half-and-half return allocation."
+    },
+    {
+      "key": "execution.rebalance",
+      "value": "monthly",
+      "status": "confirmed",
+      "basis": "source",
+      "evidence_ids": ["H6-F1", "DUAL-F1"],
+      "decision_id": "D002",
+      "critical": true,
+      "notes": ""
+    },
+    {
+      "key": "execution.fill",
+      "value": "F1 next trading-session open; F2 each parent's realized monthly return",
+      "status": "confirmed",
+      "basis": "derived",
+      "evidence_ids": ["H6-F1", "DUAL-F2"],
+      "decision_id": "D002",
+      "critical": true,
+      "notes": "F2 is research-only due different carriers."
+    },
+    {
+      "key": "execution.constraints",
+      "value": "F1 cash when fewer than two eligible nodes; F2 aligns common calendar months only",
+      "status": "confirmed",
+      "basis": "derived",
+      "evidence_ids": ["H6-F1", "DUAL-F1"],
+      "decision_id": "D003",
+      "critical": true,
+      "notes": "Derived fail-closed rules preserve the parent's missing-data behavior."
+    },
+    {
+      "key": "costs.model",
+      "value": "5bp and 20.5bp inherited; F2 combines net returns",
+      "status": "confirmed",
+      "basis": "source",
+      "evidence_ids": ["H6-F1", "DUAL-F2"],
+      "decision_id": "D005",
+      "critical": true,
+      "notes": ""
+    },
+    {
+      "key": "backtest.period",
+      "value": "2021-02-01 through 2026-09-30",
+      "status": "confirmed",
+      "basis": "source",
+      "evidence_ids": ["H6-F1", "DUAL-F1"],
+      "decision_id": "D001",
+      "critical": true,
+      "notes": "Viewed history; not OOS."
+    },
+    {
+      "key": "backtest.benchmark",
+      "value": "H6 and respective unfiltered/C5 arms; F2 H6 and BM5+dual12 legs",
+      "status": "confirmed",
+      "basis": "derived",
+      "evidence_ids": ["H6-F1", "DUAL-F1"],
+      "decision_id": "D004",
+      "critical": true,
+      "notes": "Derived from the parent H6 and frozen R3 dual-filter experiments."
+    },
+    {
+      "key": "missing_data.policy",
+      "value": "fail closed; F1 cash under two eligible; F2 common months only",
+      "status": "confirmed",
+      "basis": "derived",
+      "evidence_ids": ["H6-F1", "DUAL-F2"],
+      "decision_id": "D003",
+      "critical": true,
+      "notes": "Derived explicit cash/common-month policies."
+    },
+    {
+      "key": "validation.acceptance",
+      "value": "F1 Sharpe+0.1/MDD/20.5bp/exposure; F2 above both legs with correlation and leg attribution",
+      "status": "confirmed",
+      "basis": "derived",
+      "evidence_ids": ["H6-F1", "DUAL-F2"],
+      "decision_id": "D005",
+      "critical": true,
+      "notes": "Frozen in PRE_REPRO.md."
+    }
+  ],
+  "decisions": [
+    {"id": "D001", "key": "study_scope", "value": "two-layer fusion experiment", "status": "research_only", "approval_ref": "PRE_REPRO.md"},
+    {"id": "D002", "key": "execution", "value": "next-open F1; monthly return blend F2", "status": "frozen", "approval_ref": "PRE_REPRO.md"},
+    {"id": "D003", "key": "data_policy", "value": "inherit R2/R3 research-only datasets", "status": "frozen", "approval_ref": "PRE_REPRO.md"},
+    {"id": "D004", "key": "candidate_budget", "value": "six F1 arms and one 50/50 F2 blend", "status": "frozen", "approval_ref": "PRE_REPRO.md"},
+    {"id": "D005", "key": "promotion", "value": "no production change", "status": "frozen", "approval_ref": "PRE_REPRO.md"}
+  ],
+  "blockers": []
+}

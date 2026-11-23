@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "data_id": "AW7_R3_DUAL_FILTER_INPUT_20261123",
+  "product": "Derived monthly R3 contract panel for dual-momentum filtering",
+  "vendor": "Derived from AW7 R3 panel",
+  "version": "2026-11-23-r3-panel",
+  "intended_use": ["research-only dual-momentum filter comparison"],
+  "coverage": {
+    "start": "2016-01-29",
+    "end": "2026-10-30",
+    "frequency": "monthly",
+    "universe": "47 contract products",
+    "fields": ["date", "product", "r_first", "bm5", "carry", "mom12", "y_nearby", "y_nearby_lag1"]
+  },
+  "snapshot": {
+    "path": "/Users/hsh/Documents/Quant/科技轮动/research/runs/aw7_commodity_contract_xsection_20261123/artifacts/panel.csv",
+    "sha256": "623a92c94ba067d731f257643c5bc3261e28560a401e6e37f33fc55806add2a8"
+  },
+  "classification": {"kind": "derived_research_panel", "price_volume": true, "metadata_only": false},
+  "parents": [
+    {"path": "/Users/hsh/Documents/Quant/科技轮动/research/runs/aw7_commodity_contract_xsection_20261123/data_certificate.json", "purpose": "R3 source panel certificate"}
+  ],
+  "transform": {
+    "code_path": "reproduction/run.py",
+    "version": "aw7-dual-filter-v1",
+    "parameters": {"windows": [6, 12], "absolute_threshold": 0, "relative_cutoff": 0.5, "minimum_filtered": 3}
+  },
+  "dimensions": {
+    "source_inventory": {"status": "PASS", "criterion": "Parent R3 panel and source certificate are identified.", "evidence": [{"path": "data_requirement.json"}, {"path": "evidence.json"}], "reason": null},
+    "schema_keys_units": {"status": "PASS", "criterion": "Required monthly columns and product-date keys are checked.", "evidence": [{"path": "reproduction/run.py"}, {"path": "logs/unit_tests.log"}], "reason": null},
+    "date_axis_calendar": {"status": "PASS", "criterion": "All portfolio legs use the R3 label dates.", "evidence": [{"path": "artifacts/metrics.csv"}], "reason": null},
+    "coverage_universe": {"status": "PARTIAL", "criterion": "R3 dynamic universe and coverage are inherited.", "evidence": [{"path": "artifacts/metrics.csv"}], "reason": "R3 has months with fewer than 8 raw products; those cannot enter a portfolio."},
+    "asof_available_at": {"status": "PASS", "criterion": "Month-end signals use next-month nearby returns and one-month delayed sensitivity.", "evidence": [{"path": "reproduction/run.py"}, {"path": "artifacts/metrics.csv"}], "reason": null},
+    "revision_vintage": {"status": "BLOCKED", "criterion": "Inherited current-revision history must have release vintage.", "evidence": [{"path": "evidence.json"}], "reason": "R3 has no certified release vintage."},
+    "historical_membership": {"status": "PASS", "criterion": "Products are those present in the frozen R3 panel at each date.", "evidence": [{"path": "artifacts/metrics.csv"}], "reason": null},
+    "mapping_taxonomy": {"status": "NOT_APPLICABLE", "criterion": "No new product mapping is introduced.", "evidence": [{"path": "PRE_REPRO.md"}], "reason": "This run uses the R3 product identities unchanged."},
+    "derived_lineage": {"status": "PASS", "criterion": "Momentum filters, ranking, weights and labels are deterministic.", "evidence": [{"path": "reproduction/run.py"}, {"path": "artifacts/result.json"}], "reason": null},
+    "reconciliation": {"status": "PARTIAL", "criterion": "Unfiltered arms are reconciled to R3; no independent external source.", "evidence": [{"path": "artifacts/metrics.csv"}], "reason": "Unfiltered values match R3, but broad-panel independent reconciliation remains unavailable."},
+    "reproducibility": {"status": "PASS", "criterion": "Unit tests and deterministic runner pass.", "evidence": [{"path": "logs/unit_tests.log"}, {"path": "logs/run.log"}], "reason": null}
+  },
+  "pit": {"event_time_field": "month-end", "available_at_field": "month-end close", "decision_cutoff": "last common month-end", "revision_policy": "inherited current-revision snapshot", "certified": false, "tests": ["six-month momentum window", "dual filter", "cash when fewer than three names"]},
+  "universe": {"historical_members": "R3 dynamic products", "survivorship_test": "inherited R3 expiry-based availability"},
+  "mapping": {"etf_mapping": "NOT_USED"},
+  "lineage": {"parent_source_ids": ["AW7_COMMODITY_CONTRACT_XSECTION_20261123"], "derived_artifact": "artifacts/result.json"},
+  "validation": {"commands": ["pytest reproduction/test_run.py", "python reproduction/run.py"], "artifacts": ["artifacts/result.json", "artifacts/metrics.csv", "artifacts/bootstrap.csv"], "checks": ["portfolio reconciliation", "cash months", "bootstrap"]},
+  "decision": {"status": "PARTIAL", "scope": "research-only dual filter comparison", "certified_for": ["mechanism diagnostic", "portfolio proxy"], "not_certified_for": ["production PIT", "ETF execution", "independent OOS"], "blockers": ["inherited no-vintage data", "monthly close proxy"], "reviewed_at": "2026-11-23T21:50:00+08:00", "reviewer": "Codex AW7 dual-filter study"},
+  "revalidation": {"triggers": ["new R3 panel", "changed momentum window or cutoff", "changed execution"], "next_review": "before any production use"}
+}

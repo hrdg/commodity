@@ -1,0 +1,237 @@
+{
+  "schema_version": "1.0",
+  "strategy_id": "aw7_commodity_dual_filter_20261123-v1",
+  "mode": "extension",
+  "status": "frozen",
+  "parent_version": "aw7_commodity_contract_xsection_20261123-v1",
+  "requirements": [
+    {
+      "key": "universe.definition",
+      "value": "R3 47-product contract-level panel",
+      "status": "confirmed",
+      "basis": "source",
+      "evidence_ids": ["R3-F1"],
+      "decision_id": "D001",
+      "critical": true,
+      "notes": ""
+    },
+    {
+      "key": "universe.history",
+      "value": "2016-01-29 through 2026-10-30 signal/label dates",
+      "status": "confirmed",
+      "basis": "source",
+      "evidence_ids": ["R3-F1"],
+      "decision_id": "D001",
+      "critical": true,
+      "notes": ""
+    },
+    {
+      "key": "data.fields",
+      "value": "date, product, r_first, bm5, carry, mom12, y_nearby, y_nearby_lag1",
+      "status": "confirmed",
+      "basis": "source",
+      "evidence_ids": ["R3-F1"],
+      "decision_id": "D002",
+      "critical": true,
+      "notes": ""
+    },
+    {
+      "key": "data.availability",
+      "value": "month-end close signal and label; paper-like and lag1 sensitivity",
+      "status": "confirmed",
+      "basis": "derived",
+      "evidence_ids": ["R3-F1", "DM8-F1"],
+      "decision_id": "D002",
+      "critical": true,
+      "notes": "Inherited from R3; no next-open contract quote."
+    },
+    {
+      "key": "data.revisions",
+      "value": "inherits R3 current-revision research panel; no vendor vintage",
+      "status": "confirmed",
+      "basis": "source",
+      "evidence_ids": ["R3-F1"],
+      "decision_id": "D003",
+      "critical": true,
+      "notes": ""
+    },
+    {
+      "key": "data.adjustment",
+      "value": "R3 contract-to-contract returns; no resplicing",
+      "status": "confirmed",
+      "basis": "derived",
+      "evidence_ids": ["R3-F1"],
+      "decision_id": "D002",
+      "critical": true,
+      "notes": "Inherited from the R3 panel without altering prices."
+    },
+    {
+      "key": "factor.formula",
+      "value": "MOM_h(trailing h months), absolute >0, relative percentile >=0.50; h in {6,12}",
+      "status": "confirmed",
+      "basis": "source",
+      "evidence_ids": ["DM8-F1", "R3-F1"],
+      "decision_id": "D004",
+      "critical": true,
+      "notes": ""
+    },
+    {
+      "key": "factor.preprocessing",
+      "value": "cross-sectional percentile within each month; no interpolation",
+      "status": "confirmed",
+      "basis": "derived",
+      "evidence_ids": ["DM8-F1"],
+      "decision_id": "D004",
+      "critical": true,
+      "notes": "Relative cutoff is fixed at the median by the prior project definition."
+    },
+    {
+      "key": "signal.clock",
+      "value": "month-end",
+      "status": "confirmed",
+      "basis": "source",
+      "evidence_ids": ["R3-F1"],
+      "decision_id": "D002",
+      "critical": true,
+      "notes": ""
+    },
+    {
+      "key": "portfolio.selection",
+      "value": "Universe EW, BM5 top-third, Carry top-third and MOM top-third, each with and without dual filter",
+      "status": "confirmed",
+      "basis": "derived",
+      "evidence_ids": ["R3-F1", "DM8-F1"],
+      "decision_id": "D004",
+      "critical": true,
+      "notes": "Top third only; no TopK search."
+    },
+    {
+      "key": "portfolio.weights",
+      "value": "equal weight within eligible basket; cash if fewer than 3 eligible products",
+      "status": "confirmed",
+      "basis": "derived",
+      "evidence_ids": ["DM8-F1"],
+      "decision_id": "D004",
+      "critical": true,
+      "notes": "Cash is 0% return for a month with too few eligible products."
+    },
+    {
+      "key": "execution.rebalance",
+      "value": "monthly",
+      "status": "confirmed",
+      "basis": "source",
+      "evidence_ids": ["R3-F1"],
+      "decision_id": "D002",
+      "critical": true,
+      "notes": ""
+    },
+    {
+      "key": "execution.fill",
+      "value": "paper-like close and one-month lag sensitivity",
+      "status": "confirmed",
+      "basis": "derived",
+      "evidence_ids": ["R3-F1"],
+      "decision_id": "D002",
+      "critical": true,
+      "notes": "No independent next-open execution in the frozen panel."
+    },
+    {
+      "key": "execution.constraints",
+      "value": "long-only; top-third; missing pair excluded; no shorting",
+      "status": "confirmed",
+      "basis": "derived",
+      "evidence_ids": ["R3-F1", "DM8-F1"],
+      "decision_id": "D003",
+      "critical": true,
+      "notes": "A filtered month with fewer than 3 names moves to cash."
+    },
+    {
+      "key": "costs.model",
+      "value": "5bp primary and 20.5bp stress on monthly absolute weight changes",
+      "status": "confirmed",
+      "basis": "source",
+      "evidence_ids": ["R3-F1"],
+      "decision_id": "D005",
+      "critical": true,
+      "notes": ""
+    },
+    {
+      "key": "backtest.period",
+      "value": "2016-01-29 through 2026-10-30",
+      "status": "confirmed",
+      "basis": "source",
+      "evidence_ids": ["R3-F1"],
+      "decision_id": "D001",
+      "critical": true,
+      "notes": "Viewed history; not OOS."
+    },
+    {
+      "key": "backtest.benchmark",
+      "value": "corresponding unfiltered R3 arm on same dates, labels and costs",
+      "status": "confirmed",
+      "basis": "source",
+      "evidence_ids": ["R3-F1"],
+      "decision_id": "D004",
+      "critical": true,
+      "notes": ""
+    },
+    {
+      "key": "missing_data.policy",
+      "value": "exclude missing factor/product; no interpolation; cash if eligible count<3",
+      "status": "confirmed",
+      "basis": "derived",
+      "evidence_ids": ["R3-F1", "DM8-F1"],
+      "decision_id": "D003",
+      "critical": true,
+      "notes": "The cash policy is explicit and counted as zero exposure."
+    },
+    {
+      "key": "validation.acceptance",
+      "value": "Sharpe +0.10, MDD within 2pp, 20.5bp no reversal, exposure/cash diagnostics; no window search",
+      "status": "confirmed",
+      "basis": "derived",
+      "evidence_ids": ["R3-F1", "DM8-F1"],
+      "decision_id": "D005",
+      "critical": true,
+      "notes": "Frozen in PRE_REPRO.md."
+    }
+  ],
+  "decisions": [
+    {
+      "id": "D001",
+      "key": "study_scope",
+      "value": "post-R3 dual-momentum filter sensitivity",
+      "status": "research_only",
+      "approval_ref": "PRE_REPRO.md"
+    },
+    {
+      "id": "D002",
+      "key": "execution",
+      "value": "R3 paper-like and lag1 labels",
+      "status": "frozen",
+      "approval_ref": "PRE_REPRO.md"
+    },
+    {
+      "id": "D003",
+      "key": "data_policy",
+      "value": "research-only inherited panel",
+      "status": "frozen",
+      "approval_ref": "PRE_REPRO.md"
+    },
+    {
+      "id": "D004",
+      "key": "candidate_budget",
+      "value": "only 6m and 12m dual filters, half-universe cutoff",
+      "status": "frozen",
+      "approval_ref": "PRE_REPRO.md"
+    },
+    {
+      "id": "D005",
+      "key": "promotion",
+      "value": "no production change without all guards",
+      "status": "frozen",
+      "approval_ref": "PRE_REPRO.md"
+    }
+  ],
+  "blockers": []
+}

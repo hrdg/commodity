@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "data_id": "AW7_SLEEVEB_FUSION_INPUT_20261123",
+  "product": "Monthly-derived H6/H6-dual sleeve comparison",
+  "vendor": "Derived from AW7 local fusion and dual-filter runs",
+  "version": "2026-11-23",
+  "intended_use": ["research-only sleeve comparison"],
+  "coverage": {"start": "2021-02-28", "end": "2026-09-30", "frequency": "monthly", "universe": "six ETF plus futures-proxy reference", "fields": ["date", "returns"]},
+  "snapshot": {
+    "daily_source": "/Users/hsh/Documents/Quant/科技轮动/research/runs/aw7_commodity_h6_dual_fusion_20261123/artifacts/returns_f1_daily.csv",
+    "monthly_source": "/Users/hsh/Documents/Quant/科技轮动/research/runs/aw7_commodity_h6_dual_fusion_20261123/artifacts/returns_f2_monthly.csv"
+  },
+  "classification": {"kind": "derived_research_panel", "price_volume": true, "metadata_only": false},
+  "parents": [
+    {"path": "/Users/hsh/Documents/Quant/科技轮动/research/runs/aw7_commodity_h6_dual_fusion_20261123/data_certificate.json", "purpose": "source fusion returns"}
+  ],
+  "transform": {"code_path": "reproduction/run.py", "version": "sleeveb-v1", "parameters": {"blend_weight": 0.5, "common_months": 68}},
+  "dimensions": {
+    "source_inventory": {"status": "PASS", "criterion": "Parent return files and reports are recorded.", "evidence": [{"path": "evidence.json"}, {"path": "data_requirement.json"}], "reason": null},
+    "schema_keys_units": {"status": "PASS", "criterion": "Monthly date and return columns are tested.", "evidence": [{"path": "reproduction/test_run.py"}, {"path": "logs/unit_tests.log"}], "reason": null},
+    "date_axis_calendar": {"status": "PASS", "criterion": "Only the 68 common realized months are used.", "evidence": [{"path": "artifacts/returns_monthly.csv"}], "reason": null},
+    "coverage_universe": {"status": "PARTIAL", "criterion": "Six-ETF and futures-proxy coverage inherited from parents.", "evidence": [{"path": "artifacts/metrics.csv"}], "reason": "Parent vintage limitations remain."},
+    "asof_available_at": {"status": "PASS", "criterion": "Blends use already realized monthly returns.", "evidence": [{"path": "reproduction/run.py"}], "reason": null},
+    "revision_vintage": {"status": "BLOCKED", "criterion": "Parent snapshots need release vintage.", "evidence": [{"path": "evidence.json"}], "reason": "No certified vintage."},
+    "historical_membership": {"status": "PASS", "criterion": "Sleeves use frozen parent universes.", "evidence": [{"path": "strategy.json"}], "reason": null},
+    "mapping_taxonomy": {"status": "PARTIAL", "criterion": "B3 spans ETF and futures carriers.", "evidence": [{"path": "REPORT.md"}], "reason": "B3 is a cross-carrier research proxy."},
+    "derived_lineage": {"status": "PASS", "criterion": "Monthly conversion, blend and cost are deterministic.", "evidence": [{"path": "reproduction/run.py"}, {"path": "artifacts/result.json"}], "reason": null},
+    "reconciliation": {"status": "PARTIAL", "criterion": "Uses parent net series; no independent source.", "evidence": [{"path": "artifacts/metrics.csv"}], "reason": "Cross-carrier B3 cannot be reconciled to one account."},
+    "reproducibility": {"status": "PASS", "criterion": "Tests and deterministic run pass.", "evidence": [{"path": "logs/unit_tests.log"}, {"path": "logs/run.log"}], "reason": null}
+  },
+  "pit": {"event_time_field": "realized month", "available_at_field": "month-end after returns matured", "decision_cutoff": "month-end", "revision_policy": "inherited", "certified": false, "tests": ["monthly compounding", "common-month alignment", "blend cost"]},
+  "universe": {"historical_members": "frozen parent sleeves", "survivorship_test": "inherited"},
+  "mapping": {"etf_mapping": "inherited", "cross_carrier_blend": "B3 research-only"},
+  "lineage": {"parent_source_ids": ["AW7_H6_DUAL_FUSION_INPUT_20261123"], "derived_artifact": "artifacts/result.json"},
+  "validation": {"commands": ["pytest reproduction/test_run.py", "python reproduction/run.py"], "artifacts": ["artifacts/result.json", "artifacts/metrics.csv", "artifacts/bootstrap.csv"], "checks": ["H6 parent reconciliation", "B1/B2 correlation"]},
+  "decision": {"status": "PARTIAL", "scope": "research-only sleeve comparison", "certified_for": ["historical mechanism comparison"], "not_certified_for": ["production PIT", "cross-carrier execution", "independent OOS"], "blockers": ["no vintage", "different carriers"], "reviewed_at": "2026-11-23T22:35:00+08:00", "reviewer": "Codex AW7 Sleeve B study"},
+  "revalidation": {"triggers": ["new parent returns", "new blend weight", "unified execution ledger"], "next_review": "before shadow or production"}
+}

@@ -1,0 +1,519 @@
+{
+  "schema_version": "1.0",
+  "strategy_sha256": "9439705e1eef22de49301554bcb1a880f10fa6ecbde1b8f0b50e932bfc0edb46",
+  "code_revision": "d8ecba5e09d49b062b6afeda8e716411021b321071de534c575396c3037984f5",
+  "data_snapshot": {
+    "manifest": "data_certificate.json",
+    "manifest_sha256": "f048973137f14de96dc81fd055dac1899afadf2189a337deaa1d0809d53412f6",
+    "decision": "PARTIAL",
+    "parent_returns_sha256": "0c0f9981926db1fbc8acc4e9dea1fb00c4c35b94745e843707fbb81f7af66408"
+  },
+  "environment": {
+    "python": "3.12",
+    "pandas": "3.0.6",
+    "numpy": "2.5.3"
+  },
+  "checks": [
+    {
+      "id": "source_fidelity",
+      "status": "PASS",
+      "criterion": "The comparison is bound to frozen parent return artifacts.",
+      "evidence": [
+        {
+          "path": "evidence.json"
+        },
+        {
+          "path": "data_certificate.json"
+        }
+      ],
+      "reason": null
+    },
+    {
+      "id": "formula_fixture",
+      "status": "PASS",
+      "criterion": "Monthly compounding, alignment and blend-cost tests pass.",
+      "evidence": [
+        {
+          "path": "logs/unit_tests.log"
+        },
+        {
+          "path": "reproduction/test_run.py"
+        }
+      ],
+      "reason": null
+    },
+    {
+      "id": "point_in_time",
+      "status": "PASS",
+      "criterion": "Only realized monthly returns are blended.",
+      "evidence": [
+        {
+          "path": "reproduction/run.py"
+        },
+        {
+          "path": "artifacts/returns_monthly.csv"
+        }
+      ],
+      "reason": null
+    },
+    {
+      "id": "source_lineage",
+      "status": "PASS",
+      "criterion": "Parent paths and derived transformations are recorded.",
+      "evidence": [
+        {
+          "path": "data_certificate.json"
+        },
+        {
+          "path": "evidence.json"
+        }
+      ],
+      "reason": "Parents remain PARTIAL due no release vintage."
+    },
+    {
+      "id": "historical_universe",
+      "status": "PASS",
+      "criterion": "Sleeves retain their frozen parent universes.",
+      "evidence": [
+        {
+          "path": "strategy.json"
+        }
+      ],
+      "reason": null
+    },
+    {
+      "id": "execution",
+      "status": "PASS",
+      "criterion": "Same-carrier ETF and cross-carrier reference are labeled separately.",
+      "evidence": [
+        {
+          "path": "REPORT.md"
+        },
+        {
+          "path": "ALGORITHM.md"
+        }
+      ],
+      "reason": null
+    },
+    {
+      "id": "accounting",
+      "status": "PASS",
+      "criterion": "Twelve metrics are finite and include blend rebalance cost.",
+      "evidence": [
+        {
+          "path": "artifacts/metrics.csv"
+        }
+      ],
+      "reason": null
+    },
+    {
+      "id": "smoke_backtest",
+      "status": "PASS",
+      "criterion": "Six arms at two costs ran.",
+      "evidence": [
+        {
+          "path": "artifacts/metrics.csv"
+        },
+        {
+          "path": "logs/run.log"
+        }
+      ],
+      "reason": null
+    },
+    {
+      "id": "reproducibility",
+      "status": "PASS",
+      "criterion": "Deterministic tests pass.",
+      "evidence": [
+        {
+          "path": "logs/unit_tests.log"
+        }
+      ],
+      "reason": null
+    },
+    {
+      "id": "metrics_comparison",
+      "status": "PASS",
+      "criterion": "Metrics, correlations, bootstrap and NAV are recorded.",
+      "evidence": [
+        {
+          "path": "artifacts/metrics.csv"
+        },
+        {
+          "path": "artifacts/correlations.csv"
+        },
+        {
+          "path": "artifacts/bootstrap.csv"
+        },
+        {
+          "path": "artifacts/nav_sleeveb.png"
+        }
+      ],
+      "reason": null
+    },
+    {
+      "id": "reproduction_communication",
+      "status": "PASS",
+      "criterion": "Communication and archive files exist.",
+      "evidence": [
+        {
+          "path": "PRE_REPRO.md"
+        },
+        {
+          "path": "REPORT.md"
+        },
+        {
+          "path": "AUDIT.md"
+        },
+        {
+          "path": "ALGORITHM.md"
+        },
+        {
+          "path": "REPRO_INDEX.md"
+        },
+        {
+          "path": "archive_manifest.json"
+        },
+        {
+          "path": "iterations.jsonl"
+        },
+        {
+          "path": "sample_access.jsonl"
+        }
+      ],
+      "reason": null
+    }
+  ],
+  "command_evidence": [
+    {
+      "command": "/Users/hsh/Documents/Quant/科技轮动/.venv/bin/python3 -m pytest -q reproduction/test_run.py",
+      "cwd": "/Users/hsh/Documents/Quant/科技轮动/research/runs/aw7_commodity_sleeveb_fusion_20261123",
+      "executed_at": "2026-11-23T22:25:19+08:00",
+      "exit_code": 0,
+      "log_path": "logs/unit_tests.log"
+    },
+    {
+      "command": "/Users/hsh/Documents/Quant/科技轮动/.venv/bin/python3 reproduction/run.py",
+      "cwd": "/Users/hsh/Documents/Quant/科技轮动/research/runs/aw7_commodity_sleeveb_fusion_20261123",
+      "executed_at": "2026-11-23T22:25:12+08:00",
+      "exit_code": 0,
+      "log_path": "logs/run.log"
+    }
+  ],
+  "metric_comparison": {
+    "metrics": [
+      {
+        "arm": "H6",
+        "cost_bps": 5.0,
+        "start": "2021-02-28",
+        "end": "2026-09-30",
+        "months": 68,
+        "cagr": 0.5818203131371389,
+        "vol": 0.4780307999308663,
+        "sharpe": 1.1532647061273191,
+        "mdd": -0.10836933094574663,
+        "calmar": 5.368865047514392
+      },
+      {
+        "arm": "DUAL12_C5",
+        "cost_bps": 5.0,
+        "start": "2021-02-28",
+        "end": "2026-09-30",
+        "months": 68,
+        "cagr": 0.3898488414330661,
+        "vol": 0.4559286553972438,
+        "sharpe": 0.8940655979203603,
+        "mdd": -0.1003157670758329,
+        "calmar": 3.8862170204845565
+      },
+      {
+        "arm": "DUAL12_H6",
+        "cost_bps": 5.0,
+        "start": "2021-02-28",
+        "end": "2026-09-30",
+        "months": 68,
+        "cagr": 0.41492769892434955,
+        "vol": 0.4591017757856859,
+        "sharpe": 0.9310870854896282,
+        "mdd": -0.1222943869842793,
+        "calmar": 3.3928597146301382
+      },
+      {
+        "arm": "H6_PLUS_DUAL12_C5",
+        "cost_bps": 5.0,
+        "start": "2021-02-28",
+        "end": "2026-09-30",
+        "months": 68,
+        "cagr": 0.4877710742014858,
+        "vol": 0.45871379487646685,
+        "sharpe": 1.0451108578903818,
+        "mdd": -0.08909824119108478,
+        "calmar": 5.474530896242792
+      },
+      {
+        "arm": "H6_PLUS_DUAL12_H6",
+        "cost_bps": 5.0,
+        "start": "2021-02-28",
+        "end": "2026-09-30",
+        "months": 68,
+        "cagr": 0.5006760725241315,
+        "vol": 0.4609803459296745,
+        "sharpe": 1.0614946421856368,
+        "mdd": -0.10009591184893485,
+        "calmar": 5.001963249805385
+      },
+      {
+        "arm": "H6_PLUS_BM5_DUAL12",
+        "cost_bps": 5.0,
+        "start": "2021-02-28",
+        "end": "2026-09-30",
+        "months": 68,
+        "cagr": 0.35563232777137244,
+        "vol": 0.24179598866686988,
+        "sharpe": 1.3769997803892098,
+        "mdd": -0.08678885379414203,
+        "calmar": 4.0976728257629835
+      },
+      {
+        "arm": "H6",
+        "cost_bps": 20.5,
+        "start": "2021-02-28",
+        "end": "2026-09-30",
+        "months": 68,
+        "cagr": 0.5163778358272935,
+        "vol": 0.46311635007665913,
+        "sharpe": 1.0852525555315338,
+        "mdd": -0.10974255013792289,
+        "calmar": 4.705356629477965
+      },
+      {
+        "arm": "DUAL12_C5",
+        "cost_bps": 20.5,
+        "start": "2021-02-28",
+        "end": "2026-09-30",
+        "months": 68,
+        "cagr": 0.34651977227328223,
+        "vol": 0.4433814577631712,
+        "sharpe": 0.83768239945914,
+        "mdd": -0.10597044467463856,
+        "calmar": 3.2699661998890646
+      },
+      {
+        "arm": "DUAL12_H6",
+        "cost_bps": 20.5,
+        "start": "2021-02-28",
+        "end": "2026-09-30",
+        "months": 68,
+        "cagr": 0.3697090072759175,
+        "vol": 0.44555429272164876,
+        "sharpe": 0.8751425609158487,
+        "mdd": -0.12784192527597593,
+        "calmar": 2.8919230250781687
+      },
+      {
+        "arm": "H6_PLUS_DUAL12_C5",
+        "cost_bps": 20.5,
+        "start": "2021-02-28",
+        "end": "2026-09-30",
+        "months": 68,
+        "cagr": 0.4329972786341787,
+        "vol": 0.44582440640540094,
+        "sharpe": 0.9797087021771073,
+        "mdd": -0.09772746652964404,
+        "calmar": 4.43066104146715
+      },
+      {
+        "arm": "H6_PLUS_DUAL12_H6",
+        "cost_bps": 20.5,
+        "start": "2021-02-28",
+        "end": "2026-09-30",
+        "months": 68,
+        "cagr": 0.4450106153000115,
+        "vol": 0.447348421343919,
+        "sharpe": 0.9971044518754902,
+        "mdd": -0.10511439218833474,
+        "calmar": 4.233584060522184
+      },
+      {
+        "arm": "H6_PLUS_BM5_DUAL12",
+        "cost_bps": 20.5,
+        "start": "2021-02-28",
+        "end": "2026-09-30",
+        "months": 68,
+        "cagr": 0.31484490451424474,
+        "vol": 0.23412761303531465,
+        "sharpe": 1.2822412527899283,
+        "mdd": -0.09105820246139262,
+        "calmar": 3.4576226633480327
+      }
+    ],
+    "correlations": [
+      {
+        "cost_bps": 5.0,
+        "left": "H6",
+        "right": "DUAL12_C5",
+        "correlation": 0.9298010398797302
+      },
+      {
+        "cost_bps": 5.0,
+        "left": "H6",
+        "right": "DUAL12_H6",
+        "correlation": 0.93574953642623
+      },
+      {
+        "cost_bps": 5.0,
+        "left": "H6",
+        "right": "BM5_DUAL12",
+        "correlation": -0.1604530896771464
+      },
+      {
+        "cost_bps": 20.5,
+        "left": "H6",
+        "right": "DUAL12_C5",
+        "correlation": 0.9350339662147169
+      },
+      {
+        "cost_bps": 20.5,
+        "left": "H6",
+        "right": "DUAL12_H6",
+        "correlation": 0.9389671214401296
+      },
+      {
+        "cost_bps": 20.5,
+        "left": "H6",
+        "right": "BM5_DUAL12",
+        "correlation": -0.1662192752750924
+      }
+    ],
+    "bootstrap": [
+      {
+        "candidate": "H6_PLUS_DUAL12_C5_5bp",
+        "control": "H6_5bp",
+        "cost_bps": 5.0,
+        "sharpe_difference": -0.10815384823693742,
+        "ci95": [
+          -0.20191002469871305,
+          0.10568706782217197
+        ],
+        "p_two_sided": 0.1998,
+        "bh_q": 0.29600000000000004
+      },
+      {
+        "candidate": "H6_PLUS_DUAL12_H6_5bp",
+        "control": "H6_5bp",
+        "cost_bps": 5.0,
+        "sharpe_difference": -0.09177006394168231,
+        "ci95": [
+          -0.18481176742855862,
+          0.10534887515945446
+        ],
+        "p_two_sided": 0.2368,
+        "bh_q": 0.29600000000000004
+      },
+      {
+        "candidate": "H6_PLUS_DUAL12_H6_5bp",
+        "control": "H6_PLUS_DUAL12_C5_5bp",
+        "cost_bps": 5.0,
+        "sharpe_difference": 0.016383784295255104,
+        "ci95": [
+          -0.02937908639509124,
+          0.07971796575321696
+        ],
+        "p_two_sided": 0.7418,
+        "bh_q": 0.7418
+      },
+      {
+        "candidate": "H6_PLUS_DUAL12_C5_5bp",
+        "control": "H6_PLUS_BM5_DUAL12_5bp",
+        "cost_bps": 5.0,
+        "sharpe_difference": -0.331888922498828,
+        "ci95": [
+          -0.8379609918096806,
+          0.17544724694224487
+        ],
+        "p_two_sided": 0.1446,
+        "bh_q": 0.29600000000000004
+      },
+      {
+        "candidate": "H6_PLUS_DUAL12_H6_5bp",
+        "control": "H6_PLUS_BM5_DUAL12_5bp",
+        "cost_bps": 5.0,
+        "sharpe_difference": -0.31550513820357295,
+        "ci95": [
+          -0.8200467967043292,
+          0.18090344433443484
+        ],
+        "p_two_sided": 0.1534,
+        "bh_q": 0.29600000000000004
+      },
+      {
+        "candidate": "H6_PLUS_DUAL12_C5_20.5bp",
+        "control": "H6_20.5bp",
+        "cost_bps": 20.5,
+        "sharpe_difference": -0.10554385335442647,
+        "ci95": [
+          -0.2144422690736031,
+          0.04844971303073275
+        ],
+        "p_two_sided": 0.105,
+        "bh_q": 0.23425
+      },
+      {
+        "candidate": "H6_PLUS_DUAL12_H6_20.5bp",
+        "control": "H6_20.5bp",
+        "cost_bps": 20.5,
+        "sharpe_difference": -0.08814810365604353,
+        "ci95": [
+          -0.18957529691036104,
+          0.07795990666445819
+        ],
+        "p_two_sided": 0.1762,
+        "bh_q": 0.23425
+      },
+      {
+        "candidate": "H6_PLUS_DUAL12_H6_20.5bp",
+        "control": "H6_PLUS_DUAL12_C5_20.5bp",
+        "cost_bps": 20.5,
+        "sharpe_difference": 0.017395749698382937,
+        "ci95": [
+          -0.024550957135591134,
+          0.10389505683513964
+        ],
+        "p_two_sided": 0.5758,
+        "bh_q": 0.5758
+      },
+      {
+        "candidate": "H6_PLUS_DUAL12_C5_20.5bp",
+        "control": "H6_PLUS_BM5_DUAL12_20.5bp",
+        "cost_bps": 20.5,
+        "sharpe_difference": -0.30253255061282097,
+        "ci95": [
+          -0.8416948625693463,
+          0.19466785672943515
+        ],
+        "p_two_sided": 0.1722,
+        "bh_q": 0.23425
+      },
+      {
+        "candidate": "H6_PLUS_DUAL12_H6_20.5bp",
+        "control": "H6_PLUS_BM5_DUAL12_20.5bp",
+        "cost_bps": 20.5,
+        "sharpe_difference": -0.28513680091443805,
+        "ci95": [
+          -0.8018758009184407,
+          0.20774033477693954
+        ],
+        "p_two_sided": 0.1874,
+        "bh_q": 0.23425
+      }
+    ],
+    "interpretation": "Same-carrier B1/B2 are 0.93-0.94 correlated with H6 and produce lower Sharpe blends; broad BM5+dual12 remains the only meaningfully diversifying Sleeve B."
+  },
+  "conclusions": {
+    "code_correctness": "PASS",
+    "methodological_validity": "PASS",
+    "report_reproduction": "PASS",
+    "live_profitability": "NOT_ASSESSED"
+  },
+  "scope_note": "Same-carrier Sleeve B no increment. Cross-carrier broad blend remains shadow-only."
+}

@@ -1,0 +1,416 @@
+{
+  "schema_version": "1.0",
+  "data_id": "C5_SIX_COMMODITY_PROXY2015_V20261109",
+  "product": "Six-commodity ETF C5 rotation with explicit pre-listing proxy history",
+  "vendor": "mixed local research snapshots",
+  "version": "20261109",
+  "intended_use": [
+    "exploratory proxy extension from 2015",
+    "pre-listing sensitivity analysis"
+  ],
+  "coverage": {
+    "start": "2015-01-05",
+    "end": "2026-11-06",
+    "frequency": "daily input; monthly strategy decision",
+    "universe": "six synthetic commodity nodes: crude, meal, nonferrous, chemical, gold, silver",
+    "fields": [
+      "open",
+      "close",
+      "proxy close",
+      "TIP close",
+      "511260 close",
+      "CSI300 close"
+    ],
+    "timezone": "Asia/Shanghai"
+  },
+  "snapshot": {
+    "retrieved_at": "2026-11-09T22:38:37+08:00",
+    "local_path": "artifacts/asset_panel.csv",
+    "sha256": "0be5af498a53094ac6469629ab0c4af418055025e8dbc627e4c796dd785f7c3a",
+    "row_count": 3103,
+    "source_url": null,
+    "query_parameters": {
+      "proxy_groups": {
+        "nonferrous": ["CU0", "AL0", "ZN0"],
+        "chemical": ["TA0", "MA0", "FG0"]
+      },
+      "actual_start": {
+        "160723.XSHE": "2017-05-05",
+        "159985.XSHE": "2019-12-05",
+        "159980.XSHE": "2019-12-24",
+        "159981.XSHE": "2020-01-17",
+        "518880.XSHG": "2013-12-02",
+        "161226.XSHE": "2015-08-17"
+      }
+    },
+    "license": "local research use only"
+  },
+  "classification": {
+    "kind": "derived_proxy_and_strategy_panel",
+    "price_volume": true,
+    "metadata_only": false
+  },
+  "parents": [
+    {
+      "name": "USO adjusted close",
+      "path": "/Users/hsh/Documents/Quant/commodity_repo/原油/data/uso.csv",
+      "sha256": "8dd12c3e76a07997e741df5b511c30b3d3c3281af71a969abb09aaf47e916981",
+      "declared_status": "PARTIAL"
+    },
+    {
+      "name": "M0 roll-adjusted full",
+      "path": "/Users/hsh/Documents/Quant/commodity_repo/豆粕/data/M0_roll_adjusted_full.csv",
+      "sha256": "c29ca57b80571a6aa03399bf2092be32aadfa27ef5b018bef8b25f69cbd59672",
+      "declared_status": "PARTIAL"
+    },
+    {
+      "name": "CU0 main-continuous",
+      "path": "/Users/hsh/Documents/Quant/CTA策略/02_数据/futures_raw/CU0.csv",
+      "sha256": "45cf8ce08a36ef26842dbd092363469e909d565a2873d1b411034c1e1c04c1d5",
+      "declared_status": "PARTIAL"
+    },
+    {
+      "name": "AL0 main-continuous",
+      "path": "/Users/hsh/Documents/Quant/CTA策略/02_数据/futures_raw/AL0.csv",
+      "sha256": "b7b55f3572573b915ce724d43f5cfbeb1d636f4a41697ca0bcfde1481bd9578f",
+      "declared_status": "PARTIAL"
+    },
+    {
+      "name": "ZN0 main-continuous",
+      "path": "/Users/hsh/Documents/Quant/CTA策略/02_数据/futures_raw/ZN0.csv",
+      "sha256": "822678feaace59f5e586ccc40075fe22d2ddcef4ef538229de145365c155fc76",
+      "declared_status": "PARTIAL"
+    },
+    {
+      "name": "TA0 main-continuous",
+      "path": "/Users/hsh/Documents/Quant/CTA策略/02_数据/futures_raw/TA0.csv",
+      "sha256": "10882a013ab1fe9b2717377be9435e2a5566ccfdbcc4d6fd4366a570744b7106",
+      "declared_status": "PARTIAL"
+    },
+    {
+      "name": "MA0 main-continuous",
+      "path": "/Users/hsh/Documents/Quant/CTA策略/02_数据/futures_raw/MA0.csv",
+      "sha256": "31c0fcb71c96b7791972c261723331b16c9ddf0200a7d694c52af2e1b3b30b3b",
+      "declared_status": "PARTIAL"
+    },
+    {
+      "name": "FG0 main-continuous",
+      "path": "/Users/hsh/Documents/Quant/CTA策略/02_数据/futures_raw/FG0.csv",
+      "sha256": "bff78a1a7c070bfe28b99ff9a12d196ce10c63c3c6841e749d73c27f1c36d9aa",
+      "declared_status": "PARTIAL"
+    },
+    {
+      "name": "AG0 main-continuous",
+      "path": "/Users/hsh/Documents/Quant/CTA策略/02_数据/futures_raw/AG0.csv",
+      "sha256": "8b0fff70874ea2386f5260ccee0679846095b848881f1c77c5662f95259355ac",
+      "declared_status": "PARTIAL"
+    },
+    {
+      "name": "160723 ETF/LOF history",
+      "path": "/Users/hsh/Documents/Quant/大类择时/research/runs/kaiyuan_oil_gas_20261028/data/160723.csv",
+      "sha256": "7e6ca54b4202b7744a79f7eaad820f0545b421c9ee59b1464b3a95549aba5edc",
+      "declared_status": "PARTIAL"
+    },
+    {
+      "name": "159985 qfq ETF history",
+      "path": "/Users/hsh/Documents/Quant/行业轮动/data/raw/local_cache/etf_qfq/159985.XSHE.csv",
+      "sha256": "336eeb81571485880247e62d440e5ed0f736d3c39d430df1a12054e6e7142678",
+      "declared_status": "PARTIAL"
+    },
+    {
+      "name": "159980 qfq ETF history",
+      "path": "/Users/hsh/Documents/Quant/行业轮动/data/raw/local_cache/etf_qfq/159980.XSHE.csv",
+      "sha256": "c9927604849221bb154b94e7c37b5bfc7d3b6ba372f6548ecbdc94b3ce12674a",
+      "declared_status": "PARTIAL"
+    },
+    {
+      "name": "159981 qfq ETF history",
+      "path": "/Users/hsh/Documents/Quant/行业轮动/data/raw/local_cache/etf_qfq/159981.XSHE.csv",
+      "sha256": "4af28dbb365cfeaf540068bd1495d1ae6c8be78a7e2b811095d93f915948283a",
+      "declared_status": "PARTIAL"
+    },
+    {
+      "name": "161226 qfq ETF history",
+      "path": "/Users/hsh/Documents/Quant/行业轮动/data/raw/local_cache/etf_qfq/161226.XSHE.csv",
+      "sha256": "0a9d69f15f0c808b4d4aeee9f2f85797a87ad47269de7c48d9b44a57f44f27fd",
+      "declared_status": "PARTIAL"
+    },
+    {
+      "name": "518880 qfq ETF history",
+      "path": "/Users/hsh/Documents/Quant/择时策略/data/industry_etf/518880.XSHG.csv",
+      "sha256": "476da09c51a200e4b4f75606a91c1fe735286cc4fddf54ee01a7fcd3b246a2cf",
+      "declared_status": "PARTIAL"
+    },
+    {
+      "name": "ETF refresh",
+      "path": "/Users/hsh/Documents/Quant/科技轮动/research/runs/four_leg_2026h2_refresh_20261108/data/etf_refresh_20260901_20261106.parquet",
+      "sha256": "52d9384387dcd487555d91f26b0cf71577cee14cd186817736f36e236c34334a",
+      "declared_status": "PARTIAL"
+    },
+    {
+      "name": "TIP history",
+      "path": "/Users/hsh/Documents/Quant/科技轮动/research/runs/four_leg_2026h2_refresh_20261108/data/tip_qfq_full_through_20261106.parquet",
+      "sha256": "cf647a1ae95f28197cae5c3ab719c86c9562374fae93650a5fe777176f15db2d",
+      "declared_status": "PARTIAL"
+    },
+    {
+      "name": "CSI300 benchmark",
+      "path": "/Users/hsh/Documents/Quant/风格轮动/wywy-rotation/research/runs/c5_selector_rebuild_20261024/features/node_close.parquet",
+      "sha256": "19b3b9d868da0ed2e99213a11f2464fbe5c17d82a1e5cfcf3737a8cec396986e",
+      "declared_status": "PARTIAL"
+    },
+    {
+      "name": "511260 bond history",
+      "path": "/Users/hsh/Documents/Quant/风格轮动/wywy-rotation/research/runs/c5_2000_defense_20261025/data/jq_bond_000012_511260_20261025.csv.gz",
+      "sha256": "34ff56abdc70020243f3a514df0f62a0e101b934c68aa3fa1302b3c353a94247",
+      "declared_status": "PARTIAL"
+    }
+  ],
+  "transform": {
+    "code_path": "run.py",
+    "code_sha256": "b85e2d43919a0e0773c3f3da4a9c1d6e36ab7691ad0e0621c7407e2a458d0b43",
+    "version": "1.0",
+    "parameters": {
+      "c5_momentum_window": 25,
+      "annualization_days": 250,
+      "rank_buffer": 2,
+      "rank2_gap": 0.25,
+      "m7": "MISSING_NOT_FABRICATED",
+      "tip": ["U13612", "U136", "W", "S"],
+      "dd": [-0.08, -0.07, 0.5],
+      "costs_bps": [5, 20.5],
+      "splice_cost_bps": 10
+    },
+    "derived_hash": "0be5af498a53094ac6469629ab0c4af418055025e8dbc627e4c796dd785f7c3a"
+  },
+  "dimensions": {
+    "source_inventory": {
+      "status": "PASS",
+      "criterion": "Every parent path, hash, field use and date role is recorded.",
+      "evidence": [{"path": "data_requirement.json", "locator": "fields and transform"}, {"path": "logs/run.log", "locator": "PANEL coverage"}],
+      "reason": null
+    },
+    "schema_keys_units": {
+      "status": "PASS",
+      "criterion": "All prices are positive, finite and indexed by unique China trading dates.",
+      "evidence": [{"path": "validation.json", "locator": "checks.coverage and checks.ledger"}],
+      "reason": null
+    },
+    "date_axis_calendar": {
+      "status": "PASS",
+      "criterion": "The six synthetic nodes use the 518880 China-session calendar and end on 2026-11-06.",
+      "evidence": [{"path": "validation.json", "locator": "checks.coverage"}],
+      "reason": null
+    },
+    "coverage_universe": {
+      "status": "PASS",
+      "criterion": "Every registered strategy date from 2015-01-05 through 2026-11-06 has six finite synthetic paths.",
+      "evidence": [{"path": "validation.json", "locator": "checks.coverage"}],
+      "reason": null
+    },
+    "asof_available_at": {
+      "status": "PARTIAL",
+      "criterion": "C5 uses close T-1 and ETF open T; TIP uses prior completed month; USO is lagged one China session.",
+      "evidence": [{"path": "PREREG.md", "locator": "冻结的数据映射"}, {"path": "strategy.json", "locator": "proxy_mapping"}],
+      "reason": "Futures vendor timestamps and LOF consolidated pricing details are unavailable."
+    },
+    "revision_vintage": {
+      "status": "BLOCKED",
+      "criterion": "A production history requires reconstructable prior vintages.",
+      "evidence": [{"path": "data_requirement.json", "locator": "date_range"}],
+      "reason": "The local ETF, futures, TIP and bond snapshots do not include complete revision histories."
+    },
+    "historical_membership": {
+      "status": "PARTIAL",
+      "criterion": "Actual ETF availability dates are explicit and pre-listing periods use frozen proxies.",
+      "evidence": [{"path": "artifacts/splices.csv", "locator": "actual_start"}, {"path": "artifacts/reconciliation.csv", "locator": "post-listing overlap"}],
+      "reason": "The six-node pool is fixed by design; it is not a historical selection among all available commodity products."
+    },
+    "mapping_taxonomy": {
+      "status": "PARTIAL",
+      "criterion": "Each ETF node has a fixed proxy group and documented switch date.",
+      "evidence": [{"path": "strategy.json", "locator": "proxy_mapping"}, {"path": "artifacts/splices.csv", "locator": "all splices"}],
+      "reason": "The proxies approximate economic exposure; they are not the ETFs' published tracking baskets."
+    },
+    "derived_lineage": {
+      "status": "PASS",
+      "criterion": "Parent hashes, transform hash, parameters, derived hash and outputs are recorded.",
+      "evidence": [{"path": "artifacts/summary.json", "locator": "proxy_mapping and splices"}, {"path": "logs/run.log", "locator": "PANEL and metrics"}],
+      "reason": null
+    },
+    "reconciliation": {
+      "status": "PARTIAL",
+      "criterion": "Post-listing proxy-vs-ETF overlap and post-2022 parent overlap are measured.",
+      "evidence": [{"path": "artifacts/reconciliation.csv", "locator": "all rows"}, {"path": "artifacts/parent_overlap.csv", "locator": "correlation"}],
+      "reason": "USO daily correlation is only 0.425; chemical proxy annualized difference reaches -7.97pp and silver +10.69pp."
+    },
+    "reproducibility": {
+      "status": "PASS",
+      "criterion": "Two complete runs produce byte-identical artifact hashes.",
+      "evidence": [{"path": "logs/reproducibility.log", "locator": "REPRODUCIBLE=YES"}, {"path": "logs/replay.log", "locator": "complete rerun"}],
+      "reason": null
+    }
+  },
+  "pit": {
+    "event_time_field": "date",
+    "available_at_field": "previous session close; actual ETF open at execution",
+    "timezone": "Asia/Shanghai",
+    "decision_cutoff": "close T-1",
+    "revision_policy": "frozen local snapshots",
+    "candidate_rule": "future perturbation and splice continuity checks",
+    "certified": false,
+    "tests": [
+      "25-session score",
+      "prior-close decision",
+      "future price perturbation",
+      "splice continuity",
+      "turnover and overlay accounting",
+      "parent overlap"
+    ]
+  },
+  "universe": {
+    "historical_members": "fixed six-node pool; pre-listing nodes represented by proxies",
+    "delisted_included": "NOT_APPLICABLE_FIXED_POOL",
+    "suspended_included": "futures holes are stale-valued and recorded",
+    "survivorship_test": "PARTIAL_FIXED_POOL_DESIGN"
+  },
+  "mapping": {
+    "taxonomy_version": "proxy2015_v1",
+    "effective_dates": "2015-01-05 through each actual ETF start; actual ETF thereafter",
+    "explicit_vendor_crosswalk": null,
+    "successor_policy": "fixed proxy-to-actual splice",
+    "unavailable_codes": [],
+    "dedupe_policy": "one holding at a time"
+  },
+  "lineage": {
+    "parent_source_ids": [
+      "USO",
+      "M0_roll_adjusted_full",
+      "CU0",
+      "AL0",
+      "ZN0",
+      "TA0",
+      "MA0",
+      "FG0",
+      "AG0",
+      "six ETF sources",
+      "TIP",
+      "CSI300",
+      "511260"
+    ],
+    "transform_version": "1.0",
+    "transform_sha256": "b85e2d43919a0e0773c3f3da4a9c1d6e36ab7691ad0e0621c7407e2a458d0b43",
+    "derived_sha256": "0be5af498a53094ac6469629ab0c4af418055025e8dbc627e4c796dd785f7c3a",
+    "coverage": {
+      "rows": 3103,
+      "strategy_days": 2858,
+      "splices": 5,
+      "arms": 18
+    },
+    "inheritance_checks": [
+      "splice continuity",
+      "parent overlap",
+      "future perturbation",
+      "ledger reconciliation",
+      "two-run hash equality"
+    ]
+  },
+  "validation": {
+    "commands": [
+      {
+        "cwd": "/Users/hsh/Documents/Quant/大类择时",
+        "command": "/Users/hsh/Documents/Quant/科技轮动/.venv/bin/python research/runs/c5_six_commodity_proxy2015_20261109/run.py",
+        "exit_code": 0,
+        "executed_at": "2026-11-09T22:38:37+08:00",
+        "log_path": "logs/run.log"
+      },
+      {
+        "cwd": "/Users/hsh/Documents/Quant/大类择时",
+        "command": "/Users/hsh/Documents/Quant/科技轮动/.venv/bin/python research/runs/c5_six_commodity_proxy2015_20261109/validate.py",
+        "exit_code": 0,
+        "executed_at": "2026-11-09T22:38:37+08:00",
+        "log_path": "logs/validation.log"
+      },
+      {
+        "cwd": "/Users/hsh/Documents/Quant/大类择时",
+        "command": "two-run artifact SHA256 comparison",
+        "exit_code": 0,
+        "executed_at": "2026-11-09T22:38:37+08:00",
+        "log_path": "logs/reproducibility.log"
+      },
+      {
+        "cwd": "/Users/hsh/Documents/Quant/大类择时",
+        "command": "/Users/hsh/Documents/Quant/科技轮动/.venv/bin/python /Users/hsh/.codex/skills/report-to-quant/scripts/check_data_certificate.py research/runs/c5_six_commodity_proxy2015_20261109/data_certificate.json",
+        "exit_code": 0,
+        "executed_at": "2026-11-09T22:38:37+08:00",
+        "log_path": "logs/check_data_certificate.log"
+      },
+      {
+        "cwd": "/Users/hsh/Documents/Quant/大类择时",
+        "command": "/Users/hsh/Documents/Quant/科技轮动/.venv/bin/python research/runs/c5_six_commodity_proxy2015_20261109/event_audit.py",
+        "exit_code": 0,
+        "executed_at": "2026-11-09T22:38:37+08:00",
+        "log_path": "logs/event_audit.log"
+      }
+    ],
+    "artifacts": [
+      "artifacts/asset_panel.csv",
+      "artifacts/splices.csv",
+      "artifacts/metrics.csv",
+      "artifacts/segments.csv",
+      "artifacts/bootstrap.csv",
+      "artifacts/reconciliation.csv",
+      "artifacts/parent_overlap.csv",
+      "artifacts/returns.csv",
+      "artifacts/exposures.csv",
+      "artifacts/nav.png"
+    ],
+    "checks": [
+      "all six paths finite",
+      "splice continuity zero error",
+      "ledger accounting zero error",
+      "future perturbation zero effect",
+      "parent overlap correlation 0.9986",
+      "proxy reconciliation disclosed",
+      "20.5bp cost positive"
+    ]
+  },
+  "decision": {
+    "status": "PARTIAL",
+    "scope": "research-only 2015 proxy extension",
+    "certified_for": [
+      "exploratory performance description",
+      "pre-listing bundle sensitivity analysis",
+      "comparison against the 2022 actual-ETF parent"
+    ],
+    "not_certified_for": [
+      "production trading",
+      "true ETF history before listing",
+      "contract-level futures replication",
+      "independent OOS",
+      "future profitability"
+    ],
+    "blockers": [
+      "unverified futures roll treatment",
+      "USO/160723 timezone and tracking mismatch",
+      "chemical and silver proxy tracking differences",
+      "ETF, TIP and bond revision vintages incomplete",
+      "no pristine untouched test period",
+      "same-day DD gate is lookahead; next-session execution rebuild required",
+      "LOF limit-down exit has no fill or capacity model"
+    ],
+    "reviewed_at": "2026-11-09",
+    "reviewer": "Codex local experiment runner"
+  },
+  "revalidation": {
+    "triggers": [
+      "actual contract-level futures data",
+      "ETF listing or adjustment change",
+      "proxy basket change",
+      "TIP or bond vintage change",
+      "execution or cost change",
+      "attempted production promotion"
+    ],
+    "next_review": "Only after contract-level roll data and a clean prospective shadow period are available"
+  }
+}

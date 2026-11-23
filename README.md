@@ -4,6 +4,8 @@
 
 跨品种绩效汇总见 [`LEADERBOARD.md`](LEADERBOARD.md)。
 
+跨品种轮动与组合研究见 [`rotation/README.md`](rotation/README.md)。现有单品种策略目录不变。
+
 ### `能化/`
 
 159981 能源化工 ETF 的独立价格趋势研究，不引用原油信号。

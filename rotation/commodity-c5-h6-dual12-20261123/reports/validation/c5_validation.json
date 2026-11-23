@@ -1,0 +1,184 @@
+{
+  "status": "FAIL_DD_SAME_DAY_LOOKAHEAD",
+  "generated_at": "2026-11-09T00:00:00+08:00",
+  "checks": {
+    "coverage": {
+      "status": "PASS",
+      "criterion": "All six synthetic nodes are finite from 2015-01-05, with warm-up before start.",
+      "first": "2014-01-03",
+      "last": "2026-11-06",
+      "strategy_start": "2015-01-05",
+      "rows": 3103,
+      "all_finite": true,
+      "minimum_price": 0.4874350870242944
+    },
+    "splice_continuity": {
+      "status": "PASS",
+      "criterion": "Actual ETF first open equals the previous proxy close after scaling.",
+      "switches": [
+        {
+          "fund": "160723.XSHE",
+          "switch": "2017-05-05",
+          "continuity_error": 0.0
+        },
+        {
+          "fund": "159985.XSHE",
+          "switch": "2019-12-05",
+          "continuity_error": 0.0
+        },
+        {
+          "fund": "159980.XSHE",
+          "switch": "2019-12-24",
+          "continuity_error": 0.0
+        },
+        {
+          "fund": "159981.XSHE",
+          "switch": "2020-01-17",
+          "continuity_error": 0.0
+        },
+        {
+          "fund": "161226.XSHE",
+          "switch": "2015-08-17",
+          "continuity_error": 0.0
+        }
+      ],
+      "max_error": 0.0
+    },
+    "ledger": {
+      "status": "PASS",
+      "criterion": "C5 net return reconciles to gross, turnover and splice fees; holdings and overlays are bounded.",
+      "accounting_max_error": 0.0,
+      "invalid_holdings": 0,
+      "exposure_min": 0.0,
+      "exposure_max": 1.0,
+      "days": 2858
+    },
+    "future_perturbation": {
+      "status": "PASS",
+      "criterion": "Perturbing all prices after cutoff leaves prior holdings and returns unchanged.",
+      "cutoff": "2022-12-30",
+      "compare_end": "2022-12-29",
+      "holding_difference_count": 0,
+      "return_max_error": 0.0
+    },
+    "parent_overlap": {
+      "status": "PASS",
+      "criterion": "Post-2022 extended panel reproduces the frozen actual-ETF parent path.",
+      "correlation": 0.9986249003458254,
+      "mean_abs_daily_difference": 9.389253530448236e-05,
+      "annualized_return_difference": 0.0061543608751532
+    },
+    "proxy_reconciliation": {
+      "status": "PARTIAL",
+      "criterion": "Proxy return correlation and tracking difference must be disclosed on post-listing overlap.",
+      "funds": [
+        {
+          "fund": "160723.XSHE",
+          "start": "2017-05-08",
+          "end": "2026-11-06",
+          "days": 2290,
+          "return_correlation": 0.4250483632494102,
+          "mean_abs_daily_difference": 0.0154851221068736,
+          "annualized_return_difference": -0.0017277968195124
+        },
+        {
+          "fund": "159985.XSHE",
+          "start": "2019-12-06",
+          "end": "2026-11-06",
+          "days": 1674,
+          "return_correlation": 0.8985578422498025,
+          "mean_abs_daily_difference": 0.0026189346551841,
+          "annualized_return_difference": -0.0280109633569251
+        },
+        {
+          "fund": "159980.XSHE",
+          "start": "2019-12-25",
+          "end": "2026-11-06",
+          "days": 1661,
+          "return_correlation": 0.8798690894140251,
+          "mean_abs_daily_difference": 0.0037851163933588,
+          "annualized_return_difference": -0.0139369879967182
+        },
+        {
+          "fund": "159981.XSHE",
+          "start": "2020-01-20",
+          "end": "2026-11-06",
+          "days": 1644,
+          "return_correlation": 0.838931243956928,
+          "mean_abs_daily_difference": 0.0053622614376858,
+          "annualized_return_difference": -0.0796840977573771
+        },
+        {
+          "fund": "161226.XSHE",
+          "start": "2015-08-18",
+          "end": "2026-11-06",
+          "days": 2706,
+          "return_correlation": 0.84277409712894,
+          "mean_abs_daily_difference": 0.0044433085179376,
+          "annualized_return_difference": 0.1069387697855656
+        }
+      ],
+      "minimum_correlation": 0.4250483632494102,
+      "maximum_abs_annualized_difference": 0.1069387697855656
+    },
+    "cost_survival": {
+      "status": "PASS",
+      "criterion": "Primary arm remains economically positive after 20.5bp one-way cost.",
+      "five_bp": {
+        "cagr": 0.3781040038648318,
+        "sharpe": 1.6268872150232545,
+        "mdd": -0.1849322465687392
+      },
+      "twenty_point_five_bp": {
+        "cagr": 0.3396896296731166,
+        "sharpe": 1.5162700156385904,
+        "mdd": -0.2011930966242511
+      }
+    },
+    "dd_time_alignment": {
+      "status": "FAIL",
+      "criterion": "A close-based DD state must affect a later executable return, not the return that created it.",
+      "same_day": {
+        "tip": "S",
+        "cost_bps": 5.0,
+        "days": 2858,
+        "start": "2015-01-05",
+        "end": "2026-11-05",
+        "cagr": 0.3781040038648318,
+        "sharpe": 1.6268872150232545,
+        "mdd": -0.1849322465687392,
+        "calmar": 2.044554213125242,
+        "exposure": 0.527816655003499,
+        "switch_count": 88
+      },
+      "next_session": {
+        "tip": "S",
+        "cost_bps": 5.0,
+        "days": 2858,
+        "start": "2015-01-05",
+        "end": "2026-11-05",
+        "cagr": 0.23735995829117,
+        "sharpe": 1.0865106177909476,
+        "mdd": -0.2401724129168334,
+        "calmar": 0.988289851479998,
+        "exposure": 0.5281665500349895,
+        "switch_count": 86
+      },
+      "same_minus_next_session": {
+        "cagr": 0.1407440455736618,
+        "sharpe": 0.5403765972323069,
+        "mdd": 0.0552401663480942
+      },
+      "evidence": "artifacts/dd_timing_metrics.csv and EVENT_AUDIT_2025Q4_2026Q1.md"
+    }
+  },
+  "limitations": [
+    "The pre-listing series are proxies, not actual six-ETF history.",
+    "USO has a low daily-return correlation with 160723 because of timezone, tracking and LOF-price noise.",
+    "Main-continuous futures roll treatment is not certified.",
+    "M0 roll adjustment lacks complete contract-level lineage.",
+    "The earlier period is retrospective after the 2022+ model was observed; it is not pristine OOS.",
+    "Proxy data are research-only and do not support a production promotion.",
+    "The same-day DD path is invalid for executable performance; use the next-session rebuild."
+  ]
+}

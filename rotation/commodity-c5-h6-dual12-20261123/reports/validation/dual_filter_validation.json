@@ -1,0 +1,1477 @@
+{
+  "schema_version": "1.0",
+  "strategy_sha256": "500d88473f37c648042ef04da1689fead18bc4d9e2ff9fd14345a774727c13fa",
+  "code_revision": "c3b8f6c5bacc89a7064a67dfa5c38a4132fd5013bbc2aa149ad942bec4165d6f",
+  "data_snapshot": {
+    "manifest": "data_certificate.json",
+    "manifest_sha256": "4dc56439a39683255c5a94be5f1964b684a362fb030071596a4c2154fb845a98",
+    "decision": "PARTIAL",
+    "r3_panel_sha256": "623a92c94ba067d731f257643c5bc3261e28560a401e6e37f33fc55806add2a8"
+  },
+  "environment": {
+    "python": "3.12",
+    "pandas": "3.0.6",
+    "numpy": "2.5.3"
+  },
+  "checks": [
+    {
+      "id": "source_fidelity",
+      "status": "PASS",
+      "criterion": "The study is bound to the frozen R3 panel and existing project dual-momentum definition.",
+      "evidence": [
+        {
+          "path": "data_certificate.json"
+        },
+        {
+          "path": "data_requirement.json"
+        },
+        {
+          "path": "evidence.json"
+        }
+      ],
+      "reason": null
+    },
+    {
+      "id": "formula_fixture",
+      "status": "PASS",
+      "criterion": "6/12-month momentum, dual eligibility, and cash fallback tests pass.",
+      "evidence": [
+        {
+          "path": "logs/unit_tests.log"
+        },
+        {
+          "path": "reproduction/test_run.py"
+        }
+      ],
+      "reason": null
+    },
+    {
+      "id": "point_in_time",
+      "status": "PASS",
+      "criterion": "Momentum uses completed monthly returns; labels remain next month and lag1.",
+      "evidence": [
+        {
+          "path": "reproduction/run.py"
+        },
+        {
+          "path": "artifacts/metrics.csv"
+        }
+      ],
+      "reason": null
+    },
+    {
+      "id": "source_lineage",
+      "status": "PASS",
+      "criterion": "The parent R3 panel and derived filter rules are hash-linked.",
+      "evidence": [
+        {
+          "path": "data_certificate.json"
+        },
+        {
+          "path": "evidence.json"
+        },
+        {
+          "path": "reproduction/run.py"
+        }
+      ],
+      "reason": "Inherited R3 data is PARTIAL because release vintage is unavailable."
+    },
+    {
+      "id": "historical_universe",
+      "status": "PASS",
+      "criterion": "The eligible product set changes only by historical data and the fixed dual filter.",
+      "evidence": [
+        {
+          "path": "reproduction/run.py"
+        },
+        {
+          "path": "artifacts/metrics.csv"
+        }
+      ],
+      "reason": null
+    },
+    {
+      "id": "execution",
+      "status": "PASS",
+      "criterion": "Every filtered arm uses a matching unfiltered arm, two executions and two costs.",
+      "evidence": [
+        {
+          "path": "artifacts/metrics.csv"
+        },
+        {
+          "path": "REPORT.md"
+        }
+      ],
+      "reason": null
+    },
+    {
+      "id": "accounting",
+      "status": "PASS",
+      "criterion": "All 52 arms contain finite metrics and cash exposure is represented by zero weights.",
+      "evidence": [
+        {
+          "path": "artifacts/metrics.csv"
+        }
+      ],
+      "reason": null
+    },
+    {
+      "id": "smoke_backtest",
+      "status": "PASS",
+      "criterion": "All planned filtered and unfiltered arms ran.",
+      "evidence": [
+        {
+          "path": "artifacts/metrics.csv"
+        },
+        {
+          "path": "logs/run.log"
+        }
+      ],
+      "reason": null
+    },
+    {
+      "id": "reproducibility",
+      "status": "PASS",
+      "criterion": "The deterministic test suite passes.",
+      "evidence": [
+        {
+          "path": "logs/unit_tests.log"
+        },
+        {
+          "path": "reproduction/run.py"
+        }
+      ],
+      "reason": null
+    },
+    {
+      "id": "metrics_comparison",
+      "status": "PASS",
+      "criterion": "Metrics, dual eligibility, cash exposure and matched bootstrap are recorded.",
+      "evidence": [
+        {
+          "path": "artifacts/metrics.csv"
+        },
+        {
+          "path": "artifacts/bootstrap.csv"
+        },
+        {
+          "path": "artifacts/result.json"
+        },
+        {
+          "path": "artifacts/nav_dual_filter.png"
+        }
+      ],
+      "reason": null
+    },
+    {
+      "id": "reproduction_communication",
+      "status": "PASS",
+      "criterion": "Pre-repro, report, audit, algorithm, index and archive are present.",
+      "evidence": [
+        {
+          "path": "PRE_REPRO.md"
+        },
+        {
+          "path": "REPORT.md"
+        },
+        {
+          "path": "AUDIT.md"
+        },
+        {
+          "path": "ALGORITHM.md"
+        },
+        {
+          "path": "REPRO_INDEX.md"
+        },
+        {
+          "path": "archive_manifest.json"
+        },
+        {
+          "path": "iterations.jsonl"
+        },
+        {
+          "path": "sample_access.jsonl"
+        }
+      ],
+      "reason": null
+    }
+  ],
+  "command_evidence": [
+    {
+      "command": "/Users/hsh/Documents/Quant/科技轮动/.venv/bin/python3 -m pytest -q reproduction/test_run.py",
+      "cwd": "/Users/hsh/Documents/Quant/科技轮动/research/runs/aw7_commodity_dual_filter_20261123",
+      "executed_at": "2026-11-23T22:10:44+08:00",
+      "exit_code": 0,
+      "log_path": "logs/unit_tests.log"
+    },
+    {
+      "command": "/Users/hsh/Documents/Quant/科技轮动/.venv/bin/python3 reproduction/run.py",
+      "cwd": "/Users/hsh/Documents/Quant/科技轮动/research/runs/aw7_commodity_dual_filter_20261123",
+      "executed_at": "2026-11-23T22:10:45+08:00",
+      "exit_code": 0,
+      "log_path": "logs/run.log"
+    }
+  ],
+  "metric_comparison": {
+    "filtered_arm_metrics": [
+      {
+        "arm": "UNIVERSE_EW",
+        "execution": "paper_like",
+        "cost_bps": 5.0,
+        "turnover": 0.041578512085361966,
+        "average_exposure": 1.0,
+        "cash_months": 0,
+        "start": "2016-01-29",
+        "end": "2026-10-30",
+        "months": 130,
+        "cagr": 0.08532682096092103,
+        "vol": 0.13111652834629026,
+        "sharpe": 0.6910469157285445,
+        "mdd": -0.17663777293968497,
+        "calmar": 0.48306100977652655
+      },
+      {
+        "arm": "UNIVERSE_EW",
+        "execution": "paper_like",
+        "cost_bps": 20.5,
+        "turnover": 0.041578512085361966,
+        "average_exposure": 1.0,
+        "cash_months": 0,
+        "start": "2016-01-29",
+        "end": "2026-10-30",
+        "months": 130,
+        "cagr": 0.0844999638271926,
+        "vol": 0.13106639711062268,
+        "sharpe": 0.6854107091547536,
+        "mdd": -0.17815184062068634,
+        "calmar": 0.474314290174001
+      },
+      {
+        "arm": "UNIVERSE_EW",
+        "execution": "lag1",
+        "cost_bps": 5.0,
+        "turnover": 0.04190082613253532,
+        "average_exposure": 1.0,
+        "cash_months": 0,
+        "start": "2016-01-29",
+        "end": "2026-09-30",
+        "months": 129,
+        "cagr": 0.08803106213382139,
+        "vol": 0.13289603297412408,
+        "sharpe": 0.7023193588157524,
+        "mdd": -0.1741547904711338,
+        "calmar": 0.5054759728151869
+      },
+      {
+        "arm": "UNIVERSE_EW",
+        "execution": "lag1",
+        "cost_bps": 20.5,
+        "turnover": 0.04190082613253532,
+        "average_exposure": 1.0,
+        "cash_months": 0,
+        "start": "2016-01-29",
+        "end": "2026-09-30",
+        "months": 129,
+        "cagr": 0.08719334705058523,
+        "vol": 0.13286385135804804,
+        "sharpe": 0.6966236516210421,
+        "mdd": -0.174300517353024,
+        "calmar": 0.5002472073791151
+      },
+      {
+        "arm": "BM5_LONG",
+        "execution": "paper_like",
+        "cost_bps": 5.0,
+        "turnover": 0.6106884995346534,
+        "average_exposure": 1.0,
+        "cash_months": 0,
+        "start": "2016-01-29",
+        "end": "2026-10-30",
+        "months": 130,
+        "cagr": 0.10663043643861747,
+        "vol": 0.16536073977169286,
+        "sharpe": 0.6965046387008531,
+        "mdd": -0.23939310522576496,
+        "calmar": 0.4454198308596118
+      },
+      {
+        "arm": "BM5_LONG",
+        "execution": "paper_like",
+        "cost_bps": 20.5,
+        "turnover": 0.6106884995346534,
+        "average_exposure": 1.0,
+        "cash_months": 0,
+        "start": "2016-01-29",
+        "end": "2026-10-30",
+        "months": 130,
+        "cagr": 0.09424239406095802,
+        "vol": 0.16524387646064312,
+        "sharpe": 0.6282575696133008,
+        "mdd": -0.2536459146049689,
+        "calmar": 0.37155100332576707
+      },
+      {
+        "arm": "BM5_LONG",
+        "execution": "lag1",
+        "cost_bps": 5.0,
+        "turnover": 0.6121002597746784,
+        "average_exposure": 1.0,
+        "cash_months": 0,
+        "start": "2016-01-29",
+        "end": "2026-09-30",
+        "months": 129,
+        "cagr": 0.10498126379691897,
+        "vol": 0.1621605194725956,
+        "sharpe": 0.6978917422056223,
+        "mdd": -0.20782693478064063,
+        "calmar": 0.5051379115403194
+      },
+      {
+        "arm": "BM5_LONG",
+        "execution": "lag1",
+        "cost_bps": 20.5,
+        "turnover": 0.6121002597746784,
+        "average_exposure": 1.0,
+        "cash_months": 0,
+        "start": "2016-01-29",
+        "end": "2026-09-30",
+        "months": 129,
+        "cagr": 0.0925430113826815,
+        "vol": 0.1622471979526491,
+        "sharpe": 0.6273477995570375,
+        "mdd": -0.21727676009055907,
+        "calmar": 0.4259222723318885
+      },
+      {
+        "arm": "CARRY_LONG",
+        "execution": "paper_like",
+        "cost_bps": 5.0,
+        "turnover": 0.6776682718990411,
+        "average_exposure": 1.0,
+        "cash_months": 0,
+        "start": "2016-01-29",
+        "end": "2026-10-30",
+        "months": 130,
+        "cagr": 0.1282259341277343,
+        "vol": 0.18392070072907282,
+        "sharpe": 0.7502552183636204,
+        "mdd": -0.2686129291885998,
+        "calmar": 0.477363224901597
+      },
+      {
+        "arm": "CARRY_LONG",
+        "execution": "paper_like",
+        "cost_bps": 20.5,
+        "turnover": 0.6776682718990411,
+        "average_exposure": 1.0,
+        "cash_months": 0,
+        "start": "2016-01-29",
+        "end": "2026-10-30",
+        "months": 130,
+        "cagr": 0.11422073083422268,
+        "vol": 0.18385461049048496,
+        "sharpe": 0.6819673180632441,
+        "mdd": -0.2755511752295777,
+        "calmar": 0.41451730604690307
+      },
+      {
+        "arm": "CARRY_LONG",
+        "execution": "lag1",
+        "cost_bps": 5.0,
+        "turnover": 0.6807066748927214,
+        "average_exposure": 1.0,
+        "cash_months": 0,
+        "start": "2016-01-29",
+        "end": "2026-09-30",
+        "months": 129,
+        "cagr": 0.10088095310375045,
+        "vol": 0.16890926091891437,
+        "sharpe": 0.654565145728816,
+        "mdd": -0.24602815360615382,
+        "calmar": 0.4100382481642424
+      },
+      {
+        "arm": "CARRY_LONG",
+        "execution": "lag1",
+        "cost_bps": 20.5,
+        "turnover": 0.6807066748927214,
+        "average_exposure": 1.0,
+        "cash_months": 0,
+        "start": "2016-01-29",
+        "end": "2026-09-30",
+        "months": 129,
+        "cagr": 0.08710854853129191,
+        "vol": 0.1689603685622101,
+        "sharpe": 0.5794315653335276,
+        "mdd": -0.2854862960732696,
+        "calmar": 0.3051233972678522
+      },
+      {
+        "arm": "MOM6_LONG",
+        "execution": "paper_like",
+        "cost_bps": 5.0,
+        "turnover": 0.48678799832645986,
+        "average_exposure": 0.9615384615384616,
+        "cash_months": 5,
+        "start": "2016-01-29",
+        "end": "2026-10-30",
+        "months": 130,
+        "cagr": 0.09709719068483769,
+        "vol": 0.18566621633234195,
+        "sharpe": 0.5905981125402897,
+        "mdd": -0.21887024543041922,
+        "calmar": 0.4436290117639848
+      },
+      {
+        "arm": "MOM6_LONG",
+        "execution": "paper_like",
+        "cost_bps": 20.5,
+        "turnover": 0.48678799832645986,
+        "average_exposure": 0.9615384615384616,
+        "cash_months": 5,
+        "start": "2016-01-29",
+        "end": "2026-10-30",
+        "months": 130,
+        "cagr": 0.08730521487400811,
+        "vol": 0.18545781676383144,
+        "sharpe": 0.5424406580155829,
+        "mdd": -0.22090136615833234,
+        "calmar": 0.3952226117580078
+      },
+      {
+        "arm": "MOM6_LONG",
+        "execution": "lag1",
+        "cost_bps": 5.0,
+        "turnover": 0.48698373116977767,
+        "average_exposure": 0.9612403100775194,
+        "cash_months": 5,
+        "start": "2016-01-29",
+        "end": "2026-09-30",
+        "months": 129,
+        "cagr": 0.0754106625724773,
+        "vol": 0.18591703057555173,
+        "sharpe": 0.4841796393654507,
+        "mdd": -0.28585164395840756,
+        "calmar": 0.26381049109323934
+      },
+      {
+        "arm": "MOM6_LONG",
+        "execution": "lag1",
+        "cost_bps": 20.5,
+        "turnover": 0.48698373116977767,
+        "average_exposure": 0.9612403100775194,
+        "cash_months": 5,
+        "start": "2016-01-29",
+        "end": "2026-09-30",
+        "months": 129,
+        "cagr": 0.06576367247686354,
+        "vol": 0.18588090259496576,
+        "sharpe": 0.4355441698742906,
+        "mdd": -0.2947494297948161,
+        "calmar": 0.2231172169616871
+      },
+      {
+        "arm": "MOM12_LONG",
+        "execution": "paper_like",
+        "cost_bps": 5.0,
+        "turnover": 0.38566459181843804,
+        "average_exposure": 1.0,
+        "cash_months": 0,
+        "start": "2016-01-29",
+        "end": "2026-10-30",
+        "months": 130,
+        "cagr": 0.1124293576634301,
+        "vol": 0.18381521461151715,
+        "sharpe": 0.673043171947975,
+        "mdd": -0.2024473557993064,
+        "calmar": 0.5553510798870869
+      },
+      {
+        "arm": "MOM12_LONG",
+        "execution": "paper_like",
+        "cost_bps": 20.5,
+        "turnover": 0.38566459181843804,
+        "average_exposure": 1.0,
+        "cash_months": 0,
+        "start": "2016-01-29",
+        "end": "2026-10-30",
+        "months": 130,
+        "cagr": 0.10456559239992602,
+        "vol": 0.18365863483603068,
+        "sharpe": 0.6345588585620192,
+        "mdd": -0.2043159013535013,
+        "calmar": 0.5117839174886821
+      },
+      {
+        "arm": "MOM12_LONG",
+        "execution": "lag1",
+        "cost_bps": 5.0,
+        "turnover": 0.38754682010495967,
+        "average_exposure": 1.0,
+        "cash_months": 0,
+        "start": "2016-01-29",
+        "end": "2026-09-30",
+        "months": 129,
+        "cagr": 0.14363312814191143,
+        "vol": 0.18711042976655284,
+        "sharpe": 0.8136867990806521,
+        "mdd": -0.223290444718519,
+        "calmar": 0.6432569397359391
+      },
+      {
+        "arm": "MOM12_LONG",
+        "execution": "lag1",
+        "cost_bps": 20.5,
+        "turnover": 0.38754682010495967,
+        "average_exposure": 1.0,
+        "cash_months": 0,
+        "start": "2016-01-29",
+        "end": "2026-09-30",
+        "months": 129,
+        "cagr": 0.1355186721105519,
+        "vol": 0.18699120924916693,
+        "sharpe": 0.7756563337912395,
+        "mdd": -0.2312837546605777,
+        "calmar": 0.5859411626615687
+      },
+      {
+        "arm": "EW_DUAL6",
+        "execution": "paper_like",
+        "cost_bps": 5.0,
+        "turnover": 0.48674452608067753,
+        "average_exposure": 0.9384615384615385,
+        "cash_months": 8,
+        "start": "2016-01-29",
+        "end": "2026-10-30",
+        "months": 130,
+        "cagr": 0.10312357572287567,
+        "vol": 0.15408556675391763,
+        "sharpe": 0.7142652565961326,
+        "mdd": -0.23254053450402712,
+        "calmar": 0.44346494662886304
+      },
+      {
+        "arm": "EW_DUAL6",
+        "execution": "paper_like",
+        "cost_bps": 20.5,
+        "turnover": 0.48674452608067753,
+        "average_exposure": 0.9384615384615385,
+        "cash_months": 8,
+        "start": "2016-01-29",
+        "end": "2026-10-30",
+        "months": 130,
+        "cagr": 0.09326997119582447,
+        "vol": 0.15396050617313695,
+        "sharpe": 0.6560417421371805,
+        "mdd": -0.24713061984696083,
+        "calmar": 0.3774116345986719
+      },
+      {
+        "arm": "EW_DUAL6",
+        "execution": "lag1",
+        "cost_bps": 5.0,
+        "turnover": 0.4879337601329825,
+        "average_exposure": 0.937984496124031,
+        "cash_months": 8,
+        "start": "2016-01-29",
+        "end": "2026-09-30",
+        "months": 129,
+        "cagr": 0.08070600482988666,
+        "vol": 0.15493892506032483,
+        "sharpe": 0.5785243438448151,
+        "mdd": -0.26694312605545945,
+        "calmar": 0.30233408150438523
+      },
+      {
+        "arm": "EW_DUAL6",
+        "execution": "lag1",
+        "cost_bps": 20.5,
+        "turnover": 0.4879337601329825,
+        "average_exposure": 0.937984496124031,
+        "cash_months": 8,
+        "start": "2016-01-29",
+        "end": "2026-09-30",
+        "months": 129,
+        "cagr": 0.07101291719241853,
+        "vol": 0.15480204553572322,
+        "sharpe": 0.5204089631973322,
+        "mdd": -0.27893488568981195,
+        "calmar": 0.25458600137735393
+      },
+      {
+        "arm": "BM5_DUAL6",
+        "execution": "paper_like",
+        "cost_bps": 5.0,
+        "turnover": 0.7767399267399268,
+        "average_exposure": 0.9384615384615385,
+        "cash_months": 8,
+        "start": "2016-01-29",
+        "end": "2026-10-30",
+        "months": 130,
+        "cagr": 0.1391432137853359,
+        "vol": 0.20973185080933635,
+        "sharpe": 0.7268037165803646,
+        "mdd": -0.3682717779527652,
+        "calmar": 0.3778275233547288
+      },
+      {
+        "arm": "BM5_DUAL6",
+        "execution": "paper_like",
+        "cost_bps": 20.5,
+        "turnover": 0.7767399267399268,
+        "average_exposure": 0.9384615384615385,
+        "cash_months": 8,
+        "start": "2016-01-29",
+        "end": "2026-10-30",
+        "months": 130,
+        "cagr": 0.12294030181381843,
+        "vol": 0.20973668949965477,
+        "sharpe": 0.6579036140282394,
+        "mdd": -0.38433840375918504,
+        "calmar": 0.31987514287239727
+      },
+      {
+        "arm": "BM5_DUAL6",
+        "execution": "lag1",
+        "cost_bps": 5.0,
+        "turnover": 0.7801771871539314,
+        "average_exposure": 0.937984496124031,
+        "cash_months": 8,
+        "start": "2016-01-29",
+        "end": "2026-09-30",
+        "months": 129,
+        "cagr": 0.031752054416537945,
+        "vol": 0.20485763148788882,
+        "sharpe": 0.2543883044953773,
+        "mdd": -0.4691200707546185,
+        "calmar": 0.06768428041346032
+      },
+      {
+        "arm": "BM5_DUAL6",
+        "execution": "lag1",
+        "cost_bps": 20.5,
+        "turnover": 0.7801771871539314,
+        "average_exposure": 0.937984496124031,
+        "cash_months": 8,
+        "start": "2016-01-29",
+        "end": "2026-09-30",
+        "months": 129,
+        "cagr": 0.016943278566373676,
+        "vol": 0.20459365627173762,
+        "sharpe": 0.18378912885811727,
+        "mdd": -0.5249216048079699,
+        "calmar": 0.032277731400619285
+      },
+      {
+        "arm": "CARRY_DUAL6",
+        "execution": "paper_like",
+        "cost_bps": 5.0,
+        "turnover": 0.9427838827838828,
+        "average_exposure": 0.9384615384615385,
+        "cash_months": 8,
+        "start": "2016-01-29",
+        "end": "2026-10-30",
+        "months": 130,
+        "cagr": 0.11215578254822911,
+        "vol": 0.22240738076408711,
+        "sharpe": 0.5891107820970932,
+        "mdd": -0.3788111114353818,
+        "calmar": 0.29607310652333074
+      },
+      {
+        "arm": "CARRY_DUAL6",
+        "execution": "paper_like",
+        "cost_bps": 20.5,
+        "turnover": 0.9427838827838828,
+        "average_exposure": 0.9384615384615385,
+        "cash_months": 8,
+        "start": "2016-01-29",
+        "end": "2026-10-30",
+        "months": 130,
+        "cagr": 0.09290556129873506,
+        "vol": 0.22254785773021057,
+        "sharpe": 0.509943375612694,
+        "mdd": -0.3989755608634349,
+        "calmar": 0.23286028121039637
+      },
+      {
+        "arm": "CARRY_DUAL6",
+        "execution": "lag1",
+        "cost_bps": 5.0,
+        "turnover": 0.9423403469915098,
+        "average_exposure": 0.937984496124031,
+        "cash_months": 8,
+        "start": "2016-01-29",
+        "end": "2026-09-30",
+        "months": 129,
+        "cagr": 0.09447513698099685,
+        "vol": 0.21955311703332134,
+        "sharpe": 0.5206177527915922,
+        "mdd": -0.3923176170940682,
+        "calmar": 0.24081288441947285
+      },
+      {
+        "arm": "CARRY_DUAL6",
+        "execution": "lag1",
+        "cost_bps": 20.5,
+        "turnover": 0.9423403469915098,
+        "average_exposure": 0.937984496124031,
+        "cash_months": 8,
+        "start": "2016-01-29",
+        "end": "2026-09-30",
+        "months": 129,
+        "cagr": 0.0755271314494661,
+        "vol": 0.21965134290567975,
+        "sharpe": 0.4405878820226083,
+        "mdd": -0.4714202671058356,
+        "calmar": 0.16021188888026738
+      },
+      {
+        "arm": "MOM6_DUAL6",
+        "execution": "paper_like",
+        "cost_bps": 5.0,
+        "turnover": 0.7963736263736263,
+        "average_exposure": 0.9384615384615385,
+        "cash_months": 8,
+        "start": "2016-01-29",
+        "end": "2026-10-30",
+        "months": 130,
+        "cagr": 0.07554957547203256,
+        "vol": 0.24494641079580146,
+        "sharpe": 0.4162448863476786,
+        "mdd": -0.4162236037567929,
+        "calmar": 0.18151199208821794
+      },
+      {
+        "arm": "MOM6_DUAL6",
+        "execution": "paper_like",
+        "cost_bps": 20.5,
+        "turnover": 0.7963736263736263,
+        "average_exposure": 0.9384615384615385,
+        "cash_months": 8,
+        "start": "2016-01-29",
+        "end": "2026-10-30",
+        "months": 130,
+        "cagr": 0.059752404006375714,
+        "vol": 0.24503585296120073,
+        "sharpe": 0.35564241077088166,
+        "mdd": -0.4429236875933803,
+        "calmar": 0.13490451217689342
+      },
+      {
+        "arm": "MOM6_DUAL6",
+        "execution": "lag1",
+        "cost_bps": 5.0,
+        "turnover": 0.7973791066814322,
+        "average_exposure": 0.937984496124031,
+        "cash_months": 8,
+        "start": "2016-01-29",
+        "end": "2026-09-30",
+        "months": 129,
+        "cagr": 0.058148385636821454,
+        "vol": 0.24938948946345682,
+        "sharpe": 0.3455110526164292,
+        "mdd": -0.4264228452468285,
+        "calmar": 0.13636320446941141
+      },
+      {
+        "arm": "MOM6_DUAL6",
+        "execution": "lag1",
+        "cost_bps": 20.5,
+        "turnover": 0.7973791066814322,
+        "average_exposure": 0.937984496124031,
+        "cash_months": 8,
+        "start": "2016-01-29",
+        "end": "2026-09-30",
+        "months": 129,
+        "cagr": 0.04259317836893972,
+        "vol": 0.24938142046269104,
+        "sharpe": 0.28605007341511407,
+        "mdd": -0.4876566603929545,
+        "calmar": 0.08734255435908139
+      },
+      {
+        "arm": "EW_DUAL12",
+        "execution": "paper_like",
+        "cost_bps": 5.0,
+        "turnover": 0.3636731694133042,
+        "average_exposure": 0.9692307692307692,
+        "cash_months": 4,
+        "start": "2016-01-29",
+        "end": "2026-10-30",
+        "months": 130,
+        "cagr": 0.09454164420761346,
+        "vol": 0.15972880493807629,
+        "sharpe": 0.6463028710850792,
+        "mdd": -0.17528671522565986,
+        "calmar": 0.5393543035243877
+      },
+      {
+        "arm": "EW_DUAL12",
+        "execution": "paper_like",
+        "cost_bps": 20.5,
+        "turnover": 0.3636731694133042,
+        "average_exposure": 0.9692307692307692,
+        "cash_months": 4,
+        "start": "2016-01-29",
+        "end": "2026-10-30",
+        "months": 130,
+        "cagr": 0.0872377337675081,
+        "vol": 0.15955370445076572,
+        "sharpe": 0.6046168881346636,
+        "mdd": -0.175812044589037,
+        "calmar": 0.4961988467367379
+      },
+      {
+        "arm": "EW_DUAL12",
+        "execution": "lag1",
+        "cost_bps": 5.0,
+        "turnover": 0.3658182597053521,
+        "average_exposure": 0.9689922480620154,
+        "cash_months": 4,
+        "start": "2016-01-29",
+        "end": "2026-09-30",
+        "months": 129,
+        "cagr": 0.11590601878347528,
+        "vol": 0.16965055210508456,
+        "sharpe": 0.732448279331331,
+        "mdd": -0.25014474058583236,
+        "calmar": 0.463355809568598
+      },
+      {
+        "arm": "EW_DUAL12",
+        "execution": "lag1",
+        "cost_bps": 20.5,
+        "turnover": 0.3658182597053521,
+        "average_exposure": 0.9689922480620154,
+        "cash_months": 4,
+        "start": "2016-01-29",
+        "end": "2026-09-30",
+        "months": 129,
+        "cagr": 0.10844400015207944,
+        "vol": 0.1694075463606221,
+        "sharpe": 0.6933341392975985,
+        "mdd": -0.2580353181868308,
+        "calmar": 0.4202680505680251
+      },
+      {
+        "arm": "BM5_DUAL12",
+        "execution": "paper_like",
+        "cost_bps": 5.0,
+        "turnover": 0.7648717948717948,
+        "average_exposure": 0.9692307692307692,
+        "cash_months": 4,
+        "start": "2016-01-29",
+        "end": "2026-10-30",
+        "months": 130,
+        "cagr": 0.140150168112539,
+        "vol": 0.21730649486619605,
+        "sharpe": 0.7125011504066348,
+        "mdd": -0.2494215008220838,
+        "calmar": 0.5619009093065729
+      },
+      {
+        "arm": "BM5_DUAL12",
+        "execution": "paper_like",
+        "cost_bps": 20.5,
+        "turnover": 0.7648717948717948,
+        "average_exposure": 0.9692307692307692,
+        "cash_months": 4,
+        "start": "2016-01-29",
+        "end": "2026-10-30",
+        "months": 130,
+        "cagr": 0.12413588151031907,
+        "vol": 0.2174883965098073,
+        "sharpe": 0.6464920172973109,
+        "mdd": -0.25359030475441224,
+        "calmar": 0.4895135152368605
+      },
+      {
+        "arm": "BM5_DUAL12",
+        "execution": "lag1",
+        "cost_bps": 5.0,
+        "turnover": 0.7685861941675894,
+        "average_exposure": 0.9689922480620154,
+        "cash_months": 4,
+        "start": "2016-01-29",
+        "end": "2026-09-30",
+        "months": 129,
+        "cagr": 0.1709211798016812,
+        "vol": 0.20719693667687725,
+        "sharpe": 0.8668831841131266,
+        "mdd": -0.20570476728254217,
+        "calmar": 0.8309052923742668
+      },
+      {
+        "arm": "BM5_DUAL12",
+        "execution": "lag1",
+        "cost_bps": 20.5,
+        "turnover": 0.7685861941675894,
+        "average_exposure": 0.9689922480620154,
+        "cash_months": 4,
+        "start": "2016-01-29",
+        "end": "2026-09-30",
+        "months": 129,
+        "cagr": 0.15451960538288256,
+        "vol": 0.2070162499740984,
+        "sharpe": 0.7985838648613559,
+        "mdd": -0.21993351884871426,
+        "calmar": 0.7025741514606149
+      },
+      {
+        "arm": "CARRY_DUAL12",
+        "execution": "paper_like",
+        "cost_bps": 5.0,
+        "turnover": 0.8576556776556776,
+        "average_exposure": 0.9692307692307692,
+        "cash_months": 4,
+        "start": "2016-01-29",
+        "end": "2026-10-30",
+        "months": 130,
+        "cagr": 0.10319996097906059,
+        "vol": 0.2567096186438847,
+        "sharpe": 0.5125972029462383,
+        "mdd": -0.3357238344968856,
+        "calmar": 0.30739539578330993
+      },
+      {
+        "arm": "CARRY_DUAL12",
+        "execution": "paper_like",
+        "cost_bps": 20.5,
+        "turnover": 0.8576556776556776,
+        "average_exposure": 0.9692307692307692,
+        "cash_months": 4,
+        "start": "2016-01-29",
+        "end": "2026-10-30",
+        "months": 130,
+        "cagr": 0.08581878906671814,
+        "vol": 0.25673693761138666,
+        "sharpe": 0.4504074791796791,
+        "mdd": -0.3461052794073487,
+        "calmar": 0.2479557353579507
+      },
+      {
+        "arm": "CARRY_DUAL12",
+        "execution": "lag1",
+        "cost_bps": 5.0,
+        "turnover": 0.8598744924326319,
+        "average_exposure": 0.9689922480620154,
+        "cash_months": 4,
+        "start": "2016-01-29",
+        "end": "2026-09-30",
+        "months": 129,
+        "cagr": 0.11278538056730025,
+        "vol": 0.22159985441266572,
+        "sharpe": 0.5933281067193967,
+        "mdd": -0.3870943250741524,
+        "calmar": 0.29136407656117125
+      },
+      {
+        "arm": "CARRY_DUAL12",
+        "execution": "lag1",
+        "cost_bps": 20.5,
+        "turnover": 0.8598744924326319,
+        "average_exposure": 0.9689922480620154,
+        "cash_months": 4,
+        "start": "2016-01-29",
+        "end": "2026-09-30",
+        "months": 129,
+        "cagr": 0.09520681882976834,
+        "vol": 0.2217406931414926,
+        "sharpe": 0.5208234666923371,
+        "mdd": -0.4154673833456145,
+        "calmar": 0.2291559401440876
+      },
+      {
+        "arm": "MOM12_DUAL12",
+        "execution": "paper_like",
+        "cost_bps": 5.0,
+        "turnover": 0.6385714285714285,
+        "average_exposure": 0.9692307692307692,
+        "cash_months": 4,
+        "start": "2016-01-29",
+        "end": "2026-10-30",
+        "months": 130,
+        "cagr": 0.12170557892720901,
+        "vol": 0.26411301791602443,
+        "sharpe": 0.5661040383845347,
+        "mdd": -0.34797061153462905,
+        "calmar": 0.349758212023883
+      },
+      {
+        "arm": "MOM12_DUAL12",
+        "execution": "paper_like",
+        "cost_bps": 20.5,
+        "turnover": 0.6385714285714285,
+        "average_exposure": 0.9692307692307692,
+        "cash_months": 4,
+        "start": "2016-01-29",
+        "end": "2026-10-30",
+        "months": 130,
+        "cagr": 0.10845728700939405,
+        "vol": 0.26437748858109117,
+        "sharpe": 0.52061171395288,
+        "mdd": -0.3680478651615552,
+        "calmar": 0.294682559731155
+      },
+      {
+        "arm": "MOM12_DUAL12",
+        "execution": "lag1",
+        "cost_bps": 5.0,
+        "turnover": 0.6413067552602436,
+        "average_exposure": 0.9689922480620154,
+        "cash_months": 4,
+        "start": "2016-01-29",
+        "end": "2026-09-30",
+        "months": 129,
+        "cagr": 0.16584862235303133,
+        "vol": 0.30396152493669876,
+        "sharpe": 0.6459723464797018,
+        "mdd": -0.38666473268665114,
+        "calmar": 0.42892099623534385
+      },
+      {
+        "arm": "MOM12_DUAL12",
+        "execution": "lag1",
+        "cost_bps": 20.5,
+        "turnover": 0.6413067552602436,
+        "average_exposure": 0.9689922480620154,
+        "cash_months": 4,
+        "start": "2016-01-29",
+        "end": "2026-09-30",
+        "months": 129,
+        "cagr": 0.15212833664618852,
+        "vol": 0.30401498381227277,
+        "sharpe": 0.6066228431982378,
+        "mdd": -0.3906587234139852,
+        "calmar": 0.38941492286856344
+      }
+    ],
+    "bootstrap": [
+      {
+        "candidate": "EW_DUAL6",
+        "control": "UNIVERSE_EW",
+        "execution": "paper_like",
+        "cost_bps": 5.0,
+        "sharpe_difference": 0.023218340867588075,
+        "ci95": [
+          -0.3446737156817942,
+          0.37693592580345286
+        ],
+        "p_two_sided": 0.866,
+        "bh_q": 0.9094
+      },
+      {
+        "candidate": "BM5_DUAL6",
+        "control": "BM5_LONG",
+        "execution": "paper_like",
+        "cost_bps": 5.0,
+        "sharpe_difference": 0.030299077879511485,
+        "ci95": [
+          -0.28480771576693925,
+          0.3651127377808813
+        ],
+        "p_two_sided": 0.8536,
+        "bh_q": 0.9094
+      },
+      {
+        "candidate": "CARRY_DUAL6",
+        "control": "CARRY_LONG",
+        "execution": "paper_like",
+        "cost_bps": 5.0,
+        "sharpe_difference": -0.16114443626652725,
+        "ci95": [
+          -0.49853728113566786,
+          0.14468968011440764
+        ],
+        "p_two_sided": 0.2942,
+        "bh_q": 0.7845333333333334
+      },
+      {
+        "candidate": "MOM6_DUAL6",
+        "control": "MOM6_LONG",
+        "execution": "paper_like",
+        "cost_bps": 5.0,
+        "sharpe_difference": -0.17435322619261107,
+        "ci95": [
+          -0.46269291794015327,
+          0.10366507824398855
+        ],
+        "p_two_sided": 0.2076,
+        "bh_q": 0.7845333333333334
+      },
+      {
+        "candidate": "EW_DUAL12",
+        "control": "UNIVERSE_EW",
+        "execution": "paper_like",
+        "cost_bps": 5.0,
+        "sharpe_difference": -0.04474404464346532,
+        "ci95": [
+          -0.45989876561062865,
+          0.36196691941704845
+        ],
+        "p_two_sided": 0.8848,
+        "bh_q": 0.9094
+      },
+      {
+        "candidate": "BM5_DUAL12",
+        "control": "BM5_LONG",
+        "execution": "paper_like",
+        "cost_bps": 5.0,
+        "sharpe_difference": 0.015996511705781688,
+        "ci95": [
+          -0.3505180022703342,
+          0.38475286378151075
+        ],
+        "p_two_sided": 0.9094,
+        "bh_q": 0.9094
+      },
+      {
+        "candidate": "CARRY_DUAL12",
+        "control": "CARRY_LONG",
+        "execution": "paper_like",
+        "cost_bps": 5.0,
+        "sharpe_difference": -0.23765801541738205,
+        "ci95": [
+          -0.608205917974221,
+          0.1308549754181479
+        ],
+        "p_two_sided": 0.2084,
+        "bh_q": 0.7845333333333334
+      },
+      {
+        "candidate": "MOM12_DUAL12",
+        "control": "MOM12_LONG",
+        "execution": "paper_like",
+        "cost_bps": 5.0,
+        "sharpe_difference": -0.10693913356344036,
+        "ci95": [
+          -0.45788020887215464,
+          0.22883812148779303
+        ],
+        "p_two_sided": 0.5694,
+        "bh_q": 0.9094
+      },
+      {
+        "candidate": "EW_DUAL6",
+        "control": "UNIVERSE_EW",
+        "execution": "paper_like",
+        "cost_bps": 20.5,
+        "sharpe_difference": -0.02936896701757308,
+        "ci95": [
+          -0.3969313099782478,
+          0.3195610519722064
+        ],
+        "p_two_sided": 0.898,
+        "bh_q": 0.8992
+      },
+      {
+        "candidate": "BM5_DUAL6",
+        "control": "BM5_LONG",
+        "execution": "paper_like",
+        "cost_bps": 20.5,
+        "sharpe_difference": 0.02964604441493857,
+        "ci95": [
+          -0.2863134326052216,
+          0.3657118580522895
+        ],
+        "p_two_sided": 0.8554,
+        "bh_q": 0.8992
+      },
+      {
+        "candidate": "CARRY_DUAL6",
+        "control": "CARRY_LONG",
+        "execution": "paper_like",
+        "cost_bps": 20.5,
+        "sharpe_difference": -0.17202394245055008,
+        "ci95": [
+          -0.514590484709342,
+          0.13347806497081077
+        ],
+        "p_two_sided": 0.2674,
+        "bh_q": 0.7130666666666667
+      },
+      {
+        "candidate": "MOM6_DUAL6",
+        "control": "MOM6_LONG",
+        "execution": "paper_like",
+        "cost_bps": 20.5,
+        "sharpe_difference": -0.1867982472447013,
+        "ci95": [
+          -0.47771007403273225,
+          0.0934084922570992
+        ],
+        "p_two_sided": 0.181,
+        "bh_q": 0.7130666666666667
+      },
+      {
+        "candidate": "EW_DUAL12",
+        "control": "UNIVERSE_EW",
+        "execution": "paper_like",
+        "cost_bps": 20.5,
+        "sharpe_difference": -0.08079382102008992,
+        "ci95": [
+          -0.49690684384481093,
+          0.32420867845057144
+        ],
+        "p_two_sided": 0.7452,
+        "bh_q": 0.8992
+      },
+      {
+        "candidate": "BM5_DUAL12",
+        "control": "BM5_LONG",
+        "execution": "paper_like",
+        "cost_bps": 20.5,
+        "sharpe_difference": 0.018234447684010096,
+        "ci95": [
+          -0.3531691126339427,
+          0.3906157598857268
+        ],
+        "p_two_sided": 0.8992,
+        "bh_q": 0.8992
+      },
+      {
+        "candidate": "CARRY_DUAL12",
+        "control": "CARRY_LONG",
+        "execution": "paper_like",
+        "cost_bps": 20.5,
+        "sharpe_difference": -0.2315598388835649,
+        "ci95": [
+          -0.6054101713690225,
+          0.13914526526282095
+        ],
+        "p_two_sided": 0.2218,
+        "bh_q": 0.7130666666666667
+      },
+      {
+        "candidate": "MOM12_DUAL12",
+        "control": "MOM12_LONG",
+        "execution": "paper_like",
+        "cost_bps": 20.5,
+        "sharpe_difference": -0.11394714460913934,
+        "ci95": [
+          -0.4636033401556345,
+          0.22013224965828498
+        ],
+        "p_two_sided": 0.5328,
+        "bh_q": 0.8992
+      },
+      {
+        "candidate": "EW_DUAL6",
+        "control": "UNIVERSE_EW",
+        "execution": "lag1",
+        "cost_bps": 5.0,
+        "sharpe_difference": -0.12379501497093726,
+        "ci95": [
+          -0.4735798633194029,
+          0.2201859735592484
+        ],
+        "p_two_sided": 0.4938,
+        "bh_q": 0.6584
+      },
+      {
+        "candidate": "BM5_DUAL6",
+        "control": "BM5_LONG",
+        "execution": "lag1",
+        "cost_bps": 5.0,
+        "sharpe_difference": -0.4435034377102449,
+        "ci95": [
+          -0.8331606002289317,
+          -0.05090444571519434
+        ],
+        "p_two_sided": 0.0286,
+        "bh_q": 0.2288
+      },
+      {
+        "candidate": "CARRY_DUAL6",
+        "control": "CARRY_LONG",
+        "execution": "lag1",
+        "cost_bps": 5.0,
+        "sharpe_difference": -0.1339473929372237,
+        "ci95": [
+          -0.4815169419962703,
+          0.2121981504787967
+        ],
+        "p_two_sided": 0.439,
+        "bh_q": 0.6584
+      },
+      {
+        "candidate": "MOM6_DUAL6",
+        "control": "MOM6_LONG",
+        "execution": "lag1",
+        "cost_bps": 5.0,
+        "sharpe_difference": -0.13866858674902155,
+        "ci95": [
+          -0.4885798900497887,
+          0.17533788357146127
+        ],
+        "p_two_sided": 0.3574,
+        "bh_q": 0.6584
+      },
+      {
+        "candidate": "EW_DUAL12",
+        "control": "UNIVERSE_EW",
+        "execution": "lag1",
+        "cost_bps": 5.0,
+        "sharpe_difference": 0.030128920515578746,
+        "ci95": [
+          -0.26172234445025566,
+          0.36631865522324514
+        ],
+        "p_two_sided": 0.8222,
+        "bh_q": 0.8222
+      },
+      {
+        "candidate": "BM5_DUAL12",
+        "control": "BM5_LONG",
+        "execution": "lag1",
+        "cost_bps": 5.0,
+        "sharpe_difference": 0.16899144190750434,
+        "ci95": [
+          -0.2133751080563455,
+          0.5693142397935209
+        ],
+        "p_two_sided": 0.4086,
+        "bh_q": 0.6584
+      },
+      {
+        "candidate": "CARRY_DUAL12",
+        "control": "CARRY_LONG",
+        "execution": "lag1",
+        "cost_bps": 5.0,
+        "sharpe_difference": -0.06123703900941915,
+        "ci95": [
+          -0.38942486800678566,
+          0.2595216423151361
+        ],
+        "p_two_sided": 0.7142,
+        "bh_q": 0.8162285714285714
+      },
+      {
+        "candidate": "MOM12_DUAL12",
+        "control": "MOM12_LONG",
+        "execution": "lag1",
+        "cost_bps": 5.0,
+        "sharpe_difference": -0.16771445260095036,
+        "ci95": [
+          -0.3773883327506992,
+          0.041699901666831074
+        ],
+        "p_two_sided": 0.1176,
+        "bh_q": 0.4704
+      },
+      {
+        "candidate": "EW_DUAL6",
+        "control": "UNIVERSE_EW",
+        "execution": "lag1",
+        "cost_bps": 20.5,
+        "sharpe_difference": -0.17621468842370994,
+        "ci95": [
+          -0.5290678613628579,
+          0.16846304209166088
+        ],
+        "p_two_sided": 0.3244,
+        "bh_q": 0.5626666666666666
+      },
+      {
+        "candidate": "BM5_DUAL6",
+        "control": "BM5_LONG",
+        "execution": "lag1",
+        "cost_bps": 20.5,
+        "sharpe_difference": -0.44355867069892013,
+        "ci95": [
+          -0.8326803581024301,
+          -0.05046473830189974
+        ],
+        "p_two_sided": 0.0288,
+        "bh_q": 0.2304
+      },
+      {
+        "candidate": "CARRY_DUAL6",
+        "control": "CARRY_LONG",
+        "execution": "lag1",
+        "cost_bps": 20.5,
+        "sharpe_difference": -0.13884368331091934,
+        "ci95": [
+          -0.48577644763051553,
+          0.20518775908894654
+        ],
+        "p_two_sided": 0.422,
+        "bh_q": 0.5626666666666666
+      },
+      {
+        "candidate": "MOM6_DUAL6",
+        "control": "MOM6_LONG",
+        "execution": "lag1",
+        "cost_bps": 20.5,
+        "sharpe_difference": -0.14949409645917658,
+        "ci95": [
+          -0.5020216944048376,
+          0.16588881922840526
+        ],
+        "p_two_sided": 0.3258,
+        "bh_q": 0.5626666666666666
+      },
+      {
+        "candidate": "EW_DUAL12",
+        "control": "UNIVERSE_EW",
+        "execution": "lag1",
+        "cost_bps": 20.5,
+        "sharpe_difference": -0.0032895123234436096,
+        "ci95": [
+          -0.29603448065288646,
+          0.33055930094559216
+        ],
+        "p_two_sided": 0.9934,
+        "bh_q": 0.9934
+      },
+      {
+        "candidate": "BM5_DUAL12",
+        "control": "BM5_LONG",
+        "execution": "lag1",
+        "cost_bps": 20.5,
+        "sharpe_difference": 0.17123606530431848,
+        "ci95": [
+          -0.21275252173657153,
+          0.5706432738204378
+        ],
+        "p_two_sided": 0.4004,
+        "bh_q": 0.5626666666666666
+      },
+      {
+        "candidate": "CARRY_DUAL12",
+        "control": "CARRY_LONG",
+        "execution": "lag1",
+        "cost_bps": 20.5,
+        "sharpe_difference": -0.05860809864119046,
+        "ci95": [
+          -0.3889971333367655,
+          0.2637252791026836
+        ],
+        "p_two_sided": 0.7282,
+        "bh_q": 0.8322285714285714
+      },
+      {
+        "candidate": "MOM12_DUAL12",
+        "control": "MOM12_LONG",
+        "execution": "lag1",
+        "cost_bps": 20.5,
+        "sharpe_difference": -0.1690334905930017,
+        "ci95": [
+          -0.3826998160387158,
+          0.04113658676053239
+        ],
+        "p_two_sided": 0.1152,
+        "bh_q": 0.4608
+      }
+    ],
+    "interpretation": "BM5+dual12 improves history especially under lag1 but lacks robust statistical support and fails the paper-like +0.10 Sharpe gate."
+  },
+  "conclusions": {
+    "code_correctness": "PASS",
+    "methodological_validity": "PASS",
+    "report_reproduction": "PASS",
+    "live_profitability": "NOT_ASSESSED"
+  },
+  "scope_note": "Dual-momentum filter is a research extension. BM5+dual12 is shadow-only; no production change."
+}
