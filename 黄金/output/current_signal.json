@@ -1,0 +1,17 @@
+{
+  "asof": "2026-11-20",
+  "strategies": {
+    "M1": {
+      "target": 0.0,
+      "monthly_m1_target": 0.0,
+      "vol15_scale": 0.7049886238204155
+    },
+    "M1_VOL15": {
+      "target": 0.0,
+      "monthly_m1_target": 0.0,
+      "vol15_scale": 0.7049886238204155
+    }
+  },
+  "primary_cost_bp": 10,
+  "future_profitability": "NOT_ASSESSED"
+}

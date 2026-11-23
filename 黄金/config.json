@@ -1,0 +1,45 @@
+{
+  "strategy_id": "GOLD-M1-VOL15-20261123",
+  "version": "1.0.0",
+  "status": "research_frozen",
+  "universe": {
+    "asset": "SGE Au99.99 spot proxy",
+    "long_only": true,
+    "cash_return": 0.0,
+    "leverage": 1.0
+  },
+  "monthly_signal": {
+    "name": "M1",
+    "votes": {
+      "dxy_down": "DXY below previous month-end observation",
+      "ism_below_50": "ISM manufacturing PMI below 50",
+      "cpi_vol_up": "6-month standard deviation of CPI YoY increases",
+      "cftc_yoy_up": "CFTC gold non-commercial net long above its value 12 months earlier",
+      "spdr_up": "SPDR gold tonnes above previous month-end observation",
+      "tips_above_mean": "10Y TIPS above the mean of current and previous month-end observations"
+    },
+    "threshold": "hold gold when at least 3 votes are bullish; otherwise cash",
+    "position": [0.0, 1.0],
+    "decision_frequency": "month-end",
+    "execution": "next available SGE session on the frozen source execution date"
+  },
+  "risk_overlay": {
+    "name": "VOL15",
+    "formula": "clip(0.15 / annualized_std(close.pct_change(), 63, ddof=1), 0.3, 1.0)",
+    "timing": "shift one SGE session before the target is applied",
+    "applies_to": "M1 monthly target"
+  },
+  "costs_bp": [10, 20],
+  "primary_cost_bp": 10,
+  "backtest": {
+    "start": "2017-01-03",
+    "end": "2026-11-20",
+    "metrics": ["cagr", "sharpe_rf0", "sortino_rf0", "max_drawdown", "calmar", "turnover", "mean_exposure"]
+  },
+  "limitations": [
+    "Historical macro observations are not a certified vintage panel.",
+    "Exact intraday publication timestamps for DXY and SPDR are unavailable.",
+    "SGE Au99.99 spot is not ETF execution.",
+    "All historical periods have been inspected; there is no independent OOS."
+  ]
+}
