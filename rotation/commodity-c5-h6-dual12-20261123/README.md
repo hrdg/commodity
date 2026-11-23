@@ -83,7 +83,7 @@
 | 5 | H6 + dual12后C5 | `code/sleeve_b_run.py` (`H6_PLUS_DUAL12_C5`) | `results/sleeve_b_metrics.csv` |
 | 6 | H6 + dual12后H6 | `code/sleeve_b_run.py` (`H6_PLUS_DUAL12_H6`) | `results/sleeve_b_metrics.csv` |
 | 7 | H6 + 宽商品 BM5+dual12 | `code/h6_dual_fusion_run.py` (`FUSION50`) | `results/h6_dual_fusion_metrics_f2.csv` |
-| 8 | H6 最长历史 | `max_history/code/run.py` | `max_history/results/metrics.csv`, `max_history/figures/nav_maxhistory.png` |
+| 8 | H6 最长历史 | `max_history/reproduction/run.py` | `max_history/artifacts/metrics.csv`, `max_history/artifacts/nav_maxhistory.png` |
 
 ## 目录
 

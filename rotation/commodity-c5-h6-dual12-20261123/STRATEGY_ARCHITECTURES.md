@@ -56,7 +56,7 @@ same six-node C5 / frozen H6 / RANK2 / TIP / DD
 ```
 
 这不是参数扩展。节点首次可用时间为：WTI/有色/黄金/白银 `2016-01-29`，豆粕
-`2019-07-31`，能化 `2021-01-29`。代码入口为 `max_history/code/run.py`。
+`2019-07-31`，能化 `2021-01-29`。代码入口为 `max_history/reproduction/run.py`。
 
 ## 3. dual12后C5
 
