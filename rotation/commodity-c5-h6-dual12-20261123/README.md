@@ -15,6 +15,58 @@
 | H6 + dual12后H6 | 否决为资本增强 | 与单独H6相关0.936，仅比C5混合高0.016 Sharpe |
 | H6 + 宽商品BM5+dual12 | 影子组合 | 历史分散化明显，但跨ETF/期货载体，非单一可执行策略 |
 
+## 参考论文
+
+这些论文提供机制或对照，不表示原文曾测试过本文的完整策略。
+
+| 文献 | 在本文中的用途 | 原文边界 |
+|---|---|---|
+| Boons & Porras Prado (2019), *Basis-Momentum in the Futures Curve and Volatility Risk*, Journal of Finance, DOI [10.1111/jofi.12738](https://doi.org/10.1111/jofi.12738) | first/second-nearby basis-momentum；检验对未来 nearby 和 spread 收益的预测 | 原文使用更宽的商品期货横截面；本文后续主要映射到六ETF和47个合同品种代理 |
+| Kwon, Kang & Yun (2021), *Basis-momentum strategies and ranking periods*, Finance Research Letters, DOI [10.1016/j.frl.2021.101997](https://doi.org/10.1016/j.frl.2021.101997) | 把 BM 历史拆成当前月、近五个月和更早窗口；支持使用 BM(5,1) | 排序周期研究不是六ETF交易规则；H6 的 `gap=0.25` 来自 AW7 父策略，不是本文参数 |
+| Koijen, Moskowitz, Pedersen & Vrugt (2018), *Carry*, Journal of Financial Economics, DOI [10.1016/j.jfineco.2017.11.002](https://doi.org/10.1016/j.jfineco.2017.11.002) | 当前期货曲线斜率/展期收益的对照变量 | 本文没有用 Carry 作为最终商品腿主排序 |
+| Moskowitz, Ooi & Pedersen (2012), *Time Series Momentum*, Journal of Financial Economics, DOI [10.1016/j.jfineco.2011.11.003](https://doi.org/10.1016/j.jfineco.2011.11.003) | 绝对动量和 time-series momentum 的机制背景 | 本文双动量过滤为本地工程规则，不是 TSMOM 原策略复现 |
+| Antonacci (2012), *Risk Premia Harvesting Through Dual Momentum*, SSRN [2042750](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2042750) | “绝对动量 + 相对动量”双动量资格框架 | 本文使用固定的12个月、相对前50%与商品ETF/合同池；这些参数和载体并非原文完整移植 |
+
+### 哪些是原论文、哪些是本项目扩展
+
+- **原论文机制**：BP/Kwon 的 first/second-nearby BM 定义与 BM5 排序窗；Carry 的曲线斜率定义；TSMOM/双动量的绝对与相对动量概念。
+- **AW7 现有基线**：六商品 ETF 上的 C5、RANK2、TIP S、下一交易日 DD。C5 来自现有公开策略/父代码，不把它归因给上述 BM 论文。
+- **本项目扩展**：H6 近分换序、BM5+dual12 过滤、各策略的 50/50 月收益融合。只有明确的代码和实验结果才证明这些扩展在本历史样本中的表现。
+
+## 改进思路与演化路径
+
+```text
+1. 现有商品腿：C5价格动量
+   -> 趋势清楚时有效，但可能忽略期限结构，并依赖短周期反弹
+
+2. BP2019 / Kwon2021：加入 first/second-nearby BM5
+   -> 直接替代、50/50融合、绝对确认均未改善扣费结果
+
+3. H6：只让BM5处理C5无法区分的近分状态
+   -> 局部经济结果改善，但触发少、标签置换不达95%分位
+
+4. dual12：先用绝对+相对动量过滤候选，再按BM5排序
+   -> 47商品邻近日收益缺少稳定增量；六ETF过滤也删除过多反弹收益
+
+5. H6 + dual12后C5/H6：同池资本融合
+   -> 两条腿相关0.93–0.94，混合后跑输单独H6
+
+6. H6 + 宽商品BM5+dual12：跨载体资本融合
+   -> 月收益相关约-0.16，历史Sharpe/MDD改善
+   -> 但没有统一ETF/期货执行账本、无独立OOS，所以仅保留影子
+```
+
+改进假设与对应裁决：
+
+| 假设 | 改动层 | 裁决 |
+|---|---|---|
+| BM5 可以替代 C5 | 排序 | 否决：nearby/spread 与扣费结果不足 |
+| BM5 可以辅助 C5 融合 | 排序 | 否决：50/50拉低 Sharpe |
+| BM5 适合 C5 近分 tie-break | 事件层 | 历史影子；4次触发，92%置换分位 |
+| 双动量过滤能改善 BM5 | 候选资格/预算 | 6个月否决；12个月只在特定口径局部改善 |
+| H6 和 dual12 串行融合 | 排序+事件 | 否决：过滤损失大于 H6 局部增益 |
+| H6 和宽商品 BM5+dual12 资本融合 | 组合/配置 | 历史影子，需统一执行和 OOS |
+
 ## 七个策略的代码入口
 
 | 编号 | 策略 | 代码/配置 | 结果 |
