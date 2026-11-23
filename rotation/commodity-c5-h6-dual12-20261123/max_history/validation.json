@@ -1,0 +1,543 @@
+{
+  "schema_version": "1.0",
+  "strategy_sha256": "0be3faa2fee42565b5049f620cbfb1a6f1251e55f67bc7b9c74c497632cc1d16",
+  "code_revision": "4df5e88fb6b943813935fcc638fdecccb4964be0772950403d90411849809f91",
+  "data_snapshot": {
+    "manifest": "data_certificate.json",
+    "manifest_sha256": "d2606e432b7b79c81006ace0b4d4a76fc114ea91931ce39ebb25e9ff8431f900",
+    "decision": "PARTIAL",
+    "node_panel_sha256": "86ad861ed3fc824a04b283fdd35abf98c4ff5acb005e5631d0506b4efbc0a0c1"
+  },
+  "environment": {
+    "python": "3.12",
+    "pandas": "3.0.6",
+    "numpy": "2.5.3"
+  },
+  "checks": [
+    {
+      "id": "source_fidelity",
+      "status": "PASS",
+      "criterion": "Contract BM5 source and H6 parent rule are identified.",
+      "evidence": [
+        {
+          "path": "evidence.json"
+        },
+        {
+          "path": "data_requirement.json"
+        },
+        {
+          "path": "data_certificate.json"
+        }
+      ],
+      "reason": null
+    },
+    {
+      "id": "formula_fixture",
+      "status": "PASS",
+      "criterion": "Partial group aggregation and no-fill tests pass.",
+      "evidence": [
+        {
+          "path": "logs/unit_tests.log"
+        },
+        {
+          "path": "reproduction/test_run.py"
+        }
+      ],
+      "reason": null
+    },
+    {
+      "id": "point_in_time",
+      "status": "PASS",
+      "criterion": "C5 and BM5 use completed month-end data; fills remain next-session.",
+      "evidence": [
+        {
+          "path": "reproduction/run.py"
+        },
+        {
+          "path": "REPORT.md"
+        }
+      ],
+      "reason": null
+    },
+    {
+      "id": "source_lineage",
+      "status": "PASS",
+      "criterion": "Parent data and partial node panel are hash-linked.",
+      "evidence": [
+        {
+          "path": "data_certificate.json"
+        },
+        {
+          "path": "evidence.json"
+        }
+      ],
+      "reason": "Parent remains PARTIAL due no release vintage."
+    },
+    {
+      "id": "historical_universe",
+      "status": "PASS",
+      "criterion": "BM5 availability follows historical contract groups.",
+      "evidence": [
+        {
+          "path": "artifacts/node_bm5_partial.csv"
+        },
+        {
+          "path": "reproduction/run.py"
+        }
+      ],
+      "reason": null
+    },
+    {
+      "id": "execution",
+      "status": "PASS",
+      "criterion": "H6 and baseline use the same next-open and risk path.",
+      "evidence": [
+        {
+          "path": "artifacts/daily_returns.csv"
+        },
+        {
+          "path": "ALGORITHM.md"
+        }
+      ],
+      "reason": null
+    },
+    {
+      "id": "accounting",
+      "status": "PASS",
+      "criterion": "All 16 arm/cost metrics are finite.",
+      "evidence": [
+        {
+          "path": "artifacts/metrics.csv"
+        }
+      ],
+      "reason": null
+    },
+    {
+      "id": "smoke_backtest",
+      "status": "PASS",
+      "criterion": "Max-history and strict-six arms both ran at two costs.",
+      "evidence": [
+        {
+          "path": "artifacts/metrics.csv"
+        },
+        {
+          "path": "logs/run.log"
+        }
+      ],
+      "reason": null
+    },
+    {
+      "id": "reproducibility",
+      "status": "PASS",
+      "criterion": "Strict-six replay and unit tests pass.",
+      "evidence": [
+        {
+          "path": "artifacts/result.json"
+        },
+        {
+          "path": "logs/unit_tests.log"
+        }
+      ],
+      "reason": null
+    },
+    {
+      "id": "metrics_comparison",
+      "status": "PASS",
+      "criterion": "Metrics, yearly returns, events, permutation and NAV are recorded.",
+      "evidence": [
+        {
+          "path": "artifacts/metrics.csv"
+        },
+        {
+          "path": "artifacts/yearly.csv"
+        },
+        {
+          "path": "artifacts/h6_events.csv"
+        },
+        {
+          "path": "artifacts/h6_bm_permutation.csv"
+        },
+        {
+          "path": "artifacts/nav_maxhistory.png"
+        }
+      ],
+      "reason": null
+    },
+    {
+      "id": "reproduction_communication",
+      "status": "PASS",
+      "criterion": "Communication and archive files exist.",
+      "evidence": [
+        {
+          "path": "PRE_REPRO.md"
+        },
+        {
+          "path": "REPORT.md"
+        },
+        {
+          "path": "AUDIT.md"
+        },
+        {
+          "path": "ALGORITHM.md"
+        },
+        {
+          "path": "REPRO_INDEX.md"
+        },
+        {
+          "path": "archive_manifest.json"
+        },
+        {
+          "path": "iterations.jsonl"
+        },
+        {
+          "path": "sample_access.jsonl"
+        }
+      ],
+      "reason": null
+    }
+  ],
+  "command_evidence": [
+    {
+      "command": "/Users/hsh/Documents/Quant/科技轮动/.venv/bin/python3 -m pytest -q reproduction/test_run.py",
+      "cwd": "/Users/hsh/Documents/Quant/科技轮动/research/runs/aw7_commodity_h6_maxhistory_20261123",
+      "executed_at": "2026-11-23T22:51:58+08:00",
+      "exit_code": 0,
+      "log_path": "logs/unit_tests.log"
+    },
+    {
+      "command": "/Users/hsh/Documents/Quant/科技轮动/.venv/bin/python3 reproduction/run.py",
+      "cwd": "/Users/hsh/Documents/Quant/科技轮动/research/runs/aw7_commodity_h6_maxhistory_20261123",
+      "executed_at": "2026-11-23T22:52:34+08:00",
+      "exit_code": 0,
+      "log_path": "logs/run.log"
+    }
+  ],
+  "metric_comparison": {
+    "long_window": {
+      "start": "2016-01-29",
+      "end": "2026-09-30",
+      "complete_six_start": "2021-01-29"
+    },
+    "metrics": [
+      {
+        "arm": "B0_MAX_NODD_5bp",
+        "cost_bps": 5.0,
+        "start": "2016-02-01",
+        "end": "2026-09-30",
+        "days": 2573,
+        "cagr": 0.36494846893453947,
+        "vol": 0.3305987820332163,
+        "sharpe": 1.1060153596772446,
+        "mdd": -0.3688184349579534,
+        "calmar": 0.9895071242199291,
+        "average_exposure": 1.0
+      },
+      {
+        "arm": "B0_MAX_TIPDD_5bp",
+        "cost_bps": 5.0,
+        "start": "2016-02-01",
+        "end": "2026-09-30",
+        "days": 2573,
+        "cagr": 0.2874900651190111,
+        "vol": 0.23881069805653296,
+        "sharpe": 1.1771590341018179,
+        "mdd": -0.240172412916833,
+        "calmar": 1.1970153508786343,
+        "average_exposure": 0.5571317528177225
+      },
+      {
+        "arm": "B0_MAX_NODD_20.5bp",
+        "cost_bps": 20.5,
+        "start": "2016-02-01",
+        "end": "2026-09-30",
+        "days": 2573,
+        "cagr": 0.32559788760390873,
+        "vol": 0.3305568103727313,
+        "sharpe": 1.0175211191666025,
+        "mdd": -0.39753883385276023,
+        "calmar": 0.8190341669224274,
+        "average_exposure": 1.0
+      },
+      {
+        "arm": "B0_MAX_TIPDD_20.5bp",
+        "cost_bps": 20.5,
+        "start": "2016-02-01",
+        "end": "2026-09-30",
+        "days": 2573,
+        "cagr": 0.23610347344770122,
+        "vol": 0.2341880603089291,
+        "sharpe": 1.0217209155899742,
+        "mdd": -0.23524836474765987,
+        "calmar": 1.003634918784488,
+        "average_exposure": 0.5320637388262728
+      },
+      {
+        "arm": "H6_MAX_NODD_5bp",
+        "cost_bps": 5.0,
+        "start": "2016-02-01",
+        "end": "2026-09-30",
+        "days": 2573,
+        "cagr": 0.40548207590517427,
+        "vol": 0.331717818338581,
+        "sharpe": 1.1917270135526445,
+        "mdd": -0.3662608494389412,
+        "calmar": 1.1070855007471159,
+        "average_exposure": 1.0
+      },
+      {
+        "arm": "H6_MAX_TIPDD_5bp",
+        "cost_bps": 5.0,
+        "start": "2016-02-01",
+        "end": "2026-09-30",
+        "days": 2573,
+        "cagr": 0.33062173594011557,
+        "vol": 0.24092535041682156,
+        "sharpe": 1.3058140860302199,
+        "mdd": -0.240172412916833,
+        "calmar": 1.3766016334882034,
+        "average_exposure": 0.569374271278663
+      },
+      {
+        "arm": "H6_MAX_NODD_20.5bp",
+        "cost_bps": 20.5,
+        "start": "2016-02-01",
+        "end": "2026-09-30",
+        "days": 2573,
+        "cagr": 0.36537014034920734,
+        "vol": 0.3317013714623706,
+        "sharpe": 1.1043725947014997,
+        "mdd": -0.3969651738498393,
+        "calmar": 0.9204085507194052,
+        "average_exposure": 1.0
+      },
+      {
+        "arm": "H6_MAX_TIPDD_20.5bp",
+        "cost_bps": 20.5,
+        "start": "2016-02-01",
+        "end": "2026-09-30",
+        "days": 2573,
+        "cagr": 0.2814877401839835,
+        "vol": 0.23649499300204296,
+        "sharpe": 1.1666181165579028,
+        "mdd": -0.23524836474765987,
+        "calmar": 1.1965555657992457,
+        "average_exposure": 0.5450835600466382
+      },
+      {
+        "arm": "B0_STRICT2021_NODD_5bp",
+        "cost_bps": 5.0,
+        "start": "2021-02-01",
+        "end": "2026-09-30",
+        "days": 1371,
+        "cagr": 0.6046226531530587,
+        "vol": 0.35610748598949976,
+        "sharpe": 1.505614760552007,
+        "mdd": -0.2708600770218229,
+        "calmar": 2.232232449318638,
+        "average_exposure": 1.0
+      },
+      {
+        "arm": "B0_STRICT2021_TIPDD_5bp",
+        "cost_bps": 5.0,
+        "start": "2021-02-01",
+        "end": "2026-09-30",
+        "days": 1371,
+        "cagr": 0.5138024338513081,
+        "vol": 0.2770100900777919,
+        "sharpe": 1.6350021605825136,
+        "mdd": -0.23103238772494616,
+        "calmar": 2.223941149164816,
+        "average_exposure": 0.5481400437636762
+      },
+      {
+        "arm": "B0_STRICT2021_NODD_20.5bp",
+        "cost_bps": 20.5,
+        "start": "2021-02-01",
+        "end": "2026-09-30",
+        "days": 1371,
+        "cagr": 0.5609517398242416,
+        "vol": 0.35613077643722524,
+        "sharpe": 1.427917136953241,
+        "mdd": -0.2708600770218229,
+        "calmar": 2.071001920962484,
+        "average_exposure": 1.0
+      },
+      {
+        "arm": "B0_STRICT2021_TIPDD_20.5bp",
+        "cost_bps": 20.5,
+        "start": "2021-02-01",
+        "end": "2026-09-30",
+        "days": 1371,
+        "cagr": 0.4472445558712972,
+        "vol": 0.27355678572050585,
+        "sharpe": 1.4876639536923062,
+        "mdd": -0.23228790762225038,
+        "calmar": 1.9253888867887696,
+        "average_exposure": 0.5317286652078774
+      },
+      {
+        "arm": "H6_STRICT2021_NODD_5bp",
+        "cost_bps": 5.0,
+        "start": "2021-02-01",
+        "end": "2026-09-30",
+        "days": 1371,
+        "cagr": 0.6980952277794077,
+        "vol": 0.35731142475636546,
+        "sharpe": 1.6605087025936542,
+        "mdd": -0.270860077021823,
+        "calmar": 2.577327878863309,
+        "average_exposure": 1.0
+      },
+      {
+        "arm": "H6_STRICT2021_TIPDD_5bp",
+        "cost_bps": 5.0,
+        "start": "2021-02-01",
+        "end": "2026-09-30",
+        "days": 1371,
+        "cagr": 0.6122678905104011,
+        "vol": 0.28009267173162267,
+        "sharpe": 1.8454118463053975,
+        "mdd": -0.23103238772494628,
+        "calmar": 2.6501387815778092,
+        "average_exposure": 0.5711159737417943
+      },
+      {
+        "arm": "H6_STRICT2021_NODD_20.5bp",
+        "cost_bps": 20.5,
+        "start": "2021-02-01",
+        "end": "2026-09-30",
+        "days": 1371,
+        "cagr": 0.6546771803110039,
+        "vol": 0.35739187959884544,
+        "sharpe": 1.5875925653197382,
+        "mdd": -0.270860077021823,
+        "calmar": 2.4170309168828044,
+        "average_exposure": 1.0
+      },
+      {
+        "arm": "H6_STRICT2021_TIPDD_20.5bp",
+        "cost_bps": 20.5,
+        "start": "2021-02-01",
+        "end": "2026-09-30",
+        "days": 1371,
+        "cagr": 0.5428531294908434,
+        "vol": 0.2772055438484137,
+        "sharpe": 1.7028062792934764,
+        "mdd": -0.23228790762225038,
+        "calmar": 2.33698402576185,
+        "average_exposure": 0.5579868708971554
+      }
+    ],
+    "yearly": {
+      "2016": {
+        "B0": 0.08547063220348439,
+        "H6": 0.08547063220348439,
+        "delta": 0.0
+      },
+      "2017": {
+        "B0": 0.12951184951942896,
+        "H6": 0.12231010579016544,
+        "delta": -0.007201743729263521
+      },
+      "2018": {
+        "B0": 0.07413741968665111,
+        "H6": 0.07413741968665111,
+        "delta": 0.0
+      },
+      "2019": {
+        "B0": 0.12255640922225086,
+        "H6": 0.12255640922225086,
+        "delta": 0.0
+      },
+      "2020": {
+        "B0": 0.011887902444539522,
+        "H6": 0.011887902444539522,
+        "delta": 0.0
+      },
+      "2021": {
+        "B0": 0.2830403928695595,
+        "H6": 0.400217943506354,
+        "delta": 0.11717755063679447
+      },
+      "2022": {
+        "B0": 0.08968347393891385,
+        "H6": 0.08968347393891385,
+        "delta": 0.0
+      },
+      "2023": {
+        "B0": 0.05820082702510421,
+        "H6": 0.2268078914023477,
+        "delta": 0.1686070643772435
+      },
+      "2024": {
+        "B0": 0.09248968601211471,
+        "H6": 0.15422418212989197,
+        "delta": 0.06173449611777726
+      },
+      "2025": {
+        "B0": 0.8477320892293445,
+        "H6": 0.9475893314224935,
+        "delta": 0.09985724219314895
+      },
+      "2026": {
+        "B0": 1.954238069364291,
+        "H6": 1.954238069364291,
+        "delta": 0.0
+      }
+    },
+    "events": [
+      {
+        "execution": "2017-04-05",
+        "target": "159980.XSHE",
+        "turnover": 2.0,
+        "gross": 0.017042891038429486
+      },
+      {
+        "execution": "2019-01-02",
+        "target": "161226.XSHE",
+        "turnover": 2.0,
+        "gross": 0.005095541401273884
+      },
+      {
+        "execution": "2021-04-01",
+        "target": "159981.XSHE",
+        "turnover": 2.0,
+        "gross": 0.009090909090909038
+      },
+      {
+        "execution": "2023-06-01",
+        "target": "159985.XSHE",
+        "turnover": 2.0,
+        "gross": -0.0057903879559930704
+      },
+      {
+        "execution": "2024-12-02",
+        "target": "160723.XSHE",
+        "turnover": 2.0,
+        "gross": 0.0042887776983560055
+      },
+      {
+        "execution": "2025-04-01",
+        "target": "518880.XSHG",
+        "turnover": 0.0,
+        "gross": 0.0007077140835103357
+      }
+    ],
+    "permutation": {
+      "draws": 200,
+      "actual_sharpe": 1.3058140860302199,
+      "mean": 1.2462740304574538,
+      "p05": 1.174912866246761,
+      "p95": 1.3149517302381648,
+      "percentile": 0.875
+    },
+    "interpretation": "H6 remains directionally positive over the longest sample but loses statistical strength: Sharpe 1.306 vs C5 1.177 and permutation only 87.5th percentile."
+  },
+  "conclusions": {
+    "code_correctness": "PASS",
+    "methodological_validity": "PASS",
+    "report_reproduction": "PASS",
+    "live_profitability": "NOT_ASSESSED"
+  },
+  "scope_note": "Maximum-history H6 is research-only. Strict-six replay matches R2; production remains unchanged."
+}

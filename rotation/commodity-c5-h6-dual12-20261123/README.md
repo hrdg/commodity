@@ -9,6 +9,7 @@
 |---|---|---|
 | 六商品 C5/RANK2/TIP/DD | 生产基线 | 当前商品腿逻辑，研究历史含代理段 |
 | 原 H6 | 历史影子候选 | 4次触发，经济结果好但标签置换仅92%分位 |
+| H6 最长历史 | 历史影子候选 | 起点前移至2016-02，Sharpe增量收缩且置换87.5%分位 |
 | dual12后C5 | 否决 | 六ETF双动量过滤明显破坏C5反弹收益 |
 | dual12后H6 | 否决 | H6局部有效，但不能抵消过滤损失 |
 | H6 + dual12后C5 | 否决为资本增强 | 与单独H6相关0.930，混合后Sharpe下降 |
@@ -45,13 +46,16 @@
 3. H6：只让BM5处理C5无法区分的近分状态
    -> 局部经济结果改善，但触发少、标签置换不达95%分位
 
-4. dual12：先用绝对+相对动量过滤候选，再按BM5排序
+4. H6最长历史：缺失节点不填零，仅前二BM5可得时换序
+   -> 2016-02起仍有正向增量，但早期贡献弱、置换降至87.5%分位
+
+5. dual12：先用绝对+相对动量过滤候选，再按BM5排序
    -> 47商品邻近日收益缺少稳定增量；六ETF过滤也删除过多反弹收益
 
-5. H6 + dual12后C5/H6：同池资本融合
+6. H6 + dual12后C5/H6：同池资本融合
    -> 两条腿相关0.93–0.94，混合后跑输单独H6
 
-6. H6 + 宽商品BM5+dual12：跨载体资本融合
+7. H6 + 宽商品BM5+dual12：跨载体资本融合
    -> 月收益相关约-0.16，历史Sharpe/MDD改善
    -> 但没有统一ETF/期货执行账本、无独立OOS，所以仅保留影子
 ```
@@ -66,6 +70,7 @@
 | 双动量过滤能改善 BM5 | 候选资格/预算 | 6个月否决；12个月只在特定口径局部改善 |
 | H6 和 dual12 串行融合 | 排序+事件 | 否决：过滤损失大于 H6 局部增益 |
 | H6 和宽商品 BM5+dual12 资本融合 | 组合/配置 | 历史影子，需统一执行和 OOS |
+| H6 延长到2016–2026 | 样本层 | 方向性增量仍在，但统计识别更弱；生产不变 |
 
 ## 七个策略的代码入口
 
@@ -78,6 +83,7 @@
 | 5 | H6 + dual12后C5 | `code/sleeve_b_run.py` (`H6_PLUS_DUAL12_C5`) | `results/sleeve_b_metrics.csv` |
 | 6 | H6 + dual12后H6 | `code/sleeve_b_run.py` (`H6_PLUS_DUAL12_H6`) | `results/sleeve_b_metrics.csv` |
 | 7 | H6 + 宽商品 BM5+dual12 | `code/h6_dual_fusion_run.py` (`FUSION50`) | `results/h6_dual_fusion_metrics_f2.csv` |
+| 8 | H6 最长历史 | `max_history/code/run.py` | `max_history/results/metrics.csv`, `max_history/figures/nav_maxhistory.png` |
 
 ## 目录
 
@@ -104,9 +110,11 @@ reports/    完整报告、算法说明和审计
 6. [dual12 过滤报告](reports/DUAL_FILTER_REPORT.md)
 7. [H6/dual12 融合报告](reports/H6_DUAL_FUSION_REPORT.md)
 8. [Sleeve B 比较报告](reports/SLEEVE_B_REPORT.md)
-9. [文件哈希清单](MANIFEST.sha256)
+9. [H6 最长历史报告](max_history/REPORT.md)
+10. [H6 最长历史审计](max_history/AUDIT.md)
+11. [文件哈希清单](MANIFEST.sha256)
 
 ## 生产边界
 
-当前生产商品腿不变。H6 只允许继续前瞻影子；`H6 + 宽商品BM5+dual12`
+当前生产商品腿不变。H6 及最长历史 H6 都只允许继续前瞻影子；`H6 + 宽商品BM5+dual12`
 仅作为设计参考，若要实施必须先建立统一ETF/期货执行、保证金、资金流与风控账本。

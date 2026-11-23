@@ -41,6 +41,23 @@ BM5 为过去五个月、不含当月的 first/second-nearby 复合收益差。
 代码：`code/h6_switch_run.py`
 配置：`configs/h6.strategy.json`
 
+### H6 最长历史只改变可用样本
+
+```text
+same six-node C5 / frozen H6 / RANK2 / TIP / DD
+  -> C5 always receives a normal ranking
+  -> inspect BM5 for the C5 first and second
+       both finite:
+         apply frozen H6 gap=0.25 and BM tolerance=1e-12
+       either missing:
+         keep C5 order, no interpolation and no zero fill
+  -> available history begins 2016-01
+  -> strict-six subwindow must replay R2 exactly
+```
+
+这不是参数扩展。节点首次可用时间为：WTI/有色/黄金/白银 `2016-01-29`，豆粕
+`2019-07-31`，能化 `2021-01-29`。代码入口为 `max_history/code/run.py`。
+
 ## 3. dual12后C5
 
 ```text

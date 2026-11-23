@@ -1,0 +1,196 @@
+{
+  "schema_version": "1.0",
+  "run_id": "aw7_commodity_h6_maxhistory_20261123",
+  "strategy_id": "aw7_commodity_h6_maxhistory_20261123-v1",
+  "strategy_sha256": "0be3faa2fee42565b5049f620cbfb1a6f1251e55f67bc7b9c74c497632cc1d16",
+  "generated_at": "2026-11-23T14:54:50.075783+00:00",
+  "status": "complete",
+  "artifacts": [
+    {
+      "role": "communication",
+      "path": "PRE_REPRO.md",
+      "sha256": "6f70dec1f3b5d5d034c9577499d9bcea4b22fdd8345365c17fbce35223ca7e39",
+      "description": "Human-readable implementation and archive guide."
+    },
+    {
+      "role": "communication",
+      "path": "REPRO_INDEX.md",
+      "sha256": "d584d6922113a1595119d6bd367d2b580ab903ca16cd5746c2c02b307759574f",
+      "description": "Human-readable implementation and archive guide."
+    },
+    {
+      "role": "communication",
+      "path": "ALGORITHM.md",
+      "sha256": "ed261f848325ce6bd0563b70f98ad47f004ae41c442eb257bdd86c7838b3d2b7",
+      "description": "Human-readable implementation and archive guide."
+    },
+    {
+      "role": "evidence",
+      "path": "evidence.json",
+      "sha256": "45a943f20662078f4f66ebd9e21722db9e76cc9a4cd589970882df19b000b213",
+      "description": "Source evidence ledger."
+    },
+    {
+      "role": "spec",
+      "path": "strategy.json",
+      "sha256": "0be3faa2fee42565b5049f620cbfb1a6f1251e55f67bc7b9c74c497632cc1d16",
+      "description": "Frozen strategy specification."
+    },
+    {
+      "role": "validation",
+      "path": "validation.json",
+      "sha256": "c3116c819fecd35b3f05edf212e81e92123f32e42d54d20a0617e3f68ac26be8",
+      "description": "Recorded acceptance evidence and conclusions."
+    },
+    {
+      "role": "research_log",
+      "path": "iterations.jsonl",
+      "sha256": "a426ec4383ef6d8f466d8b1b6e078b5e85a90ae645fd3ece29dfea28241df32b",
+      "description": "Evolution attempts and sample-access ledger."
+    },
+    {
+      "role": "research_log",
+      "path": "sample_access.jsonl",
+      "sha256": "d707f8c3ece68f4191f3b924730cb7c0a086c590605f33c1dbf6a81ba70903d9",
+      "description": "Evolution attempts and sample-access ledger."
+    },
+    {
+      "role": "communication",
+      "path": "papers/R1_AW7_basis_momentum.md",
+      "sha256": "492fbcfa92f5212af08ddb428d2e3382b51b64dbbb2765e55200750fa593f8d5",
+      "description": "Human-readable implementation and archive guide."
+    },
+    {
+      "role": "communication",
+      "path": "papers/R2_AW7_H6.md",
+      "sha256": "35bc8f569ba44c5a64a54c7e85655fc6ecfa0264fd872b16273949e3f6887c17",
+      "description": "Human-readable implementation and archive guide."
+    },
+    {
+      "role": "code",
+      "path": "reproduction/run.py",
+      "sha256": "4df5e88fb6b943813935fcc638fdecccb4964be0772950403d90411849809f91",
+      "description": "Executed code snapshot."
+    },
+    {
+      "role": "code",
+      "path": "reproduction/test_run.py",
+      "sha256": "1bf5e8fcdbb50ee4bc6ca3719e67e7be18570a8f12342613307992da1320592f",
+      "description": "Executed code snapshot."
+    },
+    {
+      "role": "code",
+      "path": "reproduction/validate.py",
+      "sha256": "0238d7c3a6e65862e461b7e33d31020425dd76bf57fec9a806a62dbede62e308",
+      "description": "Executed code snapshot."
+    },
+    {
+      "role": "data",
+      "path": "artifacts/node_bm5_partial.csv",
+      "sha256": "86ad861ed3fc824a04b283fdd35abf98c4ff5acb005e5631d0506b4efbc0a0c1",
+      "description": "Run-local certified or derived data artifact."
+    },
+    {
+      "role": "data",
+      "path": "data_certificate.json",
+      "sha256": "d2606e432b7b79c81006ace0b4d4a76fc114ea91931ce39ebb25e9ff8431f900",
+      "description": "Run-local certified or derived data artifact."
+    },
+    {
+      "role": "result",
+      "path": "artifacts/metrics.csv",
+      "sha256": "6b9d684b56e5d75d17533fca86cbb973d8b1261679186764e3740f76e34aad84",
+      "description": "Result table, metric file, or other output evidence."
+    },
+    {
+      "role": "result",
+      "path": "artifacts/yearly.csv",
+      "sha256": "598af44c15764caececd799a69e43baaddfbc3d76abcafe49b6034680f831c12",
+      "description": "Result table, metric file, or other output evidence."
+    },
+    {
+      "role": "result",
+      "path": "artifacts/h6_events.csv",
+      "sha256": "8cf71101a2b777e3b65c7d3d8a6fa7bb34fc618858aa877b2814a479b92a57ff",
+      "description": "Result table, metric file, or other output evidence."
+    },
+    {
+      "role": "result",
+      "path": "artifacts/h6_bm_permutation.csv",
+      "sha256": "4f6c5c471fdc8ab6e253d09e65ca92d1091041a1386ec337983f2d4dd378c4cb",
+      "description": "Result table, metric file, or other output evidence."
+    },
+    {
+      "role": "result",
+      "path": "artifacts/daily_returns.csv",
+      "sha256": "b6c9c4d8c7c9e07955ac6273cfcb945af9e0b04827aea28c27cb6dc446965fc5",
+      "description": "Result table, metric file, or other output evidence."
+    },
+    {
+      "role": "result",
+      "path": "artifacts/result.json",
+      "sha256": "c0fbe9b94d835f77e613e36357a9a5d8ae367d1706352f95174bd27c70e156bf",
+      "description": "Result table, metric file, or other output evidence."
+    },
+    {
+      "role": "result",
+      "path": "artifacts/nav_maxhistory.png",
+      "sha256": "733ebe9a7f2bf2c58361d321508aceeabc6ff5b10a46eebec7ca59748f4ecfa5",
+      "description": "Result table, metric file, or other output evidence."
+    },
+    {
+      "role": "report",
+      "path": "REPORT.md",
+      "sha256": "f3fd9c865cb7128426344d8d311b0119456c6347dc5fa6b25ca527e036948177",
+      "description": "Run report or research note."
+    },
+    {
+      "role": "report",
+      "path": "AUDIT.md",
+      "sha256": "18fcfa4a7de129a3a13d514fe8ace7e288d48d44a68ee6ce0d4a80d6c1dc15c4",
+      "description": "Run report or research note."
+    },
+    {
+      "role": "report",
+      "path": "HANDOFF.md",
+      "sha256": "6b7627a93ada8bb63a83944b5929cf7d55f9ec9e8baac07c2f09a113b1e8a9d5",
+      "description": "Run report or research note."
+    },
+    {
+      "role": "log",
+      "path": "logs/run.log",
+      "sha256": "c0fbe9b94d835f77e613e36357a9a5d8ae367d1706352f95174bd27c70e156bf",
+      "description": "Actual command or execution log."
+    },
+    {
+      "role": "log",
+      "path": "logs/unit_tests.log",
+      "sha256": "648f61b28a6ca4eb85ba2122b740c102b9a1ab7253ec32bb3c23bf9e19d5ad8c",
+      "description": "Actual command or execution log."
+    },
+    {
+      "role": "log",
+      "path": "logs/validate.log",
+      "sha256": "c3116c819fecd35b3f05edf212e81e92123f32e42d54d20a0617e3f68ac26be8",
+      "description": "Actual command or execution log."
+    }
+  ],
+  "external_inputs": [
+    {
+      "role": "data",
+      "path": "/Users/hsh/Documents/Quant/科技轮动/research/runs/aw7_commodity_basis_momentum_20261123/artifacts/product_basis_momentum.csv",
+      "sha256": "ca5c51b1999ec9c1335ed762ee860136d28ebf2b52743116c9226159578deb2b"
+    },
+    {
+      "role": "data",
+      "path": "/Users/hsh/Documents/Quant/科技轮动/research/runs/aw7_commodity_switch_confirm_20261123/artifacts/daily_returns.csv",
+      "sha256": "204dc3b12c65f6b077ad8be98a405117fddb275ce85cbd87e0f36558e181a3c8"
+    },
+    {
+      "role": "code",
+      "path": "/Users/hsh/Documents/Quant/科技轮动/research/runs/aw7_commodity_switch_confirm_20261123/reproduction/run.py",
+      "sha256": "c89b5ffc8173100e4b7ba3a5c68492ab44d6806a38c1cd9d1c179515292fe82f"
+    }
+  ],
+  "notes": "Max-history H6 extension; viewed history, not OOS; production unchanged."
+}

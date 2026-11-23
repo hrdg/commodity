@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0",
+  "data_id": "AW7_H6_MAXHISTORY_INPUT_20261123",
+  "intended_use": ["research-only maximum-history H6 extension"],
+  "fields": ["ETF close/open", "C5 score", "six-node BM5 with partial availability"],
+  "frequency": "monthly decision; daily accounting",
+  "date_range": {"start": "2016-01-29", "end": "2026-09-30"},
+  "universe": "six AW7 commodity ETF nodes and their mapped futures groups",
+  "decision_time": "month-end close",
+  "required_available_at": "next trading-session open",
+  "parents": ["R1 contract BM5 panel", "R2 H6 code and examples"],
+  "transform": "node BM5 aggregation without interpolation; H6 fallback on missing top-two BM5",
+  "minimum_coverage": {"nodes_available_at_start": 4, "top_two_bm_required_for_swap": true},
+  "acceptance": ["strict-six window equals R2", "no zero-filled BM5", "no future labels in signal"]
+}

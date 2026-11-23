@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "data_id": "AW7_H6_MAXHISTORY_INPUT_20261123",
+  "product": "Partial-availability six-node monthly BM5 panel and six ETF prices",
+  "vendor": "Derived from R1 contract data and current ETF proxy panel",
+  "version": "2026-11-23",
+  "intended_use": ["research-only maximum-history H6 extension"],
+  "coverage": {
+    "start": "2016-01-29",
+    "end": "2026-09-30",
+    "frequency": "monthly signals, daily accounting",
+    "universe": ["160723.XSHE", "159985.XSHE", "159980.XSHE", "159981.XSHE", "518880.XSHG", "161226.XSHE"],
+    "fields": ["date", "node", "bm5", "C5", "ETF open/close"]
+  },
+  "snapshot": {
+    "parent_product_panel": "/Users/hsh/Documents/Quant/科技轮动/research/runs/aw7_commodity_basis_momentum_20261123/artifacts/product_basis_momentum.csv",
+    "derived_node_panel": "artifacts/node_bm5_partial.csv"
+  },
+  "classification": {"kind": "derived_research_panel", "price_volume": true, "metadata_only": false},
+  "parents": [
+    {"path": "/Users/hsh/Documents/Quant/科技轮动/research/runs/aw7_commodity_basis_momentum_20261123/data_certificate.json", "purpose": "contract-level source panel"},
+    {"path": "/Users/hsh/Documents/Quant/科技轮动/research/runs/aw7_commodity_switch_confirm_20261123/strategy.json", "purpose": "H6 signal and execution rule"}
+  ],
+  "transform": {
+    "code_path": "reproduction/run.py",
+    "version": "h6-maxhistory-v1",
+    "parameters": {"c5_window": 25, "c5_r2_window": 250, "bm5_window": 5, "h6_gap": 0.25, "bm_tolerance": 1e-12}
+  },
+  "dimensions": {
+    "source_inventory": {"status": "PASS", "criterion": "Parent product panel and node mapping are recorded.", "evidence": [{"path": "evidence.json"}, {"path": "data_requirement.json"}], "reason": null},
+    "schema_keys_units": {"status": "PASS", "criterion": "Node-date BM5 and ETF-date keys are unique.", "evidence": [{"path": "artifacts/node_bm5_partial.csv"}, {"path": "logs/unit_tests.log"}], "reason": null},
+    "date_axis_calendar": {"status": "PASS", "criterion": "All signals occur on month-end and labels are next open.", "evidence": [{"path": "artifacts/daily_returns.csv"}], "reason": null},
+    "coverage_universe": {"status": "PARTIAL", "criterion": "Partial node availability is explicit; ETF prelisting history is proxy-inclusive.", "evidence": [{"path": "artifacts/node_bm5_partial.csv"}, {"path": "REPORT.md"}], "reason": "Meal and chemicals are unavailable before 2019/2021."},
+    "asof_available_at": {"status": "PASS", "criterion": "C5 and BM5 use completed month-end data; ETF fills are next session.", "evidence": [{"path": "reproduction/run.py"}, {"path": "artifacts/result.json"}], "reason": null},
+    "revision_vintage": {"status": "BLOCKED", "criterion": "Historical release vintage must be available.", "evidence": [{"path": "evidence.json"}], "reason": "Public endpoints provide current revisions only."},
+    "historical_membership": {"status": "PASS", "criterion": "Node membership is fixed and BM5 availability is determined from historical contract groups.", "evidence": [{"path": "artifacts/node_bm5_partial.csv"}], "reason": null},
+    "mapping_taxonomy": {"status": "PARTIAL", "criterion": "Futures groups map to six ETF nodes.", "evidence": [{"path": "PRE_REPRO.md"}], "reason": "Mapping is a research proxy."},
+    "derived_lineage": {"status": "PASS", "criterion": "Partial node BM5 and simulation code are deterministic.", "evidence": [{"path": "reproduction/run.py"}, {"path": "artifacts/node_bm5_partial.csv"}], "reason": null},
+    "reconciliation": {"status": "PARTIAL", "criterion": "Strict-six window reproduces R2; earlier proxy paths have no independent reconcile source.", "evidence": [{"path": "artifacts/result.json"}], "reason": "No independent historical ETF/futures total-return mapping."},
+    "reproducibility": {"status": "PASS", "criterion": "Unit tests and exact strict-six replay pass.", "evidence": [{"path": "logs/unit_tests.log"}, {"path": "logs/run.log"}], "reason": null}
+  },
+  "pit": {"event_time_field": "month-end close", "available_at_field": "close for signal; next open for execution", "decision_cutoff": "month-end", "revision_policy": "current snapshots", "certified": false, "tests": ["partial node coverage", "strict-six replay", "future input isolation inherited from R1"]},
+  "universe": {"historical_members": "six fixed ETF nodes with availability-aware BM5", "survivorship_test": "node fixed by strategy; product availability historical"},
+  "mapping": {"explicit_vendor_crosswalk": false, "etf_mapping": "proxy group mapping"},
+  "lineage": {"parent_source_ids": ["AW7_COMMODITY_BASIS_PANEL_20261123", "AW7_H6_RULE"], "derived_artifact": "artifacts/node_bm5_partial.csv"},
+  "validation": {"commands": ["pytest reproduction/test_run.py", "python reproduction/run.py"], "artifacts": ["artifacts/result.json", "artifacts/metrics.csv"], "checks": ["2 unit tests", "strict-six replay", "label permutation"]},
+  "decision": {"status": "PARTIAL", "scope": "research-only max-history extension", "certified_for": ["historical mechanism diagnostic"], "not_certified_for": ["production PIT", "independent OOS", "exact ETF execution before listing"], "blockers": ["no vintage", "partial node coverage", "ETF proxy history"], "reviewed_at": "2026-11-23T22:55:00+08:00", "reviewer": "Codex AW7 H6 max-history"},
+  "revalidation": {"triggers": ["new contract snapshot", "new ETF history", "change in node mapping", "H6 rule change"], "next_review": "before future shadow or production"}
+}

@@ -1,0 +1,2 @@
+{"access_id":"S01","sample_role":"exploration","date_range":["2015-01-05","2026-09-30"],"purpose":"Inherit the previously viewed R1 commodity panel, C5/RANK2 state machine and BM5 contract mappings.","accessed_at":"2026-11-23T22:52:34+08:00","influenced_selection":true}
+{"access_id":"S02","sample_role":"validation","date_range":["2016-01-29","2026-09-30"],"purpose":"Evaluate the preregistered max-history H6 fallback, strict-six replay, two costs, yearly attribution and BM5 label permutation.","accessed_at":"2026-11-23T22:52:34+08:00","influenced_selection":true}
