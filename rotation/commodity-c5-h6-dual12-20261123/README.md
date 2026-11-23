@@ -20,6 +20,9 @@
 
 这些论文提供机制或对照，不表示原文曾测试过本文的完整策略。
 
+Basis-momentum 与 Carry、价格动量的区别、风险补偿来源及 AW7 映射边界见
+[Basis-Momentum 的经济逻辑](BM_ECONOMIC_LOGIC.md)。
+
 | 文献 | 在本文中的用途 | 原文边界 |
 |---|---|---|
 | Boons & Porras Prado (2019), *Basis-Momentum in the Futures Curve and Volatility Risk*, Journal of Finance, DOI [10.1111/jofi.12738](https://doi.org/10.1111/jofi.12738) | first/second-nearby basis-momentum；检验对未来 nearby 和 spread 收益的预测 | 原文使用更宽的商品期货横截面；本文后续主要映射到六ETF和47个合同品种代理 |
@@ -103,16 +106,17 @@ reports/    完整报告、算法说明和审计
 ## 阅读顺序
 
 1. [七套策略 text 架构](STRATEGY_ARCHITECTURES.md)
-2. [绩效表](PERFORMANCE.md)
-3. [验证与限制](VALIDATION_AND_LIMITS.md)
-4. [C5 基线报告](reports/C5_RANK2_TIPDD_REPORT.md)
-5. [H6 报告](reports/H6_REPORT.md)
-6. [dual12 过滤报告](reports/DUAL_FILTER_REPORT.md)
-7. [H6/dual12 融合报告](reports/H6_DUAL_FUSION_REPORT.md)
-8. [Sleeve B 比较报告](reports/SLEEVE_B_REPORT.md)
-9. [H6 最长历史报告](max_history/REPORT.md)
-10. [H6 最长历史审计](max_history/AUDIT.md)
-11. [文件哈希清单](MANIFEST.sha256)
+2. [Basis-Momentum 的经济逻辑](BM_ECONOMIC_LOGIC.md)
+3. [绩效表](PERFORMANCE.md)
+4. [验证与限制](VALIDATION_AND_LIMITS.md)
+5. [C5 基线报告](reports/C5_RANK2_TIPDD_REPORT.md)
+6. [H6 报告](reports/H6_REPORT.md)
+7. [dual12 过滤报告](reports/DUAL_FILTER_REPORT.md)
+8. [H6/dual12 融合报告](reports/H6_DUAL_FUSION_REPORT.md)
+9. [Sleeve B 比较报告](reports/SLEEVE_B_REPORT.md)
+10. [H6 最长历史报告](max_history/REPORT.md)
+11. [H6 最长历史审计](max_history/AUDIT.md)
+12. [文件哈希清单](MANIFEST.sha256)
 
 ## 生产边界
 
