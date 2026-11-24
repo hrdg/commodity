@@ -108,8 +108,10 @@ alpha 最大：C 残差动量     24.3% / 1.60 / −14.7%   ← 绝对收益优�
 | 文件 | 内容 |
 |---|---|
 | `s1_mom12_hl_paper44.py` | S1/S2/S3 基线族：MOM12 多空、long-only、BM 反转 tilt |
+| `c_residual_b_voltarget_arch_v2.py` | **C 残差动量**（MOM12⊥Δslope6）/ B 波控 / A 多窗混合 |
 | `s1_d1_d2_d3_d4_arch_v3.py` | D1 斜率缩放 / **D2 腿内逆波动** / D3 跳月 / D4 残差×波控 |
 | `d2_e1_e2_e3_e4_arch_v4.py` | E1/E2 腿内第二信号 / E3 绝对动量门 / **E4 中位分割** |
+| `f1_f2_medsplit_on_c_d4_arch_v5.py` | F1（C+中位切，帕累托前沿内侧）/ F2（D4+中位切，REJECT） |
 
 依赖：`pandas / numpy / scipy`。数据路径在文件头 `PREV` 常量，指向月度面板 CSV。
 
